@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Excellence_Massotherapie:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>Excellence_Massotherapie</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="Excellence_Massotherapie-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="Excellence_Massotherapie:war exploded" />
+    </root>
+  </artifact>
+</component>
