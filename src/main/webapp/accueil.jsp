@@ -8,7 +8,7 @@
     <!-- Styles -->
     <link href="css/style.css" rel="stylesheet"/>
     <!--Bootstrap -->
-    <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="https://bootstrap-colors-extended.herokuapp.com/bootstrap-colors.css" />
 
 </head>
@@ -48,8 +48,8 @@
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
-<script src="../js/script.js"></script>
-<script src="../bootstrap/bootstrap.min.js"></script>
-<script src="../bootstrap/jquery-3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/script.js"></script>
+<script src="${pageContext.request.contextPath}/bootstrap/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/bootstrap/jquery-3.6.0.min.js"></script>
 </body>
 </html>
