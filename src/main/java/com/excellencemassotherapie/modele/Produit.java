@@ -6,102 +6,102 @@ import jakarta.persistence.*;
 @Entity
 public class Produit {
     @Id
-    @Column(name = "id_Produit", nullable = false)
+    @Column(name = "id_produit", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_Produit;
-    @Column(name = "nom_Produitom", nullable = false)
-    private String nom_Produit;
-    @Column(name = "description_Produit", nullable = false)
-    private String description_Produit;
-    @Column(name = "urlImage_Produit", nullable = false)
-    private String urlImage_Produit;
+    private Long idProduit;
+    @Column(name = "nom", nullable = false)
+    private String nom;
+    @Column(name = "description", nullable = false)
+    private String description;
+    @Column(name = "urlImage", nullable = false)
+    private String urlImage;
 
-    @Column(name = "type_Produit", nullable = false)
-    private String type_Produit;
-    @Column(name = "quantite_Produit", nullable = false)
-    private int quantite_Produit;
+    @Column(name = "type", nullable = false)
+    private String type;
+    @Column(name = "quantite", nullable = false)
+    private int quantite;
     @Column(name = "prix", nullable = false)
-    private double prix_Produit;
+    private double prix;
 
     public Produit() {
     }
 
-    public Produit(Long id_Produit, String nom, String description_Produit, String urlImage_Produit, String type_Produit, int quantite_Produit, double prix_Produit) {
-        this.id_Produit = id_Produit;
-        this.nom_Produit = nom;
-        this.description_Produit = description_Produit;
-        this.urlImage_Produit = urlImage_Produit;
-        this.type_Produit = type_Produit;
-        this.quantite_Produit = quantite_Produit;
-        this.prix_Produit = prix_Produit;
+    public Produit(Long idProduit, String nom, String description, String urlImage, String type, int quantite, double prix) {
+        this.idProduit = idProduit;
+        this.nom = nom;
+        this.description = description;
+        this.urlImage = urlImage;
+        this.type = type;
+        this.quantite = quantite;
+        this.prix = prix;
     }
 
-    public Long getId_Produit() {
-        return id_Produit;
+    public Long getIdProduit() {
+        return idProduit;
     }
 
-    public void setId_Produit(Long id) {
-        this.id_Produit = id;
+    public void setIdProduit(Long idProduit) {
+        this.idProduit = idProduit;
     }
 
-    public String getNom_Produit() {
-        return nom_Produit;
+    public String getNom() {
+        return nom;
     }
 
-    public void setNom_Produit(String nom) {
-        this.nom_Produit = nom;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
-    public String getDescription_Produit() {
-        return description_Produit;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescription_Produit(String description) {
-        this.description_Produit = description;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getUrlImage_Produit() {
-        return urlImage_Produit;
+    public String getUrlImage() {
+        return urlImage;
     }
 
-    public void setUrlImage_Produit(String urlImage) {
-        this.urlImage_Produit = urlImage;
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 
-    public String getType_Produit() {
-        return type_Produit;
+    public String getType() {
+        return type;
     }
 
-    public void setType_Produit(String type_Produit) {
-        this.type_Produit = type_Produit;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public int getQuantite_Produit() {
-        return quantite_Produit;
+    public int getQuantite() {
+        return quantite;
     }
 
-    public void setQuantite_Produit(int quantite) {
-        this.quantite_Produit = quantite;
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
     }
 
-    public double getPrix_Produit() {
-        return prix_Produit;
+    public double getPrix() {
+        return prix;
     }
 
-    public void setPrix_Produit(double prix) {
-        this.prix_Produit = prix;
+    public void setPrix(double prix) {
+        this.prix = prix;
     }
 
     @Override
     public String toString() {
         return "Produit{" +
-                "id=" + id_Produit +
-                ", nom='" + nom_Produit + '\'' +
-                ", description='" + description_Produit + '\'' +
-                ", urlImage='" + urlImage_Produit + '\'' +
-                ", type_Produit='" + type_Produit + '\'' +
-                ", quantite=" + quantite_Produit +
-                ", prix=" + prix_Produit +
+                "idProduit=" + idProduit +
+                ", nom='" + nom + '\'' +
+                ", description='" + description + '\'' +
+                ", urlImage='" + urlImage + '\'' +
+                ", type='" + type + '\'' +
+                ", quantite=" + quantite +
+                ", prix=" + prix +
                 '}';
     }
 }

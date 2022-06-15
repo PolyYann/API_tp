@@ -6,9 +6,9 @@ import jakarta.persistence.*;
 @Entity
 public class Professionnel {
     @Id
-    @Column(name = "id_proffessionnel", nullable = false)
+    @Column(name = "id_professionnel", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idSoin;
+    private Long idProfessionnel;
     @Column(name = "nom", nullable = false)
     private String nom;
     @Column(name = "presentation", nullable = false)
@@ -19,19 +19,19 @@ public class Professionnel {
     public Professionnel() {
     }
 
-    public Professionnel(Long idSoin, String nom, String presentation, String urlImage) {
-        this.idSoin = idSoin;
+    public Professionnel(Long idProfessionnel, String nom, String presentation, String urlImage) {
+        this.idProfessionnel = idProfessionnel;
         this.nom = nom;
         this.presentation = presentation;
         this.urlImage = urlImage;
     }
 
-    public Long getIdSoin() {
-        return idSoin;
+    public Long getIdProfessionnel() {
+        return idProfessionnel;
     }
 
-    public void setIdSoin(Long idSoin) {
-        this.idSoin = idSoin;
+    public void setIdProfessionnel(Long idSoin) {
+        this.idProfessionnel = idSoin;
     }
 
     public String getNom() {
@@ -61,7 +61,7 @@ public class Professionnel {
     @Override
     public String toString() {
         return "Professionnel{" +
-                "id=" + idSoin +
+                "id=" + idProfessionnel +
                 ", nom='" + nom + '\'' +
                 ", presentation='" + presentation + '\'' +
                 ", urlImage='" + urlImage + '\'' +
