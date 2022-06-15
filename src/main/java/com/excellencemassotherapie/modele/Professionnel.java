@@ -1,13 +1,14 @@
 package com.excellencemassotherapie.modele;
 
-import javax.persistence.*;
+
+import jakarta.persistence.*;
 
 @Entity
 public class Professionnel {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id_proffessionnel", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idSoin;
     @Column(name = "nom", nullable = false)
     private String nom;
     @Column(name = "presentation", nullable = false)
@@ -18,19 +19,19 @@ public class Professionnel {
     public Professionnel() {
     }
 
-    public Professionnel(Long id, String nom, String presentation, String urlImage) {
-        this.id = id;
+    public Professionnel(Long idSoin, String nom, String presentation, String urlImage) {
+        this.idSoin = idSoin;
         this.nom = nom;
         this.presentation = presentation;
         this.urlImage = urlImage;
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdSoin() {
+        return idSoin;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdSoin(Long idSoin) {
+        this.idSoin = idSoin;
     }
 
     public String getNom() {
@@ -60,7 +61,7 @@ public class Professionnel {
     @Override
     public String toString() {
         return "Professionnel{" +
-                "id=" + id +
+                "id=" + idSoin +
                 ", nom='" + nom + '\'' +
                 ", presentation='" + presentation + '\'' +
                 ", urlImage='" + urlImage + '\'' +

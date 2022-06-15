@@ -1,20 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="excellence@localhost" uuid="fe89e042-175b-4624-927b-89c3b1a03585">
+    <data-source source="LOCAL" name="excellence@localhost" uuid="366b82cf-17d9-4b3d-8122-74da2999add0">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3307/excellence</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="persistence/Hibernate" uuid="52c163dd-35b7-454a-86cb-a21a01b8770f">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <imported>true</imported>
-      <remarks>Hibernate
-
-C:/Users/soul-/Documents/Cegep/API/Excellence_Massotherapie/src/main/resources/META-INF/persistence.xml</remarks>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3307/excellence</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
