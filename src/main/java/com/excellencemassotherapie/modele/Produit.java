@@ -18,22 +18,20 @@ public class Produit {
     private String urlImage;
 
     @Column(name = "type", nullable = false)
-    private String type;
-    @Column(name = "quantite", nullable = false)
-    private int quantite;
+    private int type;
     @Column(name = "prix", nullable = false)
     private double prix;
 
     public Produit() {
     }
 
-    public Produit(Long idProduit, String nom, String description, String urlImage, String type, int quantite, double prix) {
+    public Produit(Long idProduit, String nom, String description,
+                   String urlImage, int type, double prix) {
         this.idProduit = idProduit;
         this.nom = nom;
         this.description = description;
         this.urlImage = urlImage;
         this.type = type;
-        this.quantite = quantite;
         this.prix = prix;
     }
 
@@ -69,20 +67,12 @@ public class Produit {
         this.urlImage = urlImage;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
-    }
-
-    public int getQuantite() {
-        return quantite;
-    }
-
-    public void setQuantite(int quantite) {
-        this.quantite = quantite;
     }
 
     public double getPrix() {
@@ -101,7 +91,6 @@ public class Produit {
                 ", description='" + description + '\'' +
                 ", urlImage='" + urlImage + '\'' +
                 ", type='" + type + '\'' +
-                ", quantite=" + quantite +
                 ", prix=" + prix +
                 '}';
     }
