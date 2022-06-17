@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS excellence;
 CREATE DATABASE excellence;
 USE excellence;
 
-INSERT INTO T-Produits (nom, description, url_image, type, prix)
+INSERT INTO T_Produits (nom, description, url_image, categorie, prix)
 VALUES
 ("he citron", "huile essentielle de citron", "cd../img/1he/he_citron.jpg", "huile essentielle", 12.95),
 ("he cypres", "huile essentielle de cypres", "cd../img/1he/he_cypres.jpg", "huile essentielle", 14.95),
