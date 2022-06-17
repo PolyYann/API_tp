@@ -9,7 +9,7 @@ public class Panier {
     @Id
     @Column(name = "id_panier", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idProduit;
+    private Long idPanier;
 
     @ManyToOne(optional = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_produit")
@@ -21,18 +21,18 @@ public class Panier {
     public Panier() {
     }
 
-    public Panier(Long idProduit, Produit produit, Soin soin) {
-        this.idProduit = idProduit;
+    public Panier(Long idPanier, Produit produit, Soin soin) {
+        this.idPanier = idPanier;
         this.produit = produit;
         this.soin = soin;
     }
 
-    public Long getIdProduit() {
-        return idProduit;
+    public Long getIdPanier() {
+        return idPanier;
     }
 
-    public void setIdProduit(Long idProduit) {
-        this.idProduit = idProduit;
+    public void setIdPanier(Long idProduit) {
+        this.idPanier = idProduit;
     }
 
     public Produit getProduit() {
@@ -54,7 +54,7 @@ public class Panier {
     @Override
     public String toString() {
         return "Panier{" +
-                "id=" + idProduit +
+                "id=" + idPanier +
                 ", produit=" + produit +
                 ", soin=" + soin +
                 '}';

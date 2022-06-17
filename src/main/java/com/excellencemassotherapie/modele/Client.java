@@ -6,12 +6,16 @@ import jakarta.persistence.*;
 @Table(name="T_Clients")
 public class Client {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id_client", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idClient;
+    @Column(name = "nom", nullable = false)
     private String nom;
+    @Column(name = "telephone", nullable = false)
     private String telephone;
+    @Column(name = "email", nullable = false)
     private String email;
+    @Column(name = "adresse", nullable = false)
     private String adresse;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_panier")
@@ -20,8 +24,8 @@ public class Client {
     public Client() {
     }
 
-    public Client(Long id, String nom, String telephone, String email, String adresse, Panier panier) {
-        this.id = id;
+    public Client(Long idClient, String nom, String telephone, String email, String adresse, Panier panier) {
+        this.idClient = idClient;
         this.nom = nom;
         this.telephone = telephone;
         this.email = email;
@@ -29,12 +33,12 @@ public class Client {
         this.panier = panier;
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdClient() {
+        return idClient;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdClient(Long id) {
+        this.idClient = id;
     }
 
     public String getNom() {
@@ -80,7 +84,7 @@ public class Client {
     @Override
     public String toString() {
         return "Client{" +
-                "id=" + id +
+                "id=" + idClient +
                 ", nom='" + nom + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", email='" + email + '\'' +

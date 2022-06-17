@@ -4,7 +4,6 @@ package com.excellencemassotherapie.modele;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="T_Professionnels")
 public class Professionnel {
     @Id
     @Column(name = "id_professionnel", nullable = false)
