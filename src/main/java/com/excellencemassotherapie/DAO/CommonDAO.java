@@ -1,11 +1,13 @@
 package com.excellencemassotherapie.DAO;
 
-public interface CommonDAO {
+import java.util.List;
+
+public interface CommonDAO<T> {
     void connect();
     void disconnect();
-    void getAll();
-    void getById();
-    void getByName();
+    List<T> getAll();
+    T getById(int id);
+    T getByName(String nom);
     void insert();
 
 }
