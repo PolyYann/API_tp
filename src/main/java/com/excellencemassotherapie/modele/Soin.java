@@ -17,23 +17,21 @@ public class Soin {
     private String description;
     @Column(name = "url_img", nullable = false)
     private String urlImage;
-    @Column(name = "quantite", nullable = false)
-    private int quantite;
     @Column(name = "prix", nullable = false)
     private double prix;
 
     public Soin() {
     }
 
-    public Soin(Long idSoin, String nom, int duree, String description, String urlImage, int quantite, double prix) {
+    public Soin(Long idSoin, String nom, int duree, String description, String urlImage, double prix) {
         this.idSoin = idSoin;
         this.nom = nom;
         this.duree = duree;
         this.description = description;
         this.urlImage = urlImage;
-        this.quantite = quantite;
         this.prix = prix;
     }
+
 
     public Long getIdSoin() {
         return idSoin;
@@ -75,6 +73,14 @@ public class Soin {
         this.urlImage = urlImage;
     }
 
+    public double getPrix() {
+        return prix;
+    }
+
+    public void setPrix(double prix) {
+        this.prix = prix;
+    }
+
     @Override
     public String toString() {
         return "Soin{" +
@@ -83,7 +89,6 @@ public class Soin {
                 ", duree=" + duree +
                 ", description='" + description + '\'' +
                 ", urlImage='" + urlImage + '\'' +
-                ", quantite=" + quantite +
                 ", prix=" + prix +
                 '}';
     }

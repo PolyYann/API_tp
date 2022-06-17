@@ -13,7 +13,7 @@ public class Produit {
     private String nom;
     @Column(name = "description", nullable = false)
     private String description;
-    @Column(name = "urlImage", nullable = false)
+    @Column(name = "url_Image", nullable = false)
     private String urlImage;
 
     @Column(name = "type", nullable = false)
