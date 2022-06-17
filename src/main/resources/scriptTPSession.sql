@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS excellence;
 CREATE DATABASE excellence;
 USE excellence;
 
-INSERT INTO produits (nom, description, url_image, type, prix) 
+INSERT INTO T-Produits (nom, description, url_image, type, prix)
 VALUES
 ("he citron", "huile essentielle de citron", "cd../img/he/he_citron.jpg", "huile essentielle", 12.95),
 ("he cypres", "huile essentielle de cypres", "cd../img/he/he_cypres.jpg", "huile essentielle", 14.95),
@@ -26,11 +26,19 @@ VALUES
 ("myorub", "Myorub - creme soulagement de la douleur ", "cd../img/douleur/myorub.jpg", "douleur", 38.95)
 ;
 
-INSERT INTO soins (nom, duree, description, url_image, prix) 
+INSERT INTO T_Soins (nom, duree, description, url_image, prix)
 VALUES
 ("massage de détente", "60 minutes", "un massage de détente dans une ambiance relaxante", "cd../img/soins/massage_detente.jpg", 129.00),
 ("massage-facial", "90 minutes", "un soin de type facial, massage du visage et de la tête dans une ambiance relaxante", "cd../img/soins/massage_facial.jpg", 119.00),
 ("massage aux pierres chaudes", "90 minutes", "un massage de détente aux pierre chaudesc dans une ambiance relaxante", "cd../img/soins/massage_pierre_chaude.jpg", 149.00),
 ("massage therapeutique", "60 minutes", "un massage thérapeutique dans une ambiance relaxante", "cd../img/soins/massage_therapeutique.jpg", 109.00),
 ("Taping neuroproprioceptif", "25 minutes", "un taping neuro proprioceptif pour le soulagement des muscles", "cd../img/soins/taping.jpg", 25.00)
+;
+
+INSERT INTO T_Professionnels (nom, presentation, url_image)
+VALUES
+("Laurianne Labrecque", "LONGUE PRÉSENTATION À TROUVER", "cd../img/professionnels/laurianne_labrecque.jpg"),
+("Luc Gauthier", "LONGUE PRÉSENTATION À TROUVER", "cd../img/professionnels/luc_gauthier.jpg"),
+("Marie-Eve Beaulieu", "LONGUE PRÉSENTATION À TROUVER", "cd../img/professionnels/marie-eve_beaulieu.jpg"),
+("Véronique Brien", "LONGUE PRÉSENTATION À TROUVER", "cd../img/professionnels/veronique_brien.jpg")
 ;

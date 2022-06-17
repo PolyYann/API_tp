@@ -4,6 +4,7 @@ package com.excellencemassotherapie.modele;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name="T_Soins")
 public class Soin {
     @Id
     @Column(name = "id_soin", nullable = false)

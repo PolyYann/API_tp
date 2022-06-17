@@ -3,6 +3,7 @@ package com.excellencemassotherapie.modele;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name="T_Clients")
 public class Client {
     @Id
     @Column(name = "id", nullable = false)

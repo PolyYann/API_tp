@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 
 @Entity
+@Table(name="T_Paniers")
 public class Panier {
     @Id
     @Column(name = "id_panier", nullable = false)
