@@ -4,26 +4,26 @@ USE excellence;
 
 INSERT INTO T-Produits (nom, description, url_image, type, prix)
 VALUES
-("he citron", "huile essentielle de citron", "cd../img/he/he_citron.jpg", "huile essentielle", 12.95),
-("he cypres", "huile essentielle de cypres", "cd../img/he/he_cypres.jpg", "huile essentielle", 14.95),
-("he geranium", "huile essentielle de geranium", "cd../img/he/he_geranium.jpg", "huile essentielle", 18.95),
-("he lavande", "huile essentielle de lavande", "cd../img/he/he_lavande.jpg", "huile essentielle", 18.95),
-("he marjolaine", "huile essentielle de marjolaine", "cd../img/he/he_marjolaine.jpg", "huile essentielle", 13.95),
-("he maleleuca", "huile essentielle de melaleuca", "cd../img/he/he_melaleuca.jpg", "huile essentielle", 21.95),
-("he menthe_proivree", "huile essentielle de menthe poivree", "cd../img/he/he_menthe_poivree.jpg", "huile essentielle", 9.95),
-("he geranium", "huile essentielle de geranium", "cd../img/he/he_geranium.jpg", "huile essentielle", 18.95),
-("he pamplemousse", "huile essentielle de pamplemousse", "cd../img/he/he_pamplemousse.jpg", "huile essentielle", 12.95),
-("he pin", "huile essentielle de pin", "cd../img/he/he_pin.jpg", "huile essentielle", 23.95),
-("he pruche", "huile essentielle de pruche", "cd../img/he/he_pruche.jpg", "huile essentielle", 23.95),
-("he the des bois", "huile essentielle de the des bois", "cd../img/he/he_the_des_bois.jpg", "huile essentielle", 20.95),
-("bioterra-creme renovatrice", "Soin du visage - creme rénovatrice de bioterra", "cd../img/soin_visage/bioterra_creme_renovatrice.jpg", "soin du visage", 45.95),
-("bioterra-game complete", "Soin du visage - game complete de bioterra", "cd../img/soin_visage/bioterra_game_complete.jpg", "soin du visage", 175.95),
-("bioterra-gel facial exfoliant", "Soin du visage - gel facial exfoliant de bioterra", "cd../img/soin_visage/bioterra_gel_facial_exfoliant.jpg", "soin du visage", 59.95),
-("bioterra-gel nettoyant", "Soin du visage - gel nettoyant de bioterra", "cd../img/soin_visage/bioterra_gel_nettoyant.jpg", "soin du visage", 45.95),
-("bioterra-masque acial", "Soin du visage - masque facial de bioterra", "cd../img/soin_visage/bioterra_masque_facial.jpg", "soin du visage", 47.95),
-("bioterra-serogel anti age", "Soin du visage - serogel anti age de bioterra", "cd../img/soin_visage/bioterra_serogel_anti_age.jpg", "soin du visage", 75.95),
-("Protape", "Taping neuroproprioceptif - protape", "cd../img/douleur/protape.jpg", "douleur", 27.95),
-("myorub", "Myorub - creme soulagement de la douleur ", "cd../img/douleur/myorub.jpg", "douleur", 38.95)
+("he citron", "huile essentielle de citron", "cd../img/1he/he_citron.jpg", "huile essentielle", 12.95),
+("he cypres", "huile essentielle de cypres", "cd../img/1he/he_cypres.jpg", "huile essentielle", 14.95),
+("he geranium", "huile essentielle de geranium", "cd../img/1he/he_geranium.jpg", "huile essentielle", 18.95),
+("he lavande", "huile essentielle de lavande", "cd../img/1he/he_lavande.jpg", "huile essentielle", 18.95),
+("he marjolaine", "huile essentielle de marjolaine", "cd../img/1he/he_marjolaine.jpg", "huile essentielle", 13.95),
+("he maleleuca", "huile essentielle de melaleuca", "cd../img/1he/he_melaleuca.jpg", "huile essentielle", 21.95),
+("he menthe_proivree", "huile essentielle de menthe poivree", "cd../img/1he/he_menthe_poivree.jpg", "huile essentielle", 9.95),
+("he geranium", "huile essentielle de geranium", "cd../img/1he/he_geranium.jpg", "huile essentielle", 18.95),
+("he pamplemousse", "huile essentielle de pamplemousse", "cd../img/1he/he_pamplemousse.jpg", "huile essentielle", 12.95),
+("he pin", "huile essentielle de pin", "cd../img/1he/he_pin.jpg", "huile essentielle", 23.95),
+("he pruche", "huile essentielle de pruche", "cd../img/1he/he_pruche.jpg", "huile essentielle", 23.95),
+("he the des bois", "huile essentielle de the des bois", "cd../img/1he/he_the_des_bois.jpg", "huile essentielle", 20.95),
+("bioterra-creme renovatrice", "Soin du visage - creme rénovatrice de bioterra", "cd../img/2soin_visage/bioterra_creme_renovatrice.jpg", "soin du visage", 45.95),
+("bioterra-game complete", "Soin du visage - game complete de bioterra", "cd../img/2soin_visage/bioterra_game_complete.jpg", "soin du visage", 175.95),
+("bioterra-gel facial exfoliant", "Soin du visage - gel facial exfoliant de bioterra", "cd../img/2soin_visage/bioterra_gel_facial_exfoliant.jpg", "soin du visage", 59.95),
+("bioterra-gel nettoyant", "Soin du visage - gel nettoyant de bioterra", "cd../img/2soin_visage/bioterra_gel_nettoyant.jpg", "soin du visage", 45.95),
+("bioterra-masque acial", "Soin du visage - masque facial de bioterra", "cd../img/2soin_visage/bioterra_masque_facial.jpg", "soin du visage", 47.95),
+("bioterra-serogel anti age", "Soin du visage - serogel anti age de bioterra", "cd../img/2soin_visage/bioterra_serogel_anti_age.jpg", "soin du visage", 75.95),
+("Protape", "Taping neuroproprioceptif - protape", "cd../img/3douleur/protape.jpg", "douleur", 27.95),
+("myorub", "Myorub - creme soulagement de la douleur ", "cd../img/3douleur/myorub.jpg", "douleur", 38.95)
 ;
 
 INSERT INTO T_Soins (nom, duree, description, url_image, prix)
