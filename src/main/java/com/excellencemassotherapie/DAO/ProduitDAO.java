@@ -9,7 +9,6 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProduitDAO implements CommonDAO {
@@ -66,8 +65,19 @@ public class ProduitDAO implements CommonDAO {
     }
 
     @Override
-    public void insert() {
+    public void insert(Object o) {
+        Produit produit = (Produit) o;
+        try {
+            entityManager.getTransaction().begin();
+            entityManager.persist(produit);
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            entityManager.getTransaction().rollback();
+        }
+    }
+
+
 
     }
-}
+
 
