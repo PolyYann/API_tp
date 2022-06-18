@@ -16,20 +16,43 @@ public class Panier {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Column(name = "produits")
-    private List<Produit> produit = new ArrayList<Produit>();
+    private List<Produit> produit = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Soin> soin = new ArrayList<Soin>();
+    @Column(name = "soins")
+    private List<Soin> soin = new ArrayList<>();
 
     @ManyToMany(mappedBy = "listPaniers")
-    private List<Client> listClients = new ArrayList<Client>();
+    @Column(name = "clients")
+    private List<Client> listClients = new ArrayList<>();
+    @Column(name = "est_paye", nullable = false)
+     private boolean paye;
     public Panier() {
     }
 
-    public Panier(Long idPanier, List<Produit> produit, List<Soin> soin) {
+    public Panier(Long idPanier, List<Produit> produit, List<Soin> soin,
+                  List<Client> listClients, boolean paye) {
         this.idPanier = idPanier;
         this.produit = produit;
         this.soin = soin;
+        this.listClients = listClients;
+        this.paye = paye;
+    }
+
+    public List<Client> getListClients() {
+        return listClients;
+    }
+
+    public void setListClients(List<Client> listClients) {
+        this.listClients = listClients;
+    }
+
+    public boolean isPaye() {
+        return paye;
+    }
+
+    public void setPaye(boolean estPaye) {
+        this.paye = estPaye;
     }
 
     public Long getIdPanier() {
