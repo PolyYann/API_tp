@@ -1,0 +1,18 @@
+.navbar-default {
+    background: none;
+    border: none;
+}
+
+
+body{
+    height:100%;
+}
+html{
+    background: url('../img/table_logo.jpg') no-repeat center center fixed;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+    background-size:cover;
+    background-position: 0 0;
+
+}
