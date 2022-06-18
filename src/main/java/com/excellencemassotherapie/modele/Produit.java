@@ -4,12 +4,12 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name="T_Produits")
+@Table(name="t_produits")
 public class Produit {
     @Id
     @Column(name = "id_produit", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idProduit;
+    private int idProduit;
     @Column(name = "nom", nullable = false)
     private String nom;
     @Column(name = "description", nullable = false)
@@ -25,9 +25,9 @@ public class Produit {
     public Produit() {
     }
 
-    public Produit(Long idProduit, String nom, String description,
+    public Produit( String nom, String description,
                    String urlImage, int categorie, double prix) {
-        this.idProduit = idProduit;
+
         this.nom = nom;
         this.description = description;
         this.urlImage = urlImage;
@@ -35,11 +35,11 @@ public class Produit {
         this.prix = prix;
     }
 
-    public Long getIdProduit() {
+    public int getIdProduit() {
         return idProduit;
     }
 
-    public void setIdProduit(Long idProduit) {
+    public void setIdProduit(int idProduit) {
         this.idProduit = idProduit;
     }
 

@@ -12,7 +12,7 @@ import jakarta.persistence.criteria.Root;
 
 import java.util.List;
 
-public class PanierDAO implements CommonDAO {
+public class PanierDAO implements ICommonDAO<Panier> {
     private final EntityManagerFactory entityManagerFactory = Persistence
             .createEntityManagerFactory("hibernate");
     private EntityManager entityManager = null;
@@ -50,6 +50,7 @@ public class PanierDAO implements CommonDAO {
         return (Panier) query.getSingleResult();
 
     }
+
     public void payerPanier(Panier panier) {
         entityManager.getTransaction().begin();
         panier.setPaye(true);
@@ -77,6 +78,7 @@ public class PanierDAO implements CommonDAO {
         return panierClient;
 
     }
+
     /**
      * méthode à ne pas implémenté
      */
@@ -87,10 +89,11 @@ public class PanierDAO implements CommonDAO {
     }
 
     @Override
-    public void insert(Object o) {
-        Panier panier = (Panier) o;
+    public void insert(Panier panier) {
+
         entityManager.getTransaction().begin();
         entityManager.persist(panier);
         entityManager.getTransaction().commit();
     }
 }
+

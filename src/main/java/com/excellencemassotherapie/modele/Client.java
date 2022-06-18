@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "T_Clients")
+@Table(name = "t_clients")
 public class Client {
     @Id
     @Column(name = "id_client", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idClient;
+    private int idClient;
     @Column(name = "nom", nullable = false)
     private String nom;
     @Column(name = "telephone", nullable = false)
@@ -22,27 +22,46 @@ public class Client {
     private String adresse;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "T_Clients_Paniers", joinColumns = @JoinColumn(name = "id_client"),
-            inverseJoinColumns = @JoinColumn(name = "id_panier"))
+            inverseJoinColumns = @JoinColumn(name = "id_panier"), foreignKey = @ForeignKey(name =
+            "fk_client_panier_id_panier"), inverseForeignKey = @ForeignKey(name = "fk_panier_client_id_client"))
     private List<Panier> listPaniers = new ArrayList<>();
-
+    @Column(name = "password",  nullable = false)
+    private String password;
     public Client() {
     }
 
-    public Client(Long idClient, String nom, String telephone, String email,
-                  String adresse, List<Panier> listPaniers) {
-        this.idClient = idClient;
+    public Client(String nom, String telephone, String email, String adresse,
+                  List<Panier> listPaniers, String password) {
         this.nom = nom;
         this.telephone = telephone;
         this.email = email;
         this.adresse = adresse;
         this.listPaniers = listPaniers;
+        this.password = password;
     }
 
-    public Long getIdClient() {
+    public Client(String nom, String telephone, String email, String adresse,
+                  String password) {
+        this.nom = nom;
+        this.telephone = telephone;
+        this.email = email;
+        this.adresse = adresse;
+        this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getIdClient() {
         return idClient;
     }
 
-    public void setIdClient(Long idClient) {
+    public void setIdClient(int idClient) {
         this.idClient = idClient;
     }
 

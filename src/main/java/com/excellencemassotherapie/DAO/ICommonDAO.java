@@ -1,10 +1,8 @@
 package com.excellencemassotherapie.DAO;
 
-import com.excellencemassotherapie.modele.Produit;
-
 import java.util.List;
 
-public interface CommonDAO<T> {
+public interface ICommonDAO<T> {
     void connect();
     void disconnect();
     List<T> getAll();

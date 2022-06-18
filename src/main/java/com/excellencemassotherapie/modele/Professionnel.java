@@ -4,11 +4,12 @@ package com.excellencemassotherapie.modele;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name="t_professionnels")
 public class Professionnel {
     @Id
     @Column(name = "id_professionnel", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idProfessionnel;
+    private int idProfessionnel;
     @Column(name = "nom", nullable = false)
     private String nom;
     @Column(name = "presentation", nullable = false)
@@ -19,18 +20,18 @@ public class Professionnel {
     public Professionnel() {
     }
 
-    public Professionnel(Long idProfessionnel, String nom, String presentation, String urlImage) {
-        this.idProfessionnel = idProfessionnel;
+    public Professionnel( String nom, String presentation, String urlImage) {
+
         this.nom = nom;
         this.presentation = presentation;
         this.urlImage = urlImage;
     }
 
-    public Long getIdProfessionnel() {
+    public int getIdProfessionnel() {
         return idProfessionnel;
     }
 
-    public void setIdProfessionnel(Long idSoin) {
+    public void setIdProfessionnel(int idSoin) {
         this.idProfessionnel = idSoin;
     }
 

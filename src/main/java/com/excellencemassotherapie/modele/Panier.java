@@ -7,32 +7,38 @@ import java.util.List;
 
 
 @Entity
-@Table(name="t_paniers")
+@Table(name = "t_paniers")
 public class Panier {
     @Id
     @Column(name = "id_panier", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idPanier;
+    private int idPanier;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @Column(name = "produits")
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "T_Paniers_Produits", joinColumns = @JoinColumn(name = "id_panier"),
+            inverseJoinColumns = @JoinColumn(name = "id_produit",
+                    foreignKey = @ForeignKey(name = "fk_panier_produit_id_produit")),
+            inverseForeignKey = @ForeignKey(name = "fk_produit_panier_id_panier"))
     private List<Produit> produit = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @Column(name = "soins")
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "T_Paniers_soin", joinColumns = @JoinColumn(name = "id_panier",
+            foreignKey = @ForeignKey(name = "fk_panier_soin_id_panier")),
+            inverseJoinColumns = @JoinColumn(name = "id_soin"))
     private List<Soin> soin = new ArrayList<>();
 
     @ManyToMany(mappedBy = "listPaniers")
     @Column(name = "clients")
     private List<Client> listClients = new ArrayList<>();
     @Column(name = "est_paye", nullable = false)
-     private boolean paye;
+    private boolean paye;
+
     public Panier() {
     }
 
-    public Panier(Long idPanier, List<Produit> produit, List<Soin> soin,
+    public Panier(List<Produit> produit, List<Soin> soin,
                   List<Client> listClients, boolean paye) {
-        this.idPanier = idPanier;
+
         this.produit = produit;
         this.soin = soin;
         this.listClients = listClients;
@@ -55,11 +61,11 @@ public class Panier {
         this.paye = estPaye;
     }
 
-    public Long getIdPanier() {
+    public int getIdPanier() {
         return idPanier;
     }
 
-    public void setIdPanier(Long idPanier) {
+    public void setIdPanier(int idPanier) {
         this.idPanier = idPanier;
     }
 
