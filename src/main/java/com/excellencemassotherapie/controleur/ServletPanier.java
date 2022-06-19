@@ -33,7 +33,7 @@ public class ServletPanier extends HttpServlet {
         }
 
         /**
-         * Récupération du panier
+         * Récupération des 2 listes du panier
          * n.b. si aucun panier, l'objet retourné sera null
          */
         List<Produit> listeProduits = (ArrayList) session.getAttribute("panierProduit");
