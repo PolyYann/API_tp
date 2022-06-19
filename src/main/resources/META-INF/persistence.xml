@@ -3,15 +3,16 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
              version="2.2">
-    <persistence-unit name="persistence">
+    <persistence-unit name="hibernate">
 
 
 
         <properties>
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/excellence"/>
+            <property name="hibernate.connection.url"
+                      value="jdbc:mysql://localhost:3307/excellence?createDatabaseIfNotExist=true"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
             <property name="hibernate.connection.username" value="root"/>
-            <property name="hibernate.connection.password" value="Etu1234*"/>
+            <property name="hibernate.connection.password" value="gr1227!"/>
 
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="hibernate.show_sql" value="true"/>
