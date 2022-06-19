@@ -11,10 +11,11 @@
     <title>Excellence Massothérapie</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="img/icon.jpg"/>
-    <!-- Styles -->
-    <link href="css/style.css" rel="stylesheet"/>
     <!--Bootstrap -->
-    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+    <link rel=stylesheet src="${pageContext.request.contextPath}css/style.css"/>
+    <link rel=stylesheet src="${pageContext.request.contextPath}bootstrap/bootstrap-grid.min.css"/>
+    <link rel=stylesheet src="${pageContext.request.contextPath}bootstrap/bootstrap-reboot.min.css"/>
+    <link rel=stylesheet src="${pageContext.request.contextPath}bootstrap/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://bootstrap-colors-extended.herokuapp.com/bootstrap-colors.css" />
 
 </head>
@@ -63,11 +64,10 @@
 
 
 
-<!-- Bootstrap core JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Core theme JS-->
-<script src="${pageContext.request.contextPath}/js/script.js"></script>
-<script src="${pageContext.request.contextPath}/bootstrap/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/bootstrap/jquery-3.6.0.min.js"></script>
+<script src="${pageContext.request.contextPath}js/script.js"></script>
+<script src="${pageContext.request.contextPath}bootstrap/bootstrap.bundle.min.js"></script>
+<script src="${pageContext.request.contextPath}bootstrap/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}bootstrap/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/@popperjs/core@2"></script>
 </body>
 </html>
