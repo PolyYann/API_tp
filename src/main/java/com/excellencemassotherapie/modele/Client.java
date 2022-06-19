@@ -20,10 +20,9 @@ public class Client {
     private String email;
     @Column(name = "adresse", nullable = false)
     private String adresse;
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "T_Clients_Paniers", joinColumns = @JoinColumn(name = "id_client"),
-            inverseJoinColumns = @JoinColumn(name = "id_panier"), foreignKey = @ForeignKey(name =
-            "fk_client_panier_id_panier"), inverseForeignKey = @ForeignKey(name = "fk_panier_client_id_client"))
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "T_Clients_Paniers", joinColumns = @JoinColumn(name = "id_client",foreignKey =
+    @ForeignKey(name = "fk_panier_client_id_client")))
     private List<Panier> listPaniers = new ArrayList<>();
     @Column(name = "password",  nullable = false)
     private String password;

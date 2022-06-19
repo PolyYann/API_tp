@@ -68,11 +68,8 @@ public class PanierDAO implements ICommonDAO<Panier> {
         Query query = entityManager.createQuery(criteriaQuery);
         List<Panier> listPanier = (List<Panier>) query.getResultList();
         for (Panier panier : listPanier) {
-            for (Client client : panier.getListClients()) {
-                if (client.getIdClient() == idClient && !panier.isPaye()) {
-                    panierClient = panier;
-                    break;
-                }
+            if (panier.getClient().getIdClient() == idClient && !panier.isPaye()) {
+                panierClient = panier;
             }
         }
         return panierClient;
