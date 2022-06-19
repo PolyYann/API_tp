@@ -12,10 +12,10 @@
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="img/icon.jpg"/>
     <!--Bootstrap -->
-    <link rel=stylesheet src="${pageContext.request.contextPath}css/style.css"/>
-    <link rel=stylesheet src="${pageContext.request.contextPath}bootstrap/bootstrap-grid.min.css"/>
-    <link rel=stylesheet src="${pageContext.request.contextPath}bootstrap/bootstrap-reboot.min.css"/>
-    <link rel=stylesheet src="${pageContext.request.contextPath}bootstrap/bootstrap.min.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}css/style.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}bootstrap/bootstrap-grid.min.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}bootstrap/bootstrap-reboot.min.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}bootstrap/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://bootstrap-colors-extended.herokuapp.com/bootstrap-colors.css" />
 
 </head>
