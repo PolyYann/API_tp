@@ -12,10 +12,10 @@
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="img/icon.jpg"/>
     <!--Bootstrap -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}css/style.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}bootstrap/bootstrap-grid.min.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}bootstrap/bootstrap-reboot.min.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}bootstrap/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="bootstrap/bootstrap-grid.min.css"/>
+    <link rel="stylesheet" href="bootstrap/bootstrap-reboot.min.css"/>
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://bootstrap-colors-extended.herokuapp.com/bootstrap-colors.css" />
 
 </head>
@@ -23,33 +23,61 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Excellence Massotherapie</a>
-    <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav align-content-end" >
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Accueil <span class="sr-only"></span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Produits et services</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Professionnels</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Langue</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Se connecter</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">s'enregistrer</a>
-            </li>
-        </ul>
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
+
+
+
+
+<%--<nav class="navbar navbar-expand-lg navbar-light bg-light">--%>
+<%--    <a class="navbar-brand" href="#">Excellence Massotherapie</a>--%>
+<%--    <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">--%>
+<%--        <span class="navbar-toggler-icon"></span>--%>
+<%--    </button>--%>
+<%--    <div class="collapse navbar-collapse" id="navbarNavDropdown">--%>
+<%--        <ul class="navbar-nav align-content-end" >--%>
+<%--            <li class="nav-item active">--%>
+<%--                <a class="nav-link" href="#">Accueil <span class="sr-only"></span></a>--%>
+<%--            </li>--%>
+<%--            <li class="nav-item">--%>
+<%--                <a class="nav-link" href="#">Produits et services</a>--%>
+<%--            </li>--%>
+<%--            <li class="nav-item">--%>
+<%--                <a class="nav-link" href="#">Professionnels</a>--%>
+<%--            </li>--%>
+<%--            <li class="nav-item">--%>
+<%--                <a class="nav-link" href="#">Langue</a>--%>
+<%--            </li>--%>
+<%--            <li class="nav-item">--%>
+<%--                <a class="nav-link" href="#">Se connecter</a>--%>
+<%--            </li>--%>
+<%--            <li class="nav-item">--%>
+<%--                <a class="nav-link" href="#">s'enregistrer</a>--%>
+<%--            </li>--%>
+<%--        </ul>--%>
+<%--    </div>--%>
+<%--</nav>--%>
 <img src="img/table.jpg" width=100%>
 
 
