@@ -19,7 +19,7 @@ public class Panier {
     private List<Produit> produit = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "T_Paniers_Clients",foreignKey = @ForeignKey(name = "fk_panier_client_id_panier"))
+    @JoinTable(name = "T_Paniers_Soins",foreignKey = @ForeignKey(name = "fk_panier_soin_id_panier"))
     private List<Soin> soin = new ArrayList<>();
 
     @ManyToMany(mappedBy = "listPaniers")
