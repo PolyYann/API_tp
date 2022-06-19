@@ -47,9 +47,12 @@ CREATE TABLE `t_produits`
 
 CREATE TABLE `t_paniers`
 (
-    `id_panier` int    NOT NULL AUTO_INCREMENT,
-    `est_paye`  bit(1) NOT NULL,
-    PRIMARY KEY (`id_panier`)
+    `id_panier`        int    NOT NULL AUTO_INCREMENT,
+    `est_paye`         bit(1) NOT NULL,
+    `client_id_client` int DEFAULT NULL,
+    PRIMARY KEY (`id_panier`),
+    KEY `fk_panier_client_id` (`client_id_client`),
+    CONSTRAINT `fk_panier_client_id` FOREIGN KEY (`client_id_client`) REFERENCES `t_clients` (`id_client`)
 );
 
 CREATE TABLE `t_professionnels`
@@ -63,21 +66,20 @@ CREATE TABLE `t_professionnels`
 
 CREATE TABLE `t_clients_paniers`
 (
-    `id_client` int NOT NULL,
-    `id_panier` int NOT NULL,
-    KEY `fk_panier_client_id_client` (`id_panier`),
-    KEY `fk_client_panier_id_panier` (`id_client`),
-    CONSTRAINT `fk_client_panier_id_panier` FOREIGN KEY (`id_client`) REFERENCES `t_clients` (`id_client`),
-    CONSTRAINT `fk_panier_client_id_client` FOREIGN KEY (`id_panier`) REFERENCES `t_paniers` (`id_panier`)
+    `id_client`             int NOT NULL,
+    `listPaniers_id_panier` int NOT NULL,
+    KEY `fk_panier_client_id_panier` (`listPaniers_id_panier`),
+    KEY `fk_panier_client_id_client` (`id_client`),
+    CONSTRAINT `fk_panier_client_id_client` FOREIGN KEY (`id_client`) REFERENCES `t_clients` (`id_client`),
+    CONSTRAINT `fk_panier_client_id_panier` FOREIGN KEY (`listPaniers_id_panier`) REFERENCES `t_paniers` (`id_panier`)
 );
-
 CREATE TABLE `t_paniers_soins`
 (
     `Panier_id_panier` int NOT NULL,
     `soin_id_soin`     int NOT NULL,
     KEY `fK_panier_soin_id_soin` (`soin_id_soin`),
     KEY `fk_panier_soin_id_panier` (`Panier_id_panier`),
-    CONSTRAINT `fk_panier_client_id_panier` FOREIGN KEY (`Panier_id_panier`) REFERENCES `t_paniers` (`id_panier`),
+    CONSTRAINT `fk_panier_soin_id_panier` FOREIGN KEY (`Panier_id_panier`) REFERENCES `t_paniers` (`id_panier`),
     CONSTRAINT `fK_panier_soin_id_soin` FOREIGN KEY (`soin_id_soin`) REFERENCES `t_soins` (`id_soin`)
 );
 

@@ -50,13 +50,13 @@ class SoinDAOTest {
 //
 //    }
 
-    @Test
-    void insert() {
-        soinDAO.connect();
-        for(Soin soin: soins){
-            soinDAO.insert(soin);
-        }
-        System.out.println(soinDAO.getById(1));
-        soinDAO.disconnect();
-    }
+//    @Test
+//    void insert() {
+//        soinDAO.connect();
+//        for(Soin soin: soins){
+//            soinDAO.insert(soin);
+//        }
+//        System.out.println(soinDAO.getById(1));
+//        soinDAO.disconnect();
+//    }
 }

@@ -22,9 +22,8 @@ public class Panier {
     @JoinTable(name = "T_Paniers_Soins",foreignKey = @ForeignKey(name = "fk_panier_soin_id_panier"))
     private List<Soin> soin = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "listPaniers")
-    @Column(name = "clients")
-    private List<Client> listClients = new ArrayList<>();
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Client client = new Client();
     @Column(name = "est_paye", nullable = false)
     private boolean paye;
 
@@ -32,20 +31,20 @@ public class Panier {
     }
 
     public Panier(List<Produit> produit, List<Soin> soin,
-                  List<Client> listClients, boolean paye) {
+                  Client client, boolean paye) {
 
         this.produit = produit;
         this.soin = soin;
-        this.listClients = listClients;
+        this.client = client;
         this.paye = paye;
     }
 
-    public List<Client> getListClients() {
-        return listClients;
+    public Client getClient() {
+        return client;
     }
 
-    public void setListClients(List<Client> listClients) {
-        this.listClients = listClients;
+    public void setClient(Client listClients) {
+        this.client = listClients;
     }
 
     public boolean isPaye() {
