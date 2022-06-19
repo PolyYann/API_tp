@@ -1,7 +1,7 @@
 package com.excellencemassotherapie.modele;
 
-import jakarta.persistence.*;
 
+import jakarta.persistence.*;
 
 @Entity
 @Table(name="t_produits")
@@ -21,18 +21,27 @@ public class Produit {
     private int categorie;
     @Column(name = "prix", nullable = false)
     private double prix;
+    @Column(name = "quantite", nullable = false)
+    private int quantite;
 
     public Produit() {
     }
 
-    public Produit( String nom, String description,
-                   String urlImage, int categorie, double prix) {
-
+    public Produit(String nom, String description, String urlImage, int categorie, double prix, int quantite) {
         this.nom = nom;
         this.description = description;
         this.urlImage = urlImage;
         this.categorie = categorie;
         this.prix = prix;
+        this.quantite = 0;
+    }
+
+    public int getQuantite() {
+        return quantite;
+    }
+
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
     }
 
     public int getIdProduit() {

@@ -20,17 +20,19 @@ public class Soin {
     private String urlImage;
     @Column(name = "prix", nullable = false)
     private double prix;
-
+    @Column(name = "quantite", nullable = false)
+    private int quantite;
     public Soin() {
     }
 
-    public Soin( String nom, int duree, String description, String urlImage, double prix) {
+    public Soin( String nom, int duree, String description, String urlImage, double prix, int quantite) {
 
         this.nom = nom;
         this.duree = duree;
         this.description = description;
         this.urlImage = urlImage;
         this.prix = prix;
+        this.quantite = 0;
     }
 
 
@@ -80,6 +82,14 @@ public class Soin {
 
     public void setPrix(double prix) {
         this.prix = prix;
+    }
+
+    public int getQuantite() {
+        return quantite;
+    }
+
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
     }
 
     @Override

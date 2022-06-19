@@ -14,17 +14,12 @@ public class Panier {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idPanier;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "T_Paniers_Produits", joinColumns = @JoinColumn(name = "id_panier"),
-            inverseJoinColumns = @JoinColumn(name = "id_produit",
-                    foreignKey = @ForeignKey(name = "fk_panier_produit_id_produit")),
-            inverseForeignKey = @ForeignKey(name = "fk_produit_panier_id_panier"))
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "T_Paniers_Produits",foreignKey = @ForeignKey(name = "fk_panier_produit_id_panier"))
     private List<Produit> produit = new ArrayList<>();
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "T_Paniers_soin", joinColumns = @JoinColumn(name = "id_panier",
-            foreignKey = @ForeignKey(name = "fk_panier_soin_id_panier")),
-            inverseJoinColumns = @JoinColumn(name = "id_soin"))
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "T_Paniers_Clients",foreignKey = @ForeignKey(name = "fk_panier_client_id_panier"))
     private List<Soin> soin = new ArrayList<>();
 
     @ManyToMany(mappedBy = "listPaniers")

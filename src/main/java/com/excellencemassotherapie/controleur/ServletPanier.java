@@ -1,6 +1,7 @@
 package com.excellencemassotherapie.controleur;
 
 import com.excellencemassotherapie.modele.Produit;
+import com.excellencemassotherapie.modele.Soin;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
@@ -13,6 +14,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 
 @WebServlet(name = "ServletPanier", value = "/ServletPanier")
@@ -34,8 +36,8 @@ public class ServletPanier extends HttpServlet {
          * Récupération du panier
          * n.b. si aucun panier, l'objet retourné sera null
          */
-        ArrayList listePanier = (ArrayList) session.getAttribute("panierAchat");
-
+        List<Produit> listeProduits = (ArrayList) session.getAttribute("panierProduit");
+        List<Soin> listeSoins = (ArrayList) session.getAttribute("panierSoin");
 
         /**
          * Récupération de l'action reçue avec la requête
@@ -53,7 +55,7 @@ public class ServletPanier extends HttpServlet {
 
                 //on supprime l'item du panier
                 int d = Integer.parseInt(del);
-                listePanier.remove(d);
+                listeProduits.remove(d);
 
                 // si clic sur ajouter au panier
             } else if (action.equals("ADD")) {
@@ -63,23 +65,23 @@ public class ServletPanier extends HttpServlet {
                 Produit produitAAjouter = getProduit(request);
 
                 //si panier inexistant on va le créer(cas du 1er item à ajouter)
-                if (listePanier == null) {
+                if (listeProduits == null) {
 
                     //on crée le panier
-                    listePanier = new ArrayList();
+                    listeProduits = new ArrayList();
 
                     //on ajoute le premier Produit
-                    listePanier.add(produitAAjouter);
+                    listeProduits.add(produitAAjouter);
 
                 //si le panier existe déjà (listePanier non null)
                 } else {
 
                     //on vérifie si le produit est déjà dans le panier?
                     //pour ne pas l'ajouter une autre fois
-                    for (int i = 0; i < listePanier.size(); i++) {
+                    for (int i = 0; i < listeProduits.size(); i++) {
 
                         //on récupère l'item à la position i
-                        Produit produitDejaDansPanier = (Produit) listePanier.get(i);
+                        Produit produitDejaDansPanier = (Produit) listeProduits.get(i);
 
                         // si on trouve l'item dans le panier
                         if (produitDejaDansPanier.getNom().equals(produitAAjouter.getNom())) {
@@ -89,7 +91,7 @@ public class ServletPanier extends HttpServlet {
                             produitDejaDansPanier.setQuantite(produitDejaDansPanier.getQuantite() + produitAAjouter.getQuantite());
 
                             //on replace l'item dans le panier
-                            listePanier.set(i, produitDejaDansPanier);
+                            listeProduits.set(i, produitDejaDansPanier);
 
                             //on active la variable qui montre qu'on a trouvé l'item
                             //dans le panier
@@ -101,13 +103,13 @@ public class ServletPanier extends HttpServlet {
                     //on va devoir l'ajouter
                     if (!match)
                         //on ajoute l'item au panier
-                        listePanier.add(produitAAjouter);
+                        listeProduits.add(produitAAjouter);
                 }
             }
 
             //suite à l'ajout ou à la suppression on doit RÉ-ATTACHER à la session
             //à la place de l'ancien
-            session.setAttribute("panierAchat", listePanier);
+            session.setAttribute("panierProduit", listeProduits);
 
 
 //Nous on ne veut pas faire ceci / voir à refaire ce bout de code----------------------------------------------------------
@@ -124,8 +126,8 @@ public class ServletPanier extends HttpServlet {
 
             //on va calculer le prix total
             double total = 0;
-            for (int i = 0; i < listePanier.size(); i++) {
-                Produit uneCommandeDeProduit = (Produit) listePanier.get(i);
+            for (int i = 0; i < listeProduits.size(); i++) {
+                Produit uneCommandeDeProduit = (Produit) listeProduits.get(i);
                 double prix = uneCommandeDeProduit.getPrix();
                 int quantite = uneCommandeDeProduit.getQuantite();
                 total += (prix * quantite);

@@ -22,41 +22,41 @@ class SoinDAOTest {
         soins = Mock.getSoins();
     }
 
-    @Test
-    void getAll() {
-        soinDAO.connect();
-        List<Soin> CompSoins = soinDAO.getAll();
-        for(int i =0; i<soins.size();i++){
-            assertEquals(soins.get(i).getNom(),CompSoins.get(i).getNom());
-            assertEquals(soins.get(i).getDuree(),CompSoins.get(i).getDuree());
-            assertEquals(soins.get(i).getDescription(),CompSoins.get(i).getDescription());
-            assertEquals(soins.get(i).getUrlImage(),CompSoins.get(i).getUrlImage());
-            assertEquals(soins.get(i).getPrix(),CompSoins.get(i).getPrix());
-        }
-
-
-    }
-
-    @Test
-    void getById() {
-        soinDAO.connect();
-        Soin CompSoin = soinDAO.getById(3);
-        assertEquals(soins.get(2).getNom(),CompSoin.getNom());
-        assertEquals(soins.get(2).getDuree(),CompSoin.getDuree());
-        assertEquals(soins.get(2).getDescription(),CompSoin.getDescription());
-        assertEquals(soins.get(2).getUrlImage(),CompSoin.getUrlImage());
-        assertEquals(soins.get(2).getPrix(),CompSoin.getPrix());
-
-
-    }
-
 //    @Test
-//    void insert() {
+//    void getAll() {
 //        soinDAO.connect();
-//        for(Soin soin: soins){
-//            soinDAO.insert(soin);
+//        List<Soin> CompSoins = soinDAO.getAll();
+//        for(int i =0; i<soins.size();i++){
+//            assertEquals(soins.get(i).getNom(),CompSoins.get(i).getNom());
+//            assertEquals(soins.get(i).getDuree(),CompSoins.get(i).getDuree());
+//            assertEquals(soins.get(i).getDescription(),CompSoins.get(i).getDescription());
+//            assertEquals(soins.get(i).getUrlImage(),CompSoins.get(i).getUrlImage());
+//            assertEquals(soins.get(i).getPrix(),CompSoins.get(i).getPrix());
 //        }
-//        System.out.println(soinDAO.getById(1));
-//        soinDAO.disconnect();
+//
+//
 //    }
+//
+//    @Test
+//    void getById() {
+//        soinDAO.connect();
+//        Soin CompSoin = soinDAO.getById(3);
+//        assertEquals(soins.get(2).getNom(),CompSoin.getNom());
+//        assertEquals(soins.get(2).getDuree(),CompSoin.getDuree());
+//        assertEquals(soins.get(2).getDescription(),CompSoin.getDescription());
+//        assertEquals(soins.get(2).getUrlImage(),CompSoin.getUrlImage());
+//        assertEquals(soins.get(2).getPrix(),CompSoin.getPrix());
+//
+//
+//    }
+
+    @Test
+    void insert() {
+        soinDAO.connect();
+        for(Soin soin: soins){
+            soinDAO.insert(soin);
+        }
+        System.out.println(soinDAO.getById(1));
+        soinDAO.disconnect();
+    }
 }
