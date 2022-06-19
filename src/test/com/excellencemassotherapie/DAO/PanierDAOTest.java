@@ -1,5 +1,6 @@
 package com.excellencemassotherapie.DAO;
 
+import com.excellencemassotherapie.modele.Produit;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,7 +12,8 @@ class PanierDAOTest {
     }
 
     @Test
-    void getById() {
+    void testGetById(){
+
     }
 
     @Test

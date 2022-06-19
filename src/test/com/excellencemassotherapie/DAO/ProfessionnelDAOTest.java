@@ -20,6 +20,13 @@ class ProfessionnelDAOTest {
 
     @Test
     void getAll() {
+        professionnelDAO.connect();
+        List<Professionnel> CompProf = professionnelDAO.getAll();
+        for(int i =0; i<professionnels.size();i++){
+            assertEquals(professionnels.get(i).getNom(),CompProf.get(i).getNom());
+            assertEquals(professionnels.get(i).getPresentation(),CompProf.get(i).getPresentation());
+            assertEquals(professionnels.get(i).getUrlImage(),CompProf.get(i).getUrlImage());
+        }
     }
 
 //    @Test

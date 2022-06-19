@@ -68,15 +68,15 @@ public class Mock {
     }
 
     static final Soin soin1 = new Soin("massage de détente", 60, "un massage de détente dans une ambiance relaxante",
-            "cd../img/soins/massage_detente.jpg", 129.00);
+            "img/soins/massage_detente.jpg", 129.00);
     static final Soin soin2 = new Soin("massage-facial", 90, "un soin de type facial, massage du visage et de la tête" +
-            " dans une ambiance relaxante", "cd../img/soins/massage_facial.jpg", 119.00);
+            " dans une ambiance relaxante", "img/soins/massage_facial.jpg", 119.00);
     static final Soin soin3 = new Soin("massage aux pierres chaudes", 90, "un massage de détente aux pierre chaudesc " +
-            "dans une ambiance relaxante", "cd../img/soins/massage_pierre_chaude.jpg", 149.00);
+            "dans une ambiance relaxante", "img/soins/massage_pierre_chaude.jpg", 149.00);
     static final Soin soin4 = new Soin("massage therapeutique", 60, "un massage thérapeutique dans une ambiance relaxante"
-            , "cd../img/soins/massage_therapeutique.jpg", 109.00);
+            , "img/soins/massage_therapeutique.jpg", 109.00);
     static final Soin soin5 = new Soin("Taping neuroproprioceptif", 25, "un taping neuro proprioceptif pour " +
-            "le soulagement des muscles", "cd../img/soins/taping.jpg", 25.00);
+            "le soulagement des muscles", "img/soins/taping.jpg", 25.00);
 
     public static List<Soin> getSoins() {
         List<Soin> soinList = new ArrayList<>();
@@ -87,13 +87,13 @@ public class Mock {
     }
     //mock Professionnel
     static final Professionnel prof1 = new Professionnel("Laurianne Labrecque", "LONGUE PRÉSENTATION À TROUVER",
-            "cd../img/professionnels/laurianne_labrecque.jpg");
+            "img/professionnels/laurianne_labrecque.jpg");
     static final Professionnel prof2 = new Professionnel("Luc Gauthier", "LONGUE PRÉSENTATION À TROUVER",
-            "cd../img/professionnels/luc_gauthier.jpg");
+            "img/professionnels/luc_gauthier.jpg");
     static final Professionnel prof3 = new Professionnel("Marie-Eve Beaulieu", "LONGUE PRÉSENTATION À TROUVER",
-            "cd../img/professionnels/marie-eve_beaulieu.jpg");
+            "img/professionnels/marie-eve_beaulieu.jpg");
     static final Professionnel prof4 = new Professionnel("Véronique Brien", "LONGUE PRÉSENTATION À TROUVER",
-            "cd../img/professionnels/veronique_brien.jpg");
+            "img/professionnels/veronique_brien.jpg");
 
     public static List<Professionnel> getProfessionnels() {
         List<Professionnel> professionnelList = new ArrayList<>();

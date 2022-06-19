@@ -45,7 +45,7 @@ public class ClientDAO implements ICommonDAO<Client> {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Client> criteriaQuery = criteriaBuilder.createQuery(Client.class);
         Root<Client> clientRoot = criteriaQuery.from(Client.class);
-        criteriaQuery.select(clientRoot).where(criteriaBuilder.equal(clientRoot.get("id_client"), id));
+        criteriaQuery.select(clientRoot).where(criteriaBuilder.equal(clientRoot.get("idClient"), id));
         Query query = entityManager.createQuery(criteriaQuery);
         return (Client) query.getSingleResult();
     }

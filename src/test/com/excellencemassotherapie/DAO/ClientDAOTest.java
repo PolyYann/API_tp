@@ -2,6 +2,7 @@ package com.excellencemassotherapie.DAO;
 
 import com.excellencemassotherapie.Mock.Mock;
 import com.excellencemassotherapie.modele.Client;
+import com.excellencemassotherapie.modele.Produit;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -20,14 +21,36 @@ class ClientDAOTest {
 
     @Test
     void getAll() {
-    }
+        clientDAO.connect();
+        List<Client> Compproduit = clientDAO.getAll();
+        for(int i =0; i<clients.size();i++){
+            assertEquals(clients.get(i).getNom(),Compproduit.get(i).getNom());
+            assertEquals(clients.get(i).getEmail(),Compproduit.get(i).getEmail());
+            assertEquals(clients.get(i).getPassword(),Compproduit.get(i).getPassword());
+            assertEquals(clients.get(i).getAdresse(),Compproduit.get(i).getAdresse());
+            assertEquals(clients.get(i).getTelephone(),Compproduit.get(i).getTelephone());
+    }}
 
     @Test
     void getById() {
+        clientDAO.connect();
+        Client CompClient = clientDAO.getById(3);
+        assertEquals(clients.get(2).getNom(),CompClient.getNom());
+        assertEquals(clients.get(2).getTelephone(),CompClient.getTelephone());
+        assertEquals(clients.get(2).getEmail(),CompClient.getEmail());
+        assertEquals(clients.get(2).getAdresse(),CompClient.getAdresse());
+        assertEquals(clients.get(2).getPassword(),CompClient.getPassword());
     }
 
     @Test
     void getByName() {
+    clientDAO.connect();
+    Client CompClient = clientDAO.getByName("Yann Lebeau");
+    assertEquals(clients.get(2).getNom(),CompClient.getNom());
+    assertEquals(clients.get(2).getTelephone(),CompClient.getTelephone());
+    assertEquals(clients.get(2).getEmail(),CompClient.getEmail());
+    assertEquals(clients.get(2).getAdresse(),CompClient.getAdresse());
+    assertEquals(clients.get(2).getPassword(),CompClient.getPassword());
     }
 
 //    @Test
