@@ -21,27 +21,25 @@ public class Produit {
     private int categorie;
     @Column(name = "prix", nullable = false)
     private double prix;
-    @Column(name = "quantite", nullable = false)
-    private int quantite;
 
     public Produit() {
     }
 
-    public Produit(String nom, String description, String urlImage, int categorie, double prix, int quantite) {
+    public Produit(String nom, String description, String urlImage, int categorie, double prix) {
         this.nom = nom;
         this.description = description;
         this.urlImage = urlImage;
         this.categorie = categorie;
         this.prix = prix;
-        this.quantite = 0;
     }
 
-    public int getQuantite() {
-        return quantite;
-    }
-
-    public void setQuantite(int quantite) {
-        this.quantite = quantite;
+    public Produit(int idProduit, String nom, String description, String urlImage, int categorie, double prix) {
+        this.idProduit = idProduit;
+        this.nom = nom;
+        this.description = description;
+        this.urlImage = urlImage;
+        this.categorie = categorie;
+        this.prix = prix;
     }
 
     public int getIdProduit() {

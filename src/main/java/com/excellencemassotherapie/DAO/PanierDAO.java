@@ -1,11 +1,10 @@
 package com.excellencemassotherapie.DAO;
 
-import com.excellencemassotherapie.modele.Client;
+import com.excellencemassotherapie.modele.LigneCommande;
 import com.excellencemassotherapie.modele.Panier;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.Query;
+import com.excellencemassotherapie.modele.Produit;
+import com.excellencemassotherapie.modele.Soin;
+import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
@@ -36,7 +35,9 @@ public class PanierDAO implements ICommonDAO<Panier> {
         Root<Panier> panierRoot = criteriaQuery.from(Panier.class);
         criteriaQuery.select(panierRoot);
         Query query = entityManager.createQuery(criteriaQuery);
-        return (List<Panier>) query.getResultList();
+        List<Panier> paniers = query.getResultList();
+        entityManager.getTransaction().commit();
+        return paniers;
     }
 
     @Override
@@ -45,10 +46,22 @@ public class PanierDAO implements ICommonDAO<Panier> {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Panier> criteriaQuery = criteriaBuilder.createQuery(Panier.class);
         Root<Panier> panierRoot = criteriaQuery.from(Panier.class);
-        criteriaQuery.select(panierRoot).where(criteriaBuilder.equal(panierRoot.get("id"), id));
+        criteriaQuery.select(panierRoot).where(criteriaBuilder.equal(panierRoot.get("idPanier"), id));
         Query query = entityManager.createQuery(criteriaQuery);
-        return (Panier) query.getSingleResult();
+        Panier panier = (Panier) query.getSingleResult();
+        entityManager.getTransaction().commit();
+        return panier;
 
+    }
+    public Panier getByClientAndNonPaye(int idClient) {
+        entityManager.getTransaction().begin();
+        String hql= "SELECT p FROM Panier p WHERE p.client.idClient = :idClient AND p.paye = false";
+        TypedQuery<Panier> query = entityManager.createQuery(hql, Panier.class);
+        query.setParameter("idClient", idClient);
+       Panier panierClient =query.getSingleResult();
+
+        entityManager.getTransaction().commit();
+        return panierClient;
     }
 
     public void payerPanier(Panier panier) {
@@ -58,22 +71,11 @@ public class PanierDAO implements ICommonDAO<Panier> {
         entityManager.getTransaction().commit();
     }
 
-    public Panier getByClientAndNonPaye(int idClient) {
-        Panier panierClient = null;
+    public void checkOut(Panier panier) {
         entityManager.getTransaction().begin();
-        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Panier> criteriaQuery = criteriaBuilder.createQuery(Panier.class);
-        Root<Panier> panierRoot = criteriaQuery.from(Panier.class);
-        criteriaQuery.select(panierRoot);
-        Query query = entityManager.createQuery(criteriaQuery);
-        List<Panier> listPanier = (List<Panier>) query.getResultList();
-        for (Panier panier : listPanier) {
-            if (panier.getClient().getIdClient() == idClient && !panier.isPaye()) {
-                panierClient = panier;
-            }
-        }
-        return panierClient;
-
+        panier.setPaye(true);
+        entityManager.merge(panier);
+        entityManager.getTransaction().commit();
     }
 
     /**
@@ -87,10 +89,10 @@ public class PanierDAO implements ICommonDAO<Panier> {
 
     @Override
     public void insert(Panier panier) {
-
         entityManager.getTransaction().begin();
-        entityManager.persist(panier);
+        entityManager.merge(panier);
         entityManager.getTransaction().commit();
     }
+
 }
 

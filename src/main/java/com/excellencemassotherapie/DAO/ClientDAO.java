@@ -1,6 +1,7 @@
 package com.excellencemassotherapie.DAO;
 
 import com.excellencemassotherapie.modele.Client;
+import com.excellencemassotherapie.modele.Panier;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -36,7 +37,9 @@ public class ClientDAO implements ICommonDAO<Client> {
         Root<Client> clientRoot = criteriaQuery.from(Client.class);
         criteriaQuery.select(clientRoot);
         Query query = entityManager.createQuery(criteriaQuery);
-        return (List<Client>) query.getResultList();
+        List<Client> clients =  query.getResultList();
+        entityManager.getTransaction().commit();
+        return clients;
     }
 
     @Override
@@ -47,7 +50,9 @@ public class ClientDAO implements ICommonDAO<Client> {
         Root<Client> clientRoot = criteriaQuery.from(Client.class);
         criteriaQuery.select(clientRoot).where(criteriaBuilder.equal(clientRoot.get("idClient"), id));
         Query query = entityManager.createQuery(criteriaQuery);
-        return (Client) query.getSingleResult();
+        Client client = (Client) query.getSingleResult();
+        entityManager.getTransaction().commit();
+        return client;
     }
 
     @Override
@@ -58,7 +63,9 @@ public class ClientDAO implements ICommonDAO<Client> {
         Root<Client> clientRoot = criteriaQuery.from(Client.class);
         criteriaQuery.select(clientRoot).where(criteriaBuilder.equal(clientRoot.get("nom"), nom));
         Query query = entityManager.createQuery(criteriaQuery);
-        return (Client) query.getSingleResult();
+        Client client = (Client) query.getSingleResult();
+        entityManager.getTransaction().commit();
+        return client;
     }
 
     @Override

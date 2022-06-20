@@ -88,7 +88,7 @@ public class ServletPanier extends HttpServlet {
 
                             //on va modifier la quantité en lui ajoutantant la
                             // nouvelle quantité
-                            produitDejaDansPanier.setQuantite(produitDejaDansPanier.getQuantite() + produitAAjouter.getQuantite());
+//                            produitDejaDansPanier.setQuantite(produitDejaDansPanier.getQuantite() + produitAAjouter.getQuantite());
 
                             //on replace l'item dans le panier
                             listeProduits.set(i, produitDejaDansPanier);
@@ -129,8 +129,8 @@ public class ServletPanier extends HttpServlet {
             for (int i = 0; i < listeProduits.size(); i++) {
                 Produit uneCommandeDeProduit = (Produit) listeProduits.get(i);
                 double prix = uneCommandeDeProduit.getPrix();
-                int quantite = uneCommandeDeProduit.getQuantite();
-                total += (prix * quantite);
+//                int quantite = uneCommandeDeProduit.getQuantite();
+//                total += (prix * quantite);
             }
 
 //formulation bizarre - à comprendre------------------------------------------
@@ -174,7 +174,7 @@ public class ServletPanier extends HttpServlet {
         Produit produit = new Produit();
         produit.setNom(tNom);
         produit.setDescription(tDescription);
-        produit.setQuantite((new Integer(tQuantite)).intValue());
+//        produit.setQuantite((new Integer(tQuantite)).intValue());
         produit.setPrix((new Double(tPrix)).doubleValue());
 
         return produit;

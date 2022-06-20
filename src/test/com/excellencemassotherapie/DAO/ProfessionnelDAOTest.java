@@ -12,9 +12,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ProfessionnelDAOTest {
     private static List<Professionnel> professionnels =new ArrayList<>();
-    private ProfessionnelDAO professionnelDAO = new ProfessionnelDAO();
+    private static ProfessionnelDAO professionnelDAO = new ProfessionnelDAO();
     @BeforeAll
     static void setUpBeforeClass() throws Exception {
+        professionnelDAO.connect();
         professionnels= Mock.getProfessionnels();
     }
 //
@@ -31,10 +32,8 @@ class ProfessionnelDAOTest {
 
 //    @Test
 //    void insert() {
-//        professionnelDAO.connect();
 //        for(Professionnel professionnel: professionnels){
 //            professionnelDAO.insert(professionnel);
 //        }
-//        professionnelDAO.disconnect();
 //    }
 }

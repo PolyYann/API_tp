@@ -12,9 +12,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ProduitDAOTest {
     private static List<Produit> produits =new ArrayList<>();
-    private ProduitDAO produitDAO = new ProduitDAO();
+    private static ProduitDAO produitDAO = new ProduitDAO();
     @BeforeAll
     static void setUpBeforeClass() throws Exception {
+        produitDAO.connect();
         produits = Mock.getProduits();
     }
 //    @Test
@@ -42,10 +43,8 @@ class ProduitDAOTest {
 
 //    @Test
 //    void insert() {
-//        produitDAO.connect();
 //        for(Produit produit: produits){
 //            produitDAO.insert(produit);
 //        }
-//        produitDAO.disconnect();
 //    }
 }

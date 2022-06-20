@@ -34,7 +34,9 @@ public class SoinDAO implements ICommonDAO<Soin> {
         Root<Soin> soinRoot = criteriaQuery.from(Soin.class);
         criteriaQuery.select(soinRoot);
         Query query = entityManager.createQuery(criteriaQuery);
-        return (List<Soin>) query.getResultList();
+        List<Soin> soinList = query.getResultList();
+        entityManager.getTransaction().commit();
+        return soinList;
     }
 
     @Override
@@ -46,7 +48,9 @@ public class SoinDAO implements ICommonDAO<Soin> {
         Root<Soin> soinRoot = criteriaQuery.from(Soin.class);
         criteriaQuery.select(soinRoot).where(criteriaBuilder.equal(soinRoot.get("id"), id));
         Query query = entityManager.createQuery(criteriaQuery);
-        return (Soin) query.getSingleResult();
+        Soin soin = (Soin) query.getSingleResult();
+        entityManager.getTransaction().commit();
+        return soin;
     }
 
     @Override
@@ -57,7 +61,9 @@ public class SoinDAO implements ICommonDAO<Soin> {
         Root<Soin> soinRoot = criteriaQuery.from(Soin.class);
         criteriaQuery.select(soinRoot).where(criteriaBuilder.equal(soinRoot.get("nom"), nom));
         Query query = entityManager.createQuery(criteriaQuery);
-        return (Soin) query.getSingleResult();
+        Soin soin = (Soin) query.getSingleResult();
+        entityManager.getTransaction().commit();
+        return soin;
     }
     @Override
     public void insert(Soin soin) {

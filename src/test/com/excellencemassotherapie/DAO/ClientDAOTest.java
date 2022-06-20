@@ -13,9 +13,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ClientDAOTest {
     private static List<Client> clients =new ArrayList<>();
-    private ClientDAO clientDAO = new ClientDAO();
+    private static ClientDAO clientDAO = new ClientDAO();
 @BeforeAll
     static void setUpBeforeClass() throws Exception {
+    clientDAO.connect();
     clients = Mock.getClients();
     }
 
@@ -55,10 +56,9 @@ class ClientDAOTest {
 
 //    @Test
 //    void insert() {
-//        clientDAO.connect();
+//
 //        for(Client client: clients){
 //            clientDAO.insert(client);
 //        }
-//        clientDAO.disconnect();
 //    }
 }

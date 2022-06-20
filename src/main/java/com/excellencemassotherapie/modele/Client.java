@@ -2,7 +2,6 @@ package com.excellencemassotherapie.modele;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,39 +19,29 @@ public class Client {
     private String email;
     @Column(name = "adresse", nullable = false)
     private String adresse;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "T_Clients_Paniers", joinColumns = @JoinColumn(name = "id_client",foreignKey =
-    @ForeignKey(name = "fk_panier_client_id_client")))
-    private List<Panier> listPaniers = new ArrayList<>();
     @Column(name = "password",  nullable = false)
     private String password;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_panier")
+    private List<Panier> listPaniers;
+
     public Client() {
     }
 
-    public Client(String nom, String telephone, String email, String adresse,
-                  List<Panier> listPaniers, String password) {
+    public Client(String nom, String telephone, String email, String adresse, String password, List<Panier> listPaniers) {
         this.nom = nom;
         this.telephone = telephone;
         this.email = email;
         this.adresse = adresse;
+        this.password = password;
         this.listPaniers = listPaniers;
-        this.password = password;
     }
 
-    public Client(String nom, String telephone, String email, String adresse,
-                  String password) {
+    public Client(String nom, String telephone, String email, String adresse, String password) {
         this.nom = nom;
         this.telephone = telephone;
         this.email = email;
         this.adresse = adresse;
-        this.password = password;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -96,6 +85,14 @@ public class Client {
         this.adresse = adresse;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public List<Panier> getListPaniers() {
         return listPaniers;
     }
@@ -112,6 +109,7 @@ public class Client {
                 ", telephone='" + telephone + '\'' +
                 ", email='" + email + '\'' +
                 ", adresse='" + adresse + '\'' +
+                ", password='" + password + '\'' +
                 ", listPaniers=" + listPaniers +
                 '}';
     }

@@ -14,11 +14,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SoinDAOTest {
     private static List<Soin> soins =new ArrayList<>();
-    private SoinDAO soinDAO = new SoinDAO();
+    private static SoinDAO soinDAO = new SoinDAO();
     @BeforeAll
     static void setUpBeforeClass() throws Exception {
-
-
+        soinDAO.connect();
         soins = Mock.getSoins();
     }
 
@@ -52,11 +51,8 @@ class SoinDAOTest {
 
 //    @Test
 //    void insert() {
-//        soinDAO.connect();
 //        for(Soin soin: soins){
 //            soinDAO.insert(soin);
 //        }
-//        System.out.println(soinDAO.getById(1));
-//        soinDAO.disconnect();
 //    }
 }

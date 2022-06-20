@@ -20,21 +20,27 @@ public class Soin {
     private String urlImage;
     @Column(name = "prix", nullable = false)
     private double prix;
-    @Column(name = "quantite", nullable = false)
-    private int quantite;
+
     public Soin() {
     }
 
-    public Soin( String nom, int duree, String description, String urlImage, double prix, int quantite) {
+    public Soin( String nom, int duree, String description, String urlImage, double prix) {
 
         this.nom = nom;
         this.duree = duree;
         this.description = description;
         this.urlImage = urlImage;
         this.prix = prix;
-        this.quantite = 0;
     }
 
+    public Soin(int idSoin, String nom, int duree, String description, String urlImage, double prix) {
+        this.idSoin = idSoin;
+        this.nom = nom;
+        this.duree = duree;
+        this.description = description;
+        this.urlImage = urlImage;
+        this.prix = prix;
+    }
 
     public int getIdSoin() {
         return idSoin;
@@ -84,13 +90,6 @@ public class Soin {
         this.prix = prix;
     }
 
-    public int getQuantite() {
-        return quantite;
-    }
-
-    public void setQuantite(int quantite) {
-        this.quantite = quantite;
-    }
 
     @Override
     public String toString() {

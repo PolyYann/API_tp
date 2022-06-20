@@ -34,7 +34,9 @@ public class ProfessionnelDAO implements ICommonDAO<Professionnel> {
         Root<Professionnel> professionnelRoot = criteriaQuery.from(Professionnel.class);
         criteriaQuery.select(professionnelRoot);
         Query query = entityManager.createQuery(criteriaQuery);
-        return (List<Professionnel>) query.getResultList();
+        List<Professionnel> professionnels = query.getResultList();
+        entityManager.getTransaction().commit();
+        return professionnels;
     }
     //inutile d'implémentér getById car on ne peut pas modifier
     // les professionnels a partir du site web

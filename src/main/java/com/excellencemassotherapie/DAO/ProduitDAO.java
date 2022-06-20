@@ -36,7 +36,9 @@ public class ProduitDAO implements ICommonDAO<Produit> {
         Root<Produit> produitRoot = criteriaQuery.from(Produit.class);
         criteriaQuery.select(produitRoot);
         Query query = entityManager.createQuery(criteriaQuery);
-        return (List<Produit>) query.getResultList();
+        List<Produit> produitList = query.getResultList();
+        entityManager.getTransaction().commit();
+        return produitList;
     }
 
     @Override
@@ -47,7 +49,9 @@ public class ProduitDAO implements ICommonDAO<Produit> {
         Root<Produit> produitRoot = criteriaQuery.from(Produit.class);
         criteriaQuery.select(produitRoot).where(criteriaBuilder.equal(produitRoot.get("id"), id));
         Query query = entityManager.createQuery(criteriaQuery);
-        return (Produit) query.getSingleResult();
+        Produit produit = (Produit) query.getSingleResult();
+        entityManager.getTransaction().commit();
+        return produit;
 
     }
 
@@ -59,7 +63,9 @@ public class ProduitDAO implements ICommonDAO<Produit> {
         Root<Produit> produitRoot = criteriaQuery.from(Produit.class);
         criteriaQuery.select(produitRoot).where(criteriaBuilder.equal(produitRoot.get("nom"), "nom"));
         Query query = entityManager.createQuery(criteriaQuery);
-        return (Produit) query.getSingleResult();
+        Produit produit = (Produit) query.getSingleResult();
+        entityManager.getTransaction().commit();
+        return produit;
     }
 
     @Override
