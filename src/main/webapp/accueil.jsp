@@ -33,7 +33,7 @@
                 <a class="nav-link" href="#">Accueil <span class="sr-only"></span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Produits et services</a>
+                <a class="nav-link" href="affichageProduitsServices.jsp">Produits et services</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Professionnels</a>
