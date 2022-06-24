@@ -35,7 +35,7 @@
                     Button
                 </button>
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <ul class="nav flex-column nav-tabs">
                             <li class="nav-item">
                                 <a class="nav-link active" href="#">Home</a>
