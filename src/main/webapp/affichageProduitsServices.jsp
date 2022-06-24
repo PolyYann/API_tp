@@ -20,7 +20,7 @@
 
 </head>
 <body >
-
+<div class="bg-steel-light">
 <form name="articleForm" action="ServletPanier" method="post">
 
     <h3 style="color:white;">Affichage de tous les produits</h3>
@@ -164,7 +164,7 @@
 
 </form>
 
-
+</div>
 <script src="${pageContext.request.contextPath}js/script.js"></script>
 <script src="${pageContext.request.contextPath}bootstrap/bootstrap.bundle.min.js"></script>
 <script src="${pageContext.request.contextPath}bootstrap/bootstrap.min.js"></script>

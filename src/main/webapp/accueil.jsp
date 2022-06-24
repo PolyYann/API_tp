@@ -21,7 +21,7 @@
 </head>
 <body>
 
-
+<div class="bg-teal-light">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Excellence Massotherapie</a>
     <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,16 +36,16 @@
                 <a class="nav-link" href="affichageProduitsServices.jsp">Produits et services</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Professionnels</a>
+                <a class="nav-link" href="afficherProfessionnels.jsp">Professionnels</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Langue</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Se connecter</a>
+                <a class="nav-link" href="connection.jsp">Se connecter<input type="hidden" name="action" value="login"></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">s'enregistrer</a>
+                <a class="nav-link" href="connection.jsp">s'enregistrer<input type="hidden" name="action" value="createaccount"></a>
             </li>
         </ul>
     </div>
@@ -54,7 +54,7 @@
 
 
 
-
+</div>
 
 
 <script src="${pageContext.request.contextPath}js/script.js"></script>

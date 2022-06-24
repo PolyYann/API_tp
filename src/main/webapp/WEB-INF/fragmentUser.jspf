@@ -1,0 +1,20 @@
+<%--
+    Created by IntelliJ IDEA
+    User: Mélanie
+    Date: 2022-06-24   
+    Time: 10:05    
+    to change this template use File | settings| File templates
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
+${sessionScope.client.nom}
+
+${sessionScope.client.telephone}
+
+${sessionScope.client.email}
+
+${sessionScope.client.adresse}
+
+${sessionScope.client.password}
+

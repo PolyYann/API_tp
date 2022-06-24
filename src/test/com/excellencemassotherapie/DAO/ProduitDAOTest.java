@@ -1,5 +1,6 @@
 package com.excellencemassotherapie.DAO;
 
+
 import com.excellencemassotherapie.Mock.Mock;
 import com.excellencemassotherapie.modele.Produit;
 import org.junit.jupiter.api.BeforeAll;
@@ -7,8 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ProduitDAOTest {
     private static List<Produit> produits =new ArrayList<>();

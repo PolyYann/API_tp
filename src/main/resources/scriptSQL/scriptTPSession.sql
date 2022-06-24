@@ -17,21 +17,7 @@ CREATE TABLE `t_clients`
     `telephone` varchar(255) NOT NULL,
     PRIMARY KEY (`id_client`)
 );
-CREATE TABLE `t_ligne_commande`
-(
-    `id_ligne_commande` int NOT NULL AUTO_INCREMENT,
-    `Quantite`          int NOT NULL,
-    `Id_Panier`         int DEFAULT NULL,
-    `Id_Produit`        int DEFAULT NULL,
-    `Id_Soin`           int DEFAULT NULL,
-    PRIMARY KEY (`id_ligne_commande`),
-    KEY `FKi5ybdygpbilq53cyx4sq5jc41` (`Id_Panier`),
-    KEY `FK2cw6dbwsakrapbodygrpgdhf` (`Id_Produit`),
-    KEY `FKrrcgp9306xbkwm5vyklyhmlxl` (`Id_Soin`),
-    CONSTRAINT `FK2cw6dbwsakrapbodygrpgdhf` FOREIGN KEY (`Id_Produit`) REFERENCES `t_produits` (`id_produit`),
-    CONSTRAINT `FKi5ybdygpbilq53cyx4sq5jc41` FOREIGN KEY (`Id_Panier`) REFERENCES `t_paniers` (`id_panier`),
-    CONSTRAINT `FKrrcgp9306xbkwm5vyklyhmlxl` FOREIGN KEY (`Id_Soin`) REFERENCES `t_soins` (`id_soin`)
-);
+
 
 CREATE TABLE `t_paniers`
 (
@@ -72,6 +58,22 @@ CREATE TABLE `t_soins`
     `prix`        double       NOT NULL,
     `url_img`     varchar(255) NOT NULL,
     PRIMARY KEY (`id_soin`)
+);
+
+CREATE TABLE `t_ligne_commande`
+(
+    `id_ligne_commande` int NOT NULL AUTO_INCREMENT,
+    `Quantite`          int NOT NULL,
+    `Id_Panier`         int DEFAULT NULL,
+    `Id_Produit`        int DEFAULT NULL,
+    `Id_Soin`           int DEFAULT NULL,
+    PRIMARY KEY (`id_ligne_commande`),
+    KEY `FKi5ybdygpbilq53cyx4sq5jc41` (`Id_Panier`),
+    KEY `FK2cw6dbwsakrapbodygrpgdhf` (`Id_Produit`),
+    KEY `FKrrcgp9306xbkwm5vyklyhmlxl` (`Id_Soin`),
+    CONSTRAINT `FK2cw6dbwsakrapbodygrpgdhf` FOREIGN KEY (`Id_Produit`) REFERENCES `t_produits` (`id_produit`),
+    CONSTRAINT `FKi5ybdygpbilq53cyx4sq5jc41` FOREIGN KEY (`Id_Panier`) REFERENCES `t_paniers` (`id_panier`),
+    CONSTRAINT `FKrrcgp9306xbkwm5vyklyhmlxl` FOREIGN KEY (`Id_Soin`) REFERENCES `t_soins` (`id_soin`)
 );
 
 INSERT INTO `t_clients`
