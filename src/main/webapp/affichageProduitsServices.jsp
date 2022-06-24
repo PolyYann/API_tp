@@ -22,7 +22,8 @@
 <body >
 <div class="bg-steel-light">
 <form name="articleForm" action="ServletPanier" method="post">
-
+    <jsp:include page="navBar.jsp"  />
+    <br>
     <h3 style="color:white;">Affichage de tous les produits</h3>
     <br>
     <br>

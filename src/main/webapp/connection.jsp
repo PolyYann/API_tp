@@ -30,6 +30,8 @@
 <body>
 
 <div class="bg-steel-light">
+    <jsp:include page="navBar.jsp"  />
+
 <form name="maform" action="ControlSession" method="post">
 
 
