@@ -12,7 +12,7 @@
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="img/icon.jpg"/>
     <!--Bootstrap -->
-    <link rel="stylesheet" href="WEB-INF/style.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
     <link rel="stylesheet" href="bootstrap/bootstrap-grid.min.css"/>
     <link rel="stylesheet" href="bootstrap/bootstrap-reboot.min.css"/>
     <link rel="stylesheet" href="bootstrap/bootstrap.min.css"/>
