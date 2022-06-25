@@ -181,7 +181,41 @@
                                     </a>
                                 </div>
                             </div>
+                            <div class="col-3 text-left">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="img/1he/he_geranium.jpg" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Huile essentielle Geranium</h5>
+                                        <p class="card-text">Longue description.</p>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">bla</li>
+                                        <li class="list-group-item">bla</li>
+                                    </ul>
+                                    <div class="card-footer">
+                                        <a href="#" class="card-link">
+
+                                            <!-- ICI on a la zone de texte pour saisir la quantité -->
+                                            Quantité:<input type="text" name="quantite" SIZE="3"
+                                                            value=1>
+
+                                            <!--Ici on a un champ caché qui est renvoyé au controleur avec les autres
+                                            données de la requête. Puisque la servlet controleur va traiter les autres
+                                            demandes: Supprimer un élément du panier, commander (Checkout), ce champ caché
+                                            va être lu par la servlet pour déterminer le traitement à exécuter
+                                            -->
+                                            <input type="hidden" name="action" value="ADD">
+                                        </a>
+                                        <a href="#" class="card-link">
+                                            <!-- en cliquant sur ce bouton, la requête est envoyée à la servlet -->
+                                            <input type="submit" name="Submit"
+                                                   value="Ajouter au panier">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>

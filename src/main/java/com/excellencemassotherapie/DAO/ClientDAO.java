@@ -17,20 +17,9 @@ public class ClientDAO implements ICommonDAO<Client> {
             .createEntityManagerFactory("hibernate");
     private EntityManager entityManager = null;
 
-
-    @Override
-    public void connect() {
-        entityManager = entityManagerFactory.createEntityManager();
-    }
-
-    @Override
-    public void disconnect() {
-        entityManager.close();
-    }
-
-
     @Override
     public List<Client> getAll() {
+        entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Client> criteriaQuery = criteriaBuilder.createQuery(Client.class);
@@ -39,11 +28,14 @@ public class ClientDAO implements ICommonDAO<Client> {
         Query query = entityManager.createQuery(criteriaQuery);
         List<Client> clients =  query.getResultList();
         entityManager.getTransaction().commit();
+        entityManager.close();
+
         return clients;
     }
 
     @Override
     public Client getById(int id) {
+        entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Client> criteriaQuery = criteriaBuilder.createQuery(Client.class);
@@ -52,11 +44,13 @@ public class ClientDAO implements ICommonDAO<Client> {
         Query query = entityManager.createQuery(criteriaQuery);
         Client client = (Client) query.getSingleResult();
         entityManager.getTransaction().commit();
+        entityManager.close();
         return client;
     }
 
     @Override
     public Client getByName(String nom) {
+        entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Client> criteriaQuery = criteriaBuilder.createQuery(Client.class);
@@ -65,11 +59,13 @@ public class ClientDAO implements ICommonDAO<Client> {
         Query query = entityManager.createQuery(criteriaQuery);
         Client client = (Client) query.getSingleResult();
         entityManager.getTransaction().commit();
+        entityManager.close();
         return client;
     }
 
     @Override
     public void insert(Client client) {
+        entityManager = entityManagerFactory.createEntityManager();
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(client);
@@ -77,6 +73,8 @@ public class ClientDAO implements ICommonDAO<Client> {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        entityManager.close();
+
     }
 
 

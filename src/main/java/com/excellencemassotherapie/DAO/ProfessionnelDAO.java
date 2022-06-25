@@ -16,18 +16,10 @@ public class ProfessionnelDAO implements ICommonDAO<Professionnel> {
             .createEntityManagerFactory("hibernate");
     private EntityManager entityManager = null;
 
-    @Override
-    public void connect() {
-        entityManager = entityManagerFactory.createEntityManager();
-    }
-
-    @Override
-    public void disconnect() {
-        entityManager.close();
-    }
 
     @Override
     public List<Professionnel> getAll() {
+        entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Professionnel> criteriaQuery = criteriaBuilder.createQuery(Professionnel.class);
@@ -36,6 +28,7 @@ public class ProfessionnelDAO implements ICommonDAO<Professionnel> {
         Query query = entityManager.createQuery(criteriaQuery);
         List<Professionnel> professionnels = query.getResultList();
         entityManager.getTransaction().commit();
+        entityManager.close();
         return professionnels;
     }
     //inutile d'implémentér getById car on ne peut pas modifier
@@ -53,6 +46,7 @@ public class ProfessionnelDAO implements ICommonDAO<Professionnel> {
 
     @Override
     public void insert(Professionnel professionnel) {
+        entityManager = entityManagerFactory.createEntityManager();
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(professionnel);
@@ -60,5 +54,6 @@ public class ProfessionnelDAO implements ICommonDAO<Professionnel> {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        entityManager.close();
     }
 }
