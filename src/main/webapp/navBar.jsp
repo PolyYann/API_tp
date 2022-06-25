@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Excellence Massotherapie</a>
@@ -24,7 +26,7 @@
                 <a class="nav-link" href="afficherProfessionnels.jsp">Professionnels</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Langue</a>
+                <a class="nav-link" href="LocaleServlet">Langue</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="connection.jsp">Se connecter<input type="hidden" name="action" value="login"></a>

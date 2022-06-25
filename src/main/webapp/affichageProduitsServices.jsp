@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>Produit et services</title>
@@ -20,6 +22,28 @@
 
 </head>
 <body >
+
+
+
+<c:set var="loc" value="fr_F"/> <!-- Ici, la valeur fr_FR est codé en dure, comme une valeur par défaut -->
+<!--on met un if pour voir si on change de langue-->
+<c:if test="${!(empty param.locale)}">  <!-- param car on a pas de servet ici / sinon, on aurait pu mettre sessionScope et prendre les infos de la langue provenant de la page html -->
+    <c:set var="loc" value="${param.locale}"/>
+</c:if>
+
+<fmt:setLocale  value="${loc}"  /> <!-- balise fmt:setLocale mentionne qu'on veut les infos contenues dans la value local (loc) -->
+
+
+<fmt:bundle basename="app" > <!-- basename=app ça veut dire que le fichier commence par app...-->
+
+
+
+    <h1><fmt:message  key="newTitle"/></h1>
+
+
+
+
+
 <div class="bg-steel-light">
 <form name="articleForm" action="ServletPanier" method="post">
     <jsp:include page="navBar.jsp"  />
@@ -72,7 +96,7 @@
                                 <a href="#" class="card-link">
 
                                     <!-- ICI on a la zone de texte pour saisir la quantité -->
-                                    Quantité:<input type="text" name="quantite" SIZE="3" value=1>
+                                    <fmt:message key="quantity"/>:<input type="text" name="quantite" SIZE="3" value=1>
 
                                     <!--Ici on a un champ caché qui est renvoyé au controleur avec les autres
                                     données de la requête. Puisque la servlet controleur va traiter les autres
