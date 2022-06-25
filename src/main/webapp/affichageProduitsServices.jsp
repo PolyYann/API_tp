@@ -85,7 +85,6 @@
                                         <input type="submit" name="Submit" value="Ajouter au panier">
                                     </a>
                                 </div>
-
                             </div>
                         </div>
                     </c:forEach>
