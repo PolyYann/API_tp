@@ -27,7 +27,7 @@
     <div class="collapse navbar-collapse flex-row-reverse pe-5" id="navbarNavDropdown">
         <ul class="navbar-nav align-content-end">
             <li class="nav-item active">
-                <a class="nav-link" href="accueil.jsp">Accueil <span class="sr-only"></span></a>
+                <a class="nav-link" href="accueil.jsp"><fmt:message key="home"/><span class="sr-only"></span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="ServletAffichage"><fmt:message key="products_services"/></a>

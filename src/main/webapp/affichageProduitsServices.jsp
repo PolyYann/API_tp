@@ -53,6 +53,7 @@
                 <div class="col-9">
 
                     <!---------------------------------------------------Début de la boucle pour affichage----------------------------------------------------->
+                    <div class="row">
                     <c:forEach var="produit" varStatus="status" items="${requestScope.listProduits}" step="1" begin="0">
 
                         <div class="col-3 text-left">
@@ -87,8 +88,9 @@
                                 </div>
                             </div>
                         </div>
-                    </c:forEach>
 
+                    </c:forEach>
+                    </div>
                     <!---------------------------------------------------fin de affichage----------------------------------------------------->
                 </div>
             </div>
