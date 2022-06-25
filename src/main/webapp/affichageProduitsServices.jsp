@@ -10,8 +10,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-    <fmt:bundle basename="app" /> <!-- basename=app ça veut dire que le fichier commence par app...-->
-    <title>Produit et services</title>
+    <fmt:setBundle basename="app" /> <!-- basename=app ça veut dire que le fichier commence par app.
+    ..-->
+    <title><fmt:message key="excellence"/></title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="img/icon.jpg"/>
     <!--Bootstrap -->
@@ -34,13 +35,6 @@
 
 <fmt:setLocale value="${loc}"/>
 <!-- balise fmt:setLocale mentionne qu'on veut les infos contenues dans la value local (loc) -->
-
-
-
-
-
-<h1><fmt:message key="excellence"/></h1>
-
 
 <div class="bg-steel-light">
     <form name="articleForm" action="ServletPanier" method="post">

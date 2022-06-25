@@ -12,6 +12,9 @@ ul.no-bullets {
     position: relative;
     text-align: center;
     color: white;
+    background-image: url('../img/table.jpg');
+    width: 100%;
+
 }
 
 /* Texte centré dans l'accueil */
