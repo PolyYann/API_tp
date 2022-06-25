@@ -36,7 +36,7 @@
                 <a class="nav-link" href="afficherProfessionnels.jsp"><fmt:message key="professional"/></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="LocaleServlet"><fmt:message key="language"/></a>
+                <a class="nav-link" href="LanguageServlet"><fmt:message key="language"/></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="connection.jsp"><fmt:message key="signin"/><input type="hidden" name="action" value="login"></a>

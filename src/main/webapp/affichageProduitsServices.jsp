@@ -45,7 +45,7 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-3">
+                <div class="col-2">
                     <div>
                         <jsp:include page="filter.jsp"/>
                     </div>
@@ -58,7 +58,7 @@
 
                         <div class="col-3 text-left">
                             <div class="card" style="width: 18rem;">
-                                <img src="${produit.urlImage}" class="card-img-top">
+                                <img src="${produit.urlImage}" alt="${produit.nom}" class="card-img-top">
                                 <div class="card-body">
                                     <h5 class="card-title">${produit.nom}</h5>
                                     <p class="card-text">${produit.description}</p>
