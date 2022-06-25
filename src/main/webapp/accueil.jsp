@@ -19,9 +19,9 @@
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="img/icon.jpg"/>
     <!--Bootstrap -->
-    <link rel="stylesheet" href="css/style.css"/>
-    <link rel="stylesheet" href="bootstrap/bootstrap-grid.min.css"/>
-    <link rel="stylesheet" href="bootstrap/bootstrap-reboot.min.css"/>
+    <link rel="stylesheet" href="<c:url value="/css/style.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/bootstrap/bootstrap-grid.min.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/bootstrap/bootstrap-reboot.min.css"/>"/>
     <link rel="stylesheet" href="bootstrap/bootstrap.min.css"/>
     <link rel="stylesheet"
           href="https://bootstrap-colors-extended.herokuapp.com/bootstrap-colors.css"/>
@@ -29,14 +29,17 @@
 </head>
 <body>
 
-<div class="bg-teal-light">
-    <jsp:include page="navBar.jsp"/>
-    <div class="containerHome bg-transparent">
-<%--        <img src="img/table.jpg" style="width:100%;">--%>
-        <div class="centered"><h1>Bienvenue</h1></div>
-    </div>
+<div class="bg-teal-light carousel">
 
-    <!--   <img src="img/table.jpg" width=100%> -->
+    <jsp:include page="navBar.jsp"/>
+
+    <div class="">
+        <div class="row-cols-auto">
+        <img class="w-100 h-100  overflow-hidden" src="img/table.jpg" alt="" ></div>
+        <div class="carousel-caption center-block">
+            <h1 >Bienvenue</h1>
+        </div>
+    </div>
 
 
 </div>
