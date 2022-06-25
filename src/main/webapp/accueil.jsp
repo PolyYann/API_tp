@@ -41,12 +41,9 @@
         <div class="row-cols-auto">
         <img class="w-100 h-100  overflow-hidden" src="img/table.jpg" alt="" ></div>
         <div class="carousel-caption center-block">
-            <h1 >Bienvenue</h1>
+            <h1><fmt:message key="Welcome"/></h1>
         </div>
     </div>
-
-    <!--   <img src="img/table.jpg" width=100%> -->
-
 
 </div>
 

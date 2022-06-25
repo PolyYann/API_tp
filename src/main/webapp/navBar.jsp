@@ -30,19 +30,19 @@
                 <a class="nav-link" href="accueil.jsp">Accueil <span class="sr-only"></span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="affichageProduitsServices.jsp">Produits et services</a>
+                <a class="nav-link" href="ServletAffichage"><fmt:message key="products_services"/></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="afficherProfessionnels.jsp">Professionnels</a>
+                <a class="nav-link" href="afficherProfessionnels.jsp"><fmt:message key="professional"/></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="LocaleServlet">Langue</a>
+                <a class="nav-link" href="LocaleServlet"><fmt:message key="language"/></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="connection.jsp">Se connecter<input type="hidden" name="action" value="login"></a>
+                <a class="nav-link" href="connection.jsp"><fmt:message key="signin"/><input type="hidden" name="action" value="login"></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="connection.jsp">s'enregistrer<input type="hidden" name="action" value="createaccount"></a>
+                <a class="nav-link" href="connection.jsp"><fmt:message key="signup"/><input type="hidden" name="action" value="createaccount"></a>
             </li>
         </ul>
     </div>
