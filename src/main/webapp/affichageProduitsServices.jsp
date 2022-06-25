@@ -10,6 +10,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
+    <fmt:bundle basename="app" /> <!-- basename=app ça veut dire que le fichier commence par app...-->
     <title>Produit et services</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="img/icon.jpg"/>
@@ -24,7 +25,7 @@
 <body>
 
 
-<c:set var="loc" value="fr_F"/>
+<c:set var="loc" value="fr"/>
 <!-- Ici, la valeur fr_FR est codé en dure, comme une valeur par défaut -->
 <!--on met un if pour voir si on change de langue-->
 <c:if test="${!(empty param.locale)}"> <!-- param car on a pas de servet ici / sinon, on aurait pu mettre sessionScope et prendre les infos de la langue provenant de la page html -->
@@ -35,10 +36,10 @@
 <!-- balise fmt:setLocale mentionne qu'on veut les infos contenues dans la value local (loc) -->
 
 
-<fmt:bundle basename="app" /> <!-- basename=app ça veut dire que le fichier commence par app...-->
 
 
-<h1><fmt:message key="newTitle"/></h1>
+
+<h1><fmt:message key="excellence"/></h1>
 
 
 <div class="bg-steel-light">

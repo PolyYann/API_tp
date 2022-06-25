@@ -12,7 +12,10 @@
 
 <html>
 <head>
-    <title><fmt:message key="newTitle"/></title>
+    <c:set var="loc" value="fr"/>
+    <fmt:setBundle basename="app" /><!-- basename=app ça veut dire que le fichier commence par app.
+    ..-->
+    <title><fmt:message key="excellence"/></title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="img/icon.jpg"/>
     <!--Bootstrap -->
