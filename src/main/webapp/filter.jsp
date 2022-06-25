@@ -24,12 +24,12 @@
             <thead>
             <td>
                 <label>
-                    <h5><input type="checkbox" checked="" class="custom-control-input">
+                    <h5><input type="radio" checked="" class="custom-control-input" name="type">
                         Produits</h5></label>
             </td>
             <td>
                 <label class="custom-control custom-checkbox">
-                    <h5><input type="checkbox" checked="" name="Soins"
+                    <h5><input type="radio"  name="type"
                                class="custom-control-input"> Soins</h5>
                 </label>
             </td>

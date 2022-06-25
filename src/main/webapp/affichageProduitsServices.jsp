@@ -45,7 +45,7 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-3">
+                <div class="col-2">
                     <div>
                         <jsp:include page="filter.jsp"/>
                     </div>
