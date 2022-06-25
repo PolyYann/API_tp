@@ -6,3 +6,18 @@ ul.no-bullets {
     margin: 0;
     padding: 0;
 }
+
+/* Container de l'image et du texte de l,accueil */
+.containerHome {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+/* Texte centré dans l'accueil */
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

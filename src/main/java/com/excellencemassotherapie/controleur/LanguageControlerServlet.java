@@ -7,21 +7,18 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.util.Locale;
 
-@WebServlet(name = "LocaleServlet", value = "/LocaleServlet")
-public class LocaleServlet extends HttpServlet {
+@WebServlet(name = "LanguageControlerServlet", value = "/LanguageControlerServlet")
+public class LanguageControlerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        Locale locale = request.getLocale();
+        request.setAttribute("langue", locale.getLanguage());
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("accueil.jsp");
+        requestDispatcher.forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        Locale localeReq = request.getLocale();
-
-        request.setAttribute("langue", localeReq.getLanguage());
-        RequestDispatcher dispatcher = request.getRequestDispatcher(("afficherLocaleRequete.jsp"));
-        dispatcher.forward(request, response);
 
     }
 }
