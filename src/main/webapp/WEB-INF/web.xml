@@ -3,6 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+    <filter>
+        <filter-name>LogInFilter</filter-name>
+        <filter-class>com.excellencemassotherapie.controleur.LogInFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LogInFilter</filter-name>
+        <servlet-name>ShoppingServlet_0</servlet-name>
+    </filter-mapping>
     <welcome-file-list>
         <welcome-file>accueil.jsp</welcome-file>
     </welcome-file-list>

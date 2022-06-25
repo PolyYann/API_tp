@@ -28,7 +28,7 @@ public class LigneCommandDAO implements ICommonDAO<LigneCommande> {
     }
 
     @Override
-    public List getAll() {
+    public List<LigneCommande> getAll() {
         entityManager.getTransaction().begin();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<LigneCommande> criteriaQuery = criteriaBuilder.createQuery(LigneCommande.class);
