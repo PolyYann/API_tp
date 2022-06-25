@@ -65,6 +65,15 @@ public class SoinDAO implements ICommonDAO<Soin> {
         entityManager.getTransaction().commit();
         return soin;
     }
+    public List<Soin> trouverParLike(String like) {
+        entityManager.getTransaction().begin();
+      String  hql = "SELECT s FROM Soin s WHERE s.nom LIKE :like or s.description LIKE :like";
+        Query query = entityManager.createQuery(hql);
+        query.setParameter("like", "%"+like + "%");
+        List<Soin> soins = query.getResultList();
+        entityManager.getTransaction().commit();
+        return soins;
+    }
     @Override
     public void insert(Soin soin) {
         try {

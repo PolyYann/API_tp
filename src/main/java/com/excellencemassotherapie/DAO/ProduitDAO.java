@@ -2,6 +2,7 @@ package com.excellencemassotherapie.DAO;
 
 import com.excellencemassotherapie.modele.Produit;
 import com.excellencemassotherapie.modele.Professionnel;
+import com.excellencemassotherapie.modele.Soin;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -54,7 +55,15 @@ public class ProduitDAO implements ICommonDAO<Produit> {
         return produit;
 
     }
-
+    public List<Produit> trouverParLike(String like) {
+        entityManager.getTransaction().begin();
+        String  hql = "SELECT p FROM Produit p WHERE p.nom LIKE :like or p.description LIKE :like";
+        Query query = entityManager.createQuery(hql);
+        query.setParameter("like", "%"+like + "%");
+        List<Produit> produits = query.getResultList();
+        entityManager.getTransaction().commit();
+        return produits;
+    }
     @Override
     public Produit getByName(String nom) {
         entityManager.getTransaction().begin();
