@@ -10,12 +10,21 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <nav class="navbar navbar-expand-lg fixed-top  navbar-light bg-light">
+
+<c:set var="loc" value="fr"/> <!-- Ici, la valeur fr_FR est codé en dure, comme une valeur par défaut -->
+
+<fmt:setBundle basename="app"/><!-- basename=app ça veut dire que le fichier commence par app.-->
+<!--on met un if pour voir si on change de langue-->
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Excellence Massotherapie</a>
-    <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav align-content-end" >
+        <ul class="navbar-nav align-content-end">
             <li class="nav-item active">
                 <a class="nav-link" href="accueil.jsp">Accueil <span class="sr-only"></span></a>
             </li>

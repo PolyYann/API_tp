@@ -11,10 +11,14 @@ import java.util.Locale;
 public class LanguageControlerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Locale locale = request.getLocale();
-        request.setAttribute("langue", locale.getLanguage());
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("accueil.jsp");
-        requestDispatcher.forward(request, response);
+        HttpSession session = request.getSession();
+        String langue = (String) request.getAttribute("langue");
+        if(langue == null || request.getParameter("src").equals("1")) {
+            String langueChoisie = request.getParameter("langue");
+            session.setAttribute("langue", langueChoisie);
+        }
+        RequestDispatcher rd = request.getRequestDispatcher("accueil.jsp");
+        rd.forward(request, response);
     }
 
     @Override

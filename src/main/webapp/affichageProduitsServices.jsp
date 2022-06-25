@@ -10,8 +10,18 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-    <fmt:setBundle basename="app" /> <!-- basename=app ça veut dire que le fichier commence par app.
-    ..-->
+    <c:set var="loc" value="fr"/>   <!-- Ici, la valeur fr_FR est codé en dure, comme une valeur par défaut -->
+
+    <fmt:setBundle basename="app" /><!-- basename=app ça veut dire que le fichier commence par app.-->
+    <!--on met un if pour voir si on change de langue-->
+
+    <c:if test="${!(empty param.locale)}"> <!-- param car on a pas de servet ici / sinon, on aurait pu mettre sessionScope et prendre les infos de la langue provenant de la page html -->
+        <c:set var="loc" value="${param.locale}"/>
+    </c:if>
+
+    <fmt:setLocale value="${loc}"/> <!-- balise fmt:setLocale mentionne qu'on veut les infos contenues dans la value local (loc) -->
+
+
     <title><fmt:message key="excellence"/></title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="img/icon.jpg"/>
@@ -24,17 +34,6 @@
 
 </head>
 <body>
-
-
-<c:set var="loc" value="fr"/>
-<!-- Ici, la valeur fr_FR est codé en dure, comme une valeur par défaut -->
-<!--on met un if pour voir si on change de langue-->
-<c:if test="${!(empty param.locale)}"> <!-- param car on a pas de servet ici / sinon, on aurait pu mettre sessionScope et prendre les infos de la langue provenant de la page html -->
-    <c:set var="loc" value="${param.locale}"/>
-</c:if>
-
-<fmt:setLocale value="${loc}"/>
-<!-- balise fmt:setLocale mentionne qu'on veut les infos contenues dans la value local (loc) -->
 
 <div class="bg-steel-light">
     <form name="articleForm" action="ServletPanier" method="post">
@@ -192,6 +191,7 @@
     </form>
 
 </div>
+
 <script src="js/script.js"></script>
 <script src="bootstrap/bootstrap.bundle.min.js"></script>
 <script src="bootstrap/bootstrap.min.js"></script>
