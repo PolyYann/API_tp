@@ -15,6 +15,14 @@ import java.util.List;
 public class ServletAffichage extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        ProduitDAO produitDAO = new ProduitDAO();
+        List<Produit> listProduits = produitDAO.getAll();
+
+        request.setAttribute("listProduits", listProduits);
+
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/affichageProduitsServices.jsp");
+        dispatcher.forward(request,response);
+
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
