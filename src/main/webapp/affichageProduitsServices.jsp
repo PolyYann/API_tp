@@ -54,17 +54,17 @@
 
                     <!---------------------------------------------------Début de la boucle pour affichage----------------------------------------------------->
                     <div class="row">
-                    <c:forEach var="produit" varStatus="status" items="${requestScope.listProduits}" step="1" begin="0">
+                    <c:forEach var="choix" varStatus="status" items="${requestScope.listProduits}" step="1" begin="0">
 
                         <div class="col-3 text-left">
                             <div class="card" style="width: 18rem;">
-                                <img src="${produit.urlImage}" alt="${produit.nom}" class="card-img-top">
+                                <img src="${choix.urlImage}" alt="${choix.nom}" class="card-img-top">
                                 <div class="card-body">
-                                    <h5 class="card-title">${produit.nom}</h5>
-                                    <p class="card-text">${produit.description}</p>
+                                    <h5 class="card-title">${choix.nom}</h5>
+                                    <p class="card-text">${choix.description}</p>
                                 </div>
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">${produit.prix}</li>
+                                    <li class="list-group-item">${choix.prix}</li>
                                 </ul>
                                 <div class="card-footer">
                                     <a href="#" class="card-link">

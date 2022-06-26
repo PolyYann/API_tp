@@ -23,13 +23,13 @@
             <td></td>
         </tr>
 
-        <c:forEach var="produit" items="${sessionScope.panierAchat}"  varStatus="loop" >
+        <c:forEach var="choix" items="${sessionScope.panierAchat}" varStatus="loop" >
             <tr>
-                <td><b>${produit.nom}</b></td>
-                <td><b>${produit.description}</b></td>
-                <td><b>${produit.quantite}</b></td>
-                <td><b>${produit.prix}</b></td>
-                <td><b>${produit.total}</b></td>
+                <td><b>${choix.nom}</b></td>
+                <td><b>${choix.description}</b></td>
+                <td><b>${choix.quantite}</b></td>
+                <td><b>${choix.prix}</b></td>
+                <td><b>${choix.total}</b></td>
                 <td>
                     <form name="deleteForm" action="panierServlet" method="POST">
                         <input type="submit" value="Delete">
