@@ -5,6 +5,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.util.Locale;
 
 @WebServlet(name = "LanguageServlet", value = "/LanguageServlet")
 public class LanguageServlet extends HttpServlet {
@@ -13,10 +14,17 @@ public class LanguageServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         String langue = (String) request.getAttribute("langue");
-        if(langue == null || request.getParameter("src").equals("1")) {
-            String langueChoisie = request.getParameter("langue");
-            session.setAttribute("langue", langueChoisie);
+        String langueChoisie = "";
+
+        if (langue == null ) {
+            langueChoisie = request.getParameter("langue");
+        } else if (langue == "Anglais") {
+            langueChoisie = "en";
+        } else if (langue == "French") {
+            langueChoisie = "fr";
         }
+        session.setAttribute("langue", langueChoisie);
+
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("accueil.jsp");//pageResultat provient de la démo de I18N
         requestDispatcher.forward(request, response);
     }

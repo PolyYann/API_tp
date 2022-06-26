@@ -8,14 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-
-
-<c:set var="loc" value="fr"/> <!-- Ici, la valeur fr_FR est codé en dure, comme une valeur par défaut -->
 
 <fmt:setBundle basename="app"/><!-- basename=app ça veut dire que le fichier commence par app.-->
 <!--on met un if pour voir si on change de langue-->
 
+<fmt:setLocale
+        value="${requestScope.langue}"/> <!-- balise fmt:setLocale mentionne qu'on veut les infos contenues dans la value local (loc) -->
 
 <nav class="navbar navbar-expand-lg fixed-top  navbar-light bg-light ">
 
@@ -32,17 +32,26 @@
             <li class="nav-item">
                 <a class="nav-link" href="ServletAffichage"><fmt:message key="products_services"/></a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="afficherProfessionnels.jsp"><fmt:message key="professional"/></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="LanguageServlet"><fmt:message key="language"/></a>
+
+
+                <a class="nav-link" href="LanguageServlet" id="langue">
+                    <input type="hidden" name="langue" value="<fmt:message key="language"/>"><fmt:message key="language"/></a>
+
+
+
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="connection.jsp"><fmt:message key="signin"/><input type="hidden" name="action" value="login"></a>
+                <a class="nav-link" href="connection.jsp"><fmt:message key="signin"/><input type="hidden" name="action"
+                                                                                            value="login"></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="connection.jsp"><fmt:message key="signup"/><input type="hidden" name="action" value="createaccount"></a>
+                <a class="nav-link" href="connection.jsp"><fmt:message key="signup"/><input type="hidden" name="action"
+                                                                                            value="createaccount"></a>
             </li>
         </ul>
     </div>
