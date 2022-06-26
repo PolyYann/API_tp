@@ -19,7 +19,7 @@
 
 <nav class="navbar navbar-expand-lg fixed-top  navbar-light bg-light ">
 
-    <a class="navbar-brand ps-5   " href="#">Excellence Massotherapie</a>
+    <a class="navbar-brand ps-5   " href="accueil.jsp">Excellence Massotherapie</a>
     <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -46,11 +46,14 @@
 
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="connection.jsp"><fmt:message key="signin"/><input type="hidden" name="action"
+                <a class="nav-link" href="panier.jsp"><fmt:message key="cart"/></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="connection.jsp?action=signin"><fmt:message key="signin"/><input type="hidden" name="action"
                                                                                             value="login"></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="connection.jsp"><fmt:message key="signup"/><input type="hidden" name="action"
+                <a class="nav-link" href="connection.jsp?action=signup"><fmt:message key="signup"/><input type="hidden" name="action"
                                                                                             value="createaccount"></a>
             </li>
         </ul>

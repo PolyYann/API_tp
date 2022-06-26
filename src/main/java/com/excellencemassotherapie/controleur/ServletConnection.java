@@ -21,32 +21,39 @@ public class ServletConnection extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String destination = "";
+        String mdpSaisi = request.getParameter("password");
+
+        if (mdpSaisi.equals("secret")) {
+            destination ="/accueil.jsp";
+        }else {
+            destination ="/connection.jsp";
+        }
+
 
         //récupérer la session asociée à la requête
         HttpSession session =request.getSession();
         String source = "";
 
-        Client client = (Client) session.getAttribute("info");
+        Client client =(Client) session.getAttribute("client");
         source = request.getParameter("source");
-        if (source != null)
+        if (source!=null)
         {
             //créer le bean avec les infos envoyées
             client = new Client();
             client.setNom(request.getParameter("nom"));
-            client.setAdresse(request.getParameter("adresse"));
+            client.setEmail(request.getParameter("telephone"));
             client.setEmail(request.getParameter("email"));
-            client.setTelephone(request.getParameter("telephone"));
-            client.setPassword(request.getParameter("password"));
+            client.setEmail(request.getParameter("adresse"));
+            client.setEmail(request.getParameter("email"));
 
             //créer l'objet de session
             session.setAttribute("client", client);
-            destination="accueil.jsp";
+            destination="/accueil.jsp";
         }
-        else if (client == null)
-        {
-            destination ="/connection.jsp";
-        }
+
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(destination);
         dispatcher.forward(request, response);
     }
+
+
 }

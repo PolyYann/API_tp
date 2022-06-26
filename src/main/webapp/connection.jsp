@@ -6,17 +6,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 <head>
     <title>Connection</title>
-</head>
-<body>
 
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>TODO supply a title</title>
     <link rel="icon" type="image/x-icon" href="img/icon.jpg"/>
     <!--Bootstrap -->
     <link rel="stylesheet" href="css/style.css"/>
@@ -32,7 +28,7 @@
 <div class="bg-steel-light">
     <jsp:include page="navBar.jsp"  />
 
-<form name="maform" action="ControlSession" method="post">
+<form name="maformConnection" action="ServletConnection" method="post">
 
 
     <!-- Section: Design Block -->
@@ -58,46 +54,53 @@
             backdrop-filter: blur(30px);
             ">
                         <div class="card-body p-5 shadow-5 text-center">
-                            <h2 class="fw-bold mb-5">Se Connecter</h2>
+                            <h2 class="fw-bold mb-5">
+                                <c:if test="${param.action==\"signin\"}">
+                                    Se connecter
+                                </c:if>
+
+                                <c:if test="${param.action==\"signup\"}">
+                                    S'enregister
+                                </c:if>
+
+                            </h2>
                             <form>
                                 <!-- 2 column grid layout with text inputs for the name and password -->
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
                                             <input type="text" id="name" class="form-control" />
-                                            <label class="form-label" >Nom</label>
+                                            <label class="form-label" name="nom" >Nom</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline mb-4">
-                                            <input type="password" id="password" class="form-control" />
+                                            <input type="password" name="password" class="form-control" />
                                             <label class="form-label">Mot de passe</label>
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- Email input -->
-                                <div class="form-outline mb-4">
-                                    <input type="email" id="email" class="form-control" />
-                                    <label class="form-label">Adresse courriel</label>
-                                </div>
-                                <div class="form-outline mb-4">
-                                    <input type="text" id="phone" class="form-control" />
-                                    <label class="form-label">Telephone</label>
-                                </div>
-                                <div class="form-outline mb-4">
-                                    <input type="text" id="address" class="form-control" />
-                                    <label class="form-label">Adresse</label>
-                                </div>
+                                <c:if test="${param.action==\"signup\"}">
+                                <jsp:include page="enregistrer.jsp"/>
+                                </c:if>
 
 
                                 <!-- Submit button -->
-                                <button type="submit" class="btn btn-secondary btn-block mb-4">
-                                    Connection<input type="hidden" name="action" value="login">
-                                </button>
-                                <button type="submit" class="btn btn-secondary btn-block mb-4">
-                                    Creer un compte<input type="hidden" name="action" value="createaccount">
-                                </button>
+                                <c:if test="${param.action==\"signin\"}">
+                                    <button type="submit" name="send" value="login" class="btn btn-secondary btn-block mb-4">
+                                        Connection <input type="hidden" name="source" value="signin">
+                                    </button>
+                                </c:if>
+
+                                <c:if test="${param.action==\"signup\"}">
+                                    <button type="submit" class="btn btn-secondary btn-block mb-4">
+                                        Creer un compte<input type="hidden" name="source" value="signup">
+                                    </button>
+                                </c:if>
+
+
+
+
 
 
                             </form>
@@ -119,10 +122,6 @@
 </form>
 
 </div>
-</body>
-</html>
-
-
 
 
 <script src="js/script.js"></script>
