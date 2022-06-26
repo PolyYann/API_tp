@@ -1,11 +1,14 @@
 package com.excellencemassotherapie.controleur;
 
+import com.excellencemassotherapie.DAO.ClientDAO;
 import com.excellencemassotherapie.modele.Client;
+import com.excellencemassotherapie.modele.Produit;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "ServletConnection", value = "/ServletConnection")
 public class ServletConnection extends HttpServlet {
@@ -20,6 +23,10 @@ public class ServletConnection extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        //récupérer la session asociée à la requête
+        HttpSession session = request.getSession();
+        String source = "";
+
         String destination = "";
         String mdpSaisi = request.getParameter("password");
 
@@ -30,16 +37,14 @@ public class ServletConnection extends HttpServlet {
         }
 
 
-        //récupérer la session asociée à la requête
-        HttpSession session =request.getSession();
-        String source = "";
 
-        Client client =(Client) session.getAttribute("client");
+
+        ClientDAO clientDAO = (ClientDAO) session.getAttribute("client");
         source = request.getParameter("source");
         if (source!=null)
         {
             //créer le bean avec les infos envoyées
-            client = new Client();
+            Client client = new Client();
             client.setNom(request.getParameter("nom"));
             client.setEmail(request.getParameter("telephone"));
             client.setEmail(request.getParameter("email"));
@@ -50,6 +55,8 @@ public class ServletConnection extends HttpServlet {
             session.setAttribute("client", client);
             destination="/accueil.jsp";
         }
+
+
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(destination);
         dispatcher.forward(request, response);
