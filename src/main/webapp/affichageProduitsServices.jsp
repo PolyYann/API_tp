@@ -12,6 +12,7 @@
 <head>
     <c:set var="loc" value="fr"/>   <!-- Ici, la valeur fr_FR est codé en dure, comme une valeur par défaut -->
 
+
     <fmt:setBundle basename="app" /><!-- basename=app ça veut dire que le fichier commence par app.-->
     <!--on met un if pour voir si on change de langue-->
 
