@@ -55,6 +55,7 @@
             ">
                         <div class="card-body p-5 shadow-5 text-center">
                             <h2 class="fw-bold mb-5">
+                                <c:set var="action" scope="session" value="action"></c:set>
                                 <c:if test="${param.action==\"signin\"}">
                                     Se connecter
                                 </c:if>
@@ -87,14 +88,14 @@
 
                                 <!-- Submit button -->
                                 <c:if test="${param.action==\"signin\"}">
-                                    <button type="submit" name="send" value="login" class="btn btn-secondary btn-block mb-4">
-                                        Connection <input type="hidden" name="source" value="signin">
+                                    <button  type="submit" name="send" value="login" class="btn btn-secondary btn-block mb-4">
+                                        Connection <input type="hidden" name="signin" value="signin">
                                     </button>
                                 </c:if>
 
                                 <c:if test="${param.action==\"signup\"}">
-                                    <button type="submit" class="btn btn-secondary btn-block mb-4">
-                                        Creer un compte<input type="hidden" name="source" value="signup">
+                                    <button  type="submit" class="btn btn-secondary btn-block mb-4">
+                                        Creer un compte<input type="hidden" name="signup" value="signup">
                                     </button>
                                 </c:if>
 

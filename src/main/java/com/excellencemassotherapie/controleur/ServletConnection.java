@@ -23,44 +23,50 @@ public class ServletConnection extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
         //récupérer la session asociée à la requête
         HttpSession session = request.getSession();
         String source = "";
 
         String destination = "";
         String mdpSaisi = request.getParameter("password");
-
-        if (mdpSaisi.equals("secret")) {
-            destination ="/accueil.jsp";
-        }else {
-            destination ="/connection.jsp";
-        }
+        String action = (String) request.getAttribute("name");
+        ClientDAO clientDAO = new ClientDAO();
+        Client client = new Client();
+        client.setNom(request.getParameter("nom"));
 
 
+//        if (action == "signin") {
+//
+//            if (mdpSaisi.equals("secret")) {
+//                destination = "/accueil.jsp";
+//            } else {
+//                destination = "/connection.jsp";
+//            }
+//        } else if (action == "signup") {
 
-
-        ClientDAO clientDAO = (ClientDAO) session.getAttribute("client");
-        source = request.getParameter("source");
-        if (source!=null)
-        {
-            //créer le bean avec les infos envoyées
-            Client client = new Client();
-            client.setNom(request.getParameter("nom"));
-            client.setEmail(request.getParameter("telephone"));
+            //créer le client avec les infos passées du formulaire
+            client.setPassword(mdpSaisi);
+            client.setTelephone(request.getParameter("telephone"));
             client.setEmail(request.getParameter("email"));
-            client.setEmail(request.getParameter("adresse"));
-            client.setEmail(request.getParameter("email"));
+            client.setAdresse(request.getParameter("adresse"));
+
+            List<Client> listClient = clientDAO.getAll();
+            for (Client temp : listClient) {
+                if (!temp.getNom().equals(client.getNom())) {
+                   // clientDAO.insert(client);
+                }
+            }
 
             //créer l'objet de session
             session.setAttribute("client", client);
-            destination="/accueil.jsp";
+            destination = "/accueil.jsp";
+
+
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(destination);
+            dispatcher.forward(request, response);
         }
 
 
-
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(destination);
-        dispatcher.forward(request, response);
-    }
-
-
+//    }
 }

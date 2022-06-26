@@ -10,11 +10,4 @@
 
 ${sessionScope.client.nom}
 
-${sessionScope.client.telephone}
-
-${sessionScope.client.email}
-
-${sessionScope.client.adresse}
-
-${sessionScope.client.password}
 
