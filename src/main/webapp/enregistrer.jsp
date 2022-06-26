@@ -14,8 +14,7 @@
 <fmt:setBundle basename="app"/><!-- basename=app ça veut dire que le fichier commence par app.-->
 <!--on met un if pour voir si on change de langue-->
 
-<fmt:setLocale
-        value="${requestScope.langue}"/> <!-- balise fmt:setLocale mentionne qu'on veut les infos contenues dans la value local (loc) -->
+<fmt:setLocale value="${requestScope.langue}"/> <!-- balise fmt:setLocale mentionne qu'on veut les infos contenues dans la value local (loc) -->
 
 <!-- Email input -->
 <div class="form-outline mb-4">
