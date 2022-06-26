@@ -5,6 +5,7 @@
   Time: 12:30
   To change this template use File | Settings | File Templates.
 --%>
+<link rel="stylesheet" href="bootstrap/bootstrap.min.css"/>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -31,13 +32,12 @@
             <li class="nav-item">
                 <a class="nav-link" href="ServletAffichage"><fmt:message key="products_services"/></a>
             </li>
-
             <li class="nav-item">
                 <a class="nav-link" href="afficherProfessionnels.jsp"><fmt:message key="professional"/></a>
             </li>
 
 
-            <li class="nav-item dropdown">
+    <!--        <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="langue" role="button" data-bs-toggle="dropdown"
                    aria-expanded="false"><fmt:message key="language"/></a>
                 <input type="hidden" name="src" value="1"/>
@@ -47,13 +47,10 @@
 
                     <li><a class="dropdown-item" href="LanguageServlet"><input type="hidden" onchange="submit()" name="langue"value="en">
                         <fmt:message key="english"/></a></li>
-
                 </ul>
+           </li>    -->
 
 
-
-
-            </li>
             <li class="nav-item">
                 <a class="nav-link" href="panier.jsp"><fmt:message key="cart"/></a>
             </li>
@@ -69,3 +66,6 @@
     </div>
 </nav>
 </form>
+
+<script src="bootstrap/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/@popperjs/core@2"></script>

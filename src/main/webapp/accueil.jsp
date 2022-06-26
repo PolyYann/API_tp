@@ -12,7 +12,8 @@
 
 <html>
 <head>
-    <fmt:setLocale value="${sessionScope.langue}" scope="session"/> <!-- balise fmt:setLocale mentionne qu'on veut les infos contenues dans la value local (loc) -->
+    <fmt:setLocale value="${sessionScope.langue}" scope="session"/>
+    <!-- balise fmt:setLocale mentionne qu'on veut les infos contenues dans la value local (loc) -->
 
     <fmt:setBundle basename="app"/><!-- basename=app ça veut dire que le fichier commence par app.-->
 
@@ -26,6 +27,7 @@
     <link rel="stylesheet" href="bootstrap/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://bootstrap-colors-extended.herokuapp.com/bootstrap-colors.css"/>
 
+
 </head>
 <body>
 
@@ -35,20 +37,47 @@
 
     <div class="">
         <div class="row-cols-auto">
-        <img class="w-100 h-100  overflow-hidden" src="img/table.jpg" alt="" ></div>
+            <img class="w-100 h-100  overflow-hidden" src="img/table.jpg" alt=""></div>
         <div class="carousel-caption center-block">
             <h1><fmt:message key="welcome"/></h1>
+
+            <!--    <div class="dropdown show">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown link
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>  -->
+
+            <div class="container">
+                <div class="dropdown">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><fmt:message key="language"/>
+                    </button>
+                </div>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="#"><fmt:message key="french"/></a></li>
+
+                    <li><a class="dropdown-item" href="#"><fmt:message key="english"/></a></li>
+                </ul>
+            </div>
+
+
         </div>
+
     </div>
 
-</div>
 
-
-<script src="js/script.js"></script>
-<script src="bootstrap/bootstrap.bundle.min.js"></script>
-<script src="bootstrap/bootstrap.bundle.js"></script>
-<script src="bootstrap/bootstrap.min.js"></script>
-<script src="bootstrap/jquery-3.6.0.min.js"></script>
-<script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="js/script.js"></script>
+    <script src="bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="bootstrap/bootstrap.min.js"></script>
+    <script src="bootstrap/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
 </body>
 </html>

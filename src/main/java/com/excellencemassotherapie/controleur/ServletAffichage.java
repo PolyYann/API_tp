@@ -15,8 +15,12 @@ import java.util.List;
 public class ServletAffichage extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        String langue = (String) request.getAttribute("langue");
+        request.setAttribute("langue", langue);
+
+        
         ProduitDAO produitDAO = new ProduitDAO();
-        List<Produit> listProduits = produitDAO.getAll();
+         List<Produit> listProduits = produitDAO.getAll();
 
         request.setAttribute("listProduits", listProduits);
 
