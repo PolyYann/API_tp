@@ -13,19 +13,19 @@ public class LanguageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        String langue = (String) request.getAttribute("langue");
+        String langue = (String) session.getAttribute("langue");
         String langueChoisie = "";
 
-        if (langue == null ) {
+        if(langue == null || request.getParameter("src").equals("1")) {
             langueChoisie = request.getParameter("langue");
-        } else if (langue == "Anglais") {
+        } else if (langue == "en") {
             langueChoisie = "en";
-        } else if (langue == "French") {
+        } else if (langue == "fr") {
             langueChoisie = "fr";
         }
         session.setAttribute("langue", langueChoisie);
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("accueil.jsp");//pageResultat provient de la démo de I18N
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/accueil.jsp");
         requestDispatcher.forward(request, response);
     }
 

@@ -10,12 +10,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
+<fmt:setLocale value="${sessionScope.param.langue}" scope="session"/> <!-- balise fmt:setLocale mentionne qu'on veut les infos contenues dans la value local (loc) -->
 
 <fmt:setBundle basename="app"/><!-- basename=app ça veut dire que le fichier commence par app.-->
-<!--on met un if pour voir si on change de langue-->
 
-<fmt:setLocale
-        value="${requestScope.langue}"/> <!-- balise fmt:setLocale mentionne qu'on veut les infos contenues dans la value local (loc) -->
+<form name="maForm" method="get">
 
 <nav class="navbar navbar-expand-lg fixed-top  navbar-light bg-light ">
 
@@ -36,11 +35,21 @@
             <li class="nav-item">
                 <a class="nav-link" href="afficherProfessionnels.jsp"><fmt:message key="professional"/></a>
             </li>
-            <li class="nav-item">
 
 
-                <a class="nav-link" href="LanguageServlet" id="langue">
-                    <input type="hidden" name="langue" value="<fmt:message key="language"/>"><fmt:message key="language"/></a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="langue" role="button" data-bs-toggle="dropdown"
+                   aria-expanded="false"><fmt:message key="language"/></a>
+                <input type="hidden" name="src" value="1"/>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="LanguageServlet"><input type="hidden" onchange="submit()" name="langue"value="fr">
+                        <fmt:message key="french"/></a></li>
+
+                    <li><a class="dropdown-item" href="LanguageServlet"><input type="hidden" onchange="submit()" name="langue"value="en">
+                        <fmt:message key="english"/></a></li>
+
+                </ul>
+
 
 
 
@@ -59,3 +68,4 @@
         </ul>
     </div>
 </nav>
+</form>

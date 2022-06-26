@@ -12,11 +12,9 @@
 
 <html>
 <head>
+    <fmt:setLocale value="${sessionScope.langue}" scope="session"/> <!-- balise fmt:setLocale mentionne qu'on veut les infos contenues dans la value local (loc) -->
 
-    <fmt:setBundle basename="app" /><!-- basename=app ça veut dire que le fichier commence par app.-->
-    <!--on met un if pour voir si on change de langue-->
-
-    <fmt:setLocale value="${requestScope.langue}"/> <!-- balise fmt:setLocale mentionne qu'on veut les infos contenues dans la value local (loc) -->
+    <fmt:setBundle basename="app"/><!-- basename=app ça veut dire que le fichier commence par app.-->
 
     <title><fmt:message key="excellence"/></title>
     <!-- Favicon-->
@@ -48,6 +46,7 @@
 
 <script src="js/script.js"></script>
 <script src="bootstrap/bootstrap.bundle.min.js"></script>
+<script src="bootstrap/bootstrap.bundle.js"></script>
 <script src="bootstrap/bootstrap.min.js"></script>
 <script src="bootstrap/jquery-3.6.0.min.js"></script>
 <script src="https://unpkg.com/@popperjs/core@2"></script>
