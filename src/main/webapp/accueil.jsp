@@ -32,52 +32,43 @@
 <body>
 
 <div class="bg-teal-light carousel">
-
     <jsp:include page="navBar.jsp"/>
-
     <div class="">
         <div class="row-cols-auto">
-            <img class="w-100 h-100  overflow-hidden" src="img/table.jpg" alt=""></div>
+            <img class="w-100 h-100  overflow-hidden" src="img/table.jpg" alt="">
+        </div>
         <div class="carousel-caption center-block">
             <h1><fmt:message key="welcome"/></h1>
-
-            <!--    <div class="dropdown show">
-                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown link
-                </a>
-
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </div>  -->
-
-            <div class="container">
-                <div class="dropdown">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><fmt:message key="language"/>
-                    </button>
-                </div>
-
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <li><a class="dropdown-item" href="#"><fmt:message key="french"/></a></li>
-
-                    <li><a class="dropdown-item" href="#"><fmt:message key="english"/></a></li>
-                </ul>
-            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
 
 
+            <h5><fmt:message key="language"/></h5>
+            <form name="formLangue" action="LanguageServlet" methode="post">
+
+
+                <select name="langue" onchange="submit()">
+                    <option value="fr"><fmt:message key="french"/></option>
+                    <option value="en"><fmt:message key="english"/></option>
+                </select>
+                <input type="hidden" name="src" value="1"/>
+                <button type="submit" class="btn btn-outline-secondary btn-sm">Submit</button>
+
+            </form>
         </div>
-
     </div>
+</div>
 
 
-    <script src="js/script.js"></script>
-    <script src="bootstrap/bootstrap.bundle.min.js"></script>
-    <script src="bootstrap/bootstrap.min.js"></script>
-    <script src="bootstrap/jquery-3.6.0.min.js"></script>
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="js/script.js"></script>
+<script src="bootstrap/bootstrap.bundle.min.js"></script>
+<script src="bootstrap/bootstrap.min.js"></script>
+<script src="bootstrap/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/@popperjs/core@2"></script>
 </body>
 </html>

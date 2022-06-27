@@ -45,28 +45,25 @@ public class ServletConnection extends HttpServlet {
 //            }
 //        } else if (action == "signup") {
 
-            //créer le client avec les infos passées du formulaire
-            client.setPassword(mdpSaisi);
-            client.setTelephone(request.getParameter("telephone"));
-            client.setEmail(request.getParameter("email"));
-            client.setAdresse(request.getParameter("adresse"));
+        //créer le client avec les infos passées du formulaire
+        client.setPassword(mdpSaisi);
+        client.setTelephone(request.getParameter("telephone"));
+        client.setEmail(request.getParameter("email"));
+        client.setAdresse(request.getParameter("adresse"));
 
-            List<Client> listClient = clientDAO.getAll();
-            for (Client temp : listClient) {
-                if (!temp.getNom().equals(client.getNom())) {
-                   // clientDAO.insert(client);
-                }
+        List<Client> listClient = clientDAO.getAll();
+        for (Client temp : listClient) {
+            if (!temp.getNom().equals(client.getNom())) {
+                // clientDAO.insert(client);
             }
-
-            //créer l'objet de session
-            session.setAttribute("client", client);
-            destination = "/accueil.jsp";
-
-
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(destination);
-            dispatcher.forward(request, response);
         }
 
+        //créer l'objet de session
+        session.setAttribute("client", client);
+        destination = "/accueil.jsp";
 
-//    }
+
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(destination);
+        dispatcher.forward(request, response);
+    }
 }

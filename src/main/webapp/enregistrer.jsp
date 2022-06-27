@@ -29,5 +29,3 @@
     <input type="text" id="address" class="form-control" />
     <label class="form-label">Adresse</label>
 </div>
-
-

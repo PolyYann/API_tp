@@ -11,60 +11,46 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<fmt:setLocale value="${sessionScope.param.langue}" scope="session"/> <!-- balise fmt:setLocale mentionne qu'on veut les infos contenues dans la value local (loc) -->
+<fmt:setLocale value="${sessionScope.langue}" scope="session"/> <!-- balise fmt:setLocale mentionne qu'on veut les infos contenues dans la value local (loc) -->
 
 <fmt:setBundle basename="app"/><!-- basename=app ça veut dire que le fichier commence par app.-->
 
 <form name="maForm" method="get">
 
-<nav class="navbar navbar-expand-lg fixed-top  navbar-light bg-light ">
+    <nav class="navbar navbar-expand-lg fixed-top  navbar-light bg-light ">
 
-    <a class="navbar-brand ps-5   " href="accueil.jsp">Excellence Massotherapie</a>
-    <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse flex-row-reverse pe-5" id="navbarNavDropdown">
-        <ul class="navbar-nav align-content-end">
-            <li class="nav-item active">
-                <a class="nav-link" href="accueil.jsp"><fmt:message key="home"/><span class="sr-only"></span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="ServletAffichage"><fmt:message key="products_services"/></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="afficherProfessionnels.jsp"><fmt:message key="professional"/></a>
-            </li>
-
-
-    <!--        <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="langue" role="button" data-bs-toggle="dropdown"
-                   aria-expanded="false"><fmt:message key="language"/></a>
-                <input type="hidden" name="src" value="1"/>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="LanguageServlet"><input type="hidden" onchange="submit()" name="langue"value="fr">
-                        <fmt:message key="french"/></a></li>
-
-                    <li><a class="dropdown-item" href="LanguageServlet"><input type="hidden" onchange="submit()" name="langue"value="en">
-                        <fmt:message key="english"/></a></li>
-                </ul>
-           </li>    -->
+        <a class="navbar-brand ps-5   " href="accueil.jsp">Excellence Massotherapie</a>
+        <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse flex-row-reverse pe-5" id="navbarNavDropdown">
+            <ul class="navbar-nav align-content-end">
+                <li class="nav-item active">
+                    <a class="nav-link" href="accueil.jsp"><fmt:message key="home"/><span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="ServletAffichage"><fmt:message key="products_services"/></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="afficherProfessionnels.jsp"><fmt:message key="professional"/></a>
+                </li>
 
 
-            <li class="nav-item">
-                <a class="nav-link" href="panier.jsp"><fmt:message key="cart"/></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="connection.jsp?action=signin"><fmt:message key="signin"/><input type="hidden" name="action"
-                                                                                            value="login"></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="connection.jsp?action=signup"><fmt:message key="signup"/><input type="hidden" name="action"
-                                                                                            value="createaccount"></a>
-            </li>
-        </ul>
-    </div>
-</nav>
+                <li class="nav-item">
+                    <a class="nav-link" href="panier.jsp"><fmt:message key="cart"/></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="connection.jsp?action=signin"><fmt:message key="signin"/><input type="hidden" name="action"
+                                                                                                              value="login"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="connection.jsp?action=signup"><fmt:message key="signup"/><input type="hidden" name="action"
+                                                                                                              value="createaccount"></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 </form>
 
 <script src="bootstrap/bootstrap.bundle.min.js"></script>

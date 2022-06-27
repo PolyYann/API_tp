@@ -28,99 +28,99 @@
 <div class="bg-steel-light">
     <jsp:include page="navBar.jsp"  />
 
-<form name="maformConnection" action="ServletConnection" method="post">
+    <form name="maformConnection" action="ServletConnection" method="post">
 
 
-    <!-- Section: Design Block -->
-    <section class="text-center text-lg-start">
-        <style>
-            .cascading-right {
-                margin-right: -50px;
-            }
-
-            @media (max-width: 991.98px) {
+        <!-- Section: Design Block -->
+        <section class="text-center text-lg-start">
+            <style>
                 .cascading-right {
-                    margin-right: 0;
+                    margin-right: -50px;
                 }
-            }
-        </style>
 
-        <!-- Jumbotron -->
-        <div class="container py-4">
-            <div class="row g-0 align-items-center">
-                <div class="col-lg-6 mb-5 mb-lg-0">
-                    <div class="card cascading-right" style="
+                @media (max-width: 991.98px) {
+                    .cascading-right {
+                        margin-right: 0;
+                    }
+                }
+            </style>
+
+            <!-- Jumbotron -->
+            <div class="container py-4">
+                <div class="row g-0 align-items-center">
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                        <div class="card cascading-right" style="
             background: hsla(0, 0%, 100%, 0.55);
             backdrop-filter: blur(30px);
             ">
-                        <div class="card-body p-5 shadow-5 text-center">
-                            <h2 class="fw-bold mb-5">
-                                <c:set var="action" scope="session" value="action"></c:set>
-                                <c:if test="${param.action==\"signin\"}">
-                                    Se connecter
-                                </c:if>
+                            <div class="card-body p-5 shadow-5 text-center">
+                                <h2 class="fw-bold mb-5">
+                                    <c:set var="action" scope="session" value="action"></c:set>
+                                    <c:if test="${param.action==\"signin\"}">
+                                        Se connecter
+                                    </c:if>
 
-                                <c:if test="${param.action==\"signup\"}">
-                                    S'enregister
-                                </c:if>
+                                    <c:if test="${param.action==\"signup\"}">
+                                        S'enregister
+                                    </c:if>
 
-                            </h2>
-                            <form>
-                                <!-- 2 column grid layout with text inputs for the name and password -->
-                                <div class="row">
-                                    <div class="col-md-6 mb-4">
-                                        <div class="form-outline">
-                                            <input type="text" id="name" class="form-control" />
-                                            <label class="form-label" name="nom" >Nom</label>
+                                </h2>
+                                <form>
+                                    <!-- 2 column grid layout with text inputs for the name and password -->
+                                    <div class="row">
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-outline">
+                                                <input type="text" id="name" class="form-control" />
+                                                <label class="form-label" name="nom" >Nom</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-outline mb-4">
+                                                <input type="password" name="password" class="form-control" />
+                                                <label class="form-label">Mot de passe</label>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 mb-4">
-                                        <div class="form-outline mb-4">
-                                            <input type="password" name="password" class="form-control" />
-                                            <label class="form-label">Mot de passe</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <c:if test="${param.action==\"signup\"}">
-                                <jsp:include page="enregistrer.jsp"/>
-                                </c:if>
+                                    <c:if test="${param.action==\"signup\"}">
+                                        <jsp:include page="enregistrer.jsp"/>
+                                    </c:if>
 
 
-                                <!-- Submit button -->
-                                <c:if test="${param.action==\"signin\"}">
-                                    <button  type="submit" name="send" value="login" class="btn btn-secondary btn-block mb-4">
-                                        Connection <input type="hidden" name="signin" value="signin">
-                                    </button>
-                                </c:if>
+                                    <!-- Submit button -->
+                                    <c:if test="${param.action==\"signin\"}">
+                                        <button  type="submit" name="send" value="login" class="btn btn-secondary btn-block mb-4">
+                                            Connection <input type="hidden" name="signin" value="signin">
+                                        </button>
+                                    </c:if>
 
-                                <c:if test="${param.action==\"signup\"}">
-                                    <button  type="submit" class="btn btn-secondary btn-block mb-4">
-                                        Creer un compte<input type="hidden" name="signup" value="signup">
-                                    </button>
-                                </c:if>
+                                    <c:if test="${param.action==\"signup\"}">
+                                        <button  type="submit" class="btn btn-secondary btn-block mb-4">
+                                            Creer un compte<input type="hidden" name="signup" value="signup">
+                                        </button>
+                                    </c:if>
 
 
 
 
 
 
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-lg-6 mb-5 mb-lg-0">
-                    <img src="img/icon.png" class="w-100 rounded-4 shadow-4"
-                         alt="" />
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                        <img src="img/icon.png" class="w-100 rounded-4 shadow-4"
+                             alt="" />
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- Jumbotron -->
-    </section>
-    <!-- Section: Design Block -->
+            <!-- Jumbotron -->
+        </section>
+        <!-- Section: Design Block -->
 
 
-</form>
+    </form>
 
 </div>
 
@@ -135,3 +135,5 @@
 
 </body>
 </html>
+
+

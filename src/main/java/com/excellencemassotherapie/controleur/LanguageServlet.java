@@ -11,12 +11,11 @@ import java.util.Locale;
 public class LanguageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         HttpSession session = request.getSession();
         String langue = (String) session.getAttribute("langue");
         String langueChoisie = "";
 
-        if(langue == null || request.getParameter("src").equals("1")) {
+        if (langue == null || request.getParameter("src").equals("1")) {
             langueChoisie = request.getParameter("langue");
         } else if (langue == "en") {
             langueChoisie = "en";
@@ -29,8 +28,24 @@ public class LanguageServlet extends HttpServlet {
         requestDispatcher.forward(request, response);
     }
 
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String langue = (String) session.getAttribute("langue");
+        String langueChoisie = "";
 
+        if (langue == null || request.getParameter("src").equals("1")) {
+            langueChoisie = request.getParameter("langue");
+        } else if (langue == "en") {
+            langueChoisie = "en";
+        } else if (langue == "fr") {
+            langueChoisie = "fr";
+        }
+        session.setAttribute("langue", langueChoisie);
+
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/accueil.jsp");
+        requestDispatcher.forward(request, response);
     }
 }
+
