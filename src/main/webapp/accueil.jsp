@@ -31,7 +31,7 @@
 </head>
 <body>
 
-<div class="bg-teal-light carousel">
+<div class="bg-steal-light carousel">
     <jsp:include page="navBar.jsp"/>
     <div class="">
         <div class="row-cols-auto">

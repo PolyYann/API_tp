@@ -1,7 +1,9 @@
 package com.excellencemassotherapie.controleur;
 
 import com.excellencemassotherapie.DAO.ClientDAO;
+import com.excellencemassotherapie.DAO.PanierDAO;
 import com.excellencemassotherapie.modele.Client;
+import com.excellencemassotherapie.modele.Panier;
 import com.excellencemassotherapie.modele.Produit;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -26,6 +28,12 @@ public class ServletConnection extends HttpServlet {
 
         //récupérer la session asociée à la requête
         HttpSession session = request.getSession();
+
+        PanierDAO panierDAO = new PanierDAO();
+        List<Panier> listPaniers = panierDAO.getAll();
+
+
+
         String source = "";
 
         String destination = "";
@@ -34,6 +42,16 @@ public class ServletConnection extends HttpServlet {
         ClientDAO clientDAO = new ClientDAO();
         Client client = new Client();
         client.setNom(request.getParameter("nom"));
+        Panier panier = new Panier();
+
+        //todo récupérer panier si non connecté
+        for(Panier panier1 : listPaniers){
+            if(panier1.getClient().getNom().equals(client.getNom()) && !panier1.isPaye()){
+                panier = panier1;
+            }
+        }
+        session.setAttribute("panier",panier);
+
 
 
 //        if (action == "signin") {

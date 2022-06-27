@@ -9,12 +9,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
+<fmt:setLocale value="${sessionScope.langue}" scope="session"/>
+<!-- balise fmt:setLocale mentionne qu'on veut les infos contenues dans la value local (loc) -->
 
 <fmt:setBundle basename="app"/><!-- basename=app ça veut dire que le fichier commence par app.-->
-<!--on met un if pour voir si on change de langue-->
 
-<fmt:setLocale value="${requestScope.langue}"/> <!-- balise fmt:setLocale mentionne qu'on veut les infos contenues dans la value local (loc) -->
+<title><fmt:message key="excellence"/></title>
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="img/icon.jpg"/>
+
 
 <!-- Email input -->
 <div class="form-outline mb-4">

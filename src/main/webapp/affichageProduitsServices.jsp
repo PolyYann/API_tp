@@ -10,18 +10,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-    <c:set var="loc" value="fr"/>   <!-- Ici, la valeur fr_FR est codé en dure, comme une valeur par défaut -->
+    <fmt:setLocale value="${sessionScope.langue}" scope="session"/>
+    <!-- balise fmt:setLocale mentionne qu'on veut les infos contenues dans la value local (loc) -->
 
-
-    <fmt:setBundle basename="app" /><!-- basename=app ça veut dire que le fichier commence par app.-->
-    <!--on met un if pour voir si on change de langue-->
-
-    <c:if test="${!(empty param.locale)}"> <!-- param car on a pas de servet ici / sinon, on aurait pu mettre sessionScope et prendre les infos de la langue provenant de la page html -->
-        <c:set var="loc" value="${param.locale}"/>
-    </c:if>
-
-    <fmt:setLocale value="${loc}"/> <!-- balise fmt:setLocale mentionne qu'on veut les infos contenues dans la value local (loc) -->
-
+    <fmt:setBundle basename="app"/><!-- basename=app ça veut dire que le fichier commence par app.-->
 
     <title><fmt:message key="excellence"/></title>
     <!-- Favicon-->
@@ -35,68 +27,72 @@
 
 </head>
 <body>
-
-<div >
-      <form name="articleForm" action="ServletPanier" method="post">
+<div class="bg-steel-light">
+    <div>
         <jsp:include page="navBar.jsp"/>
-        <br>
-        <h3 style="color:white;">Affichage de tous les produits</h3>
-        <br>
-        <br>
+        <form name="articleForm" action="ServletPanier" method="post">
 
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-3">
-                    <div>
-                        <jsp:include page="filter.jsp"/>
+            <br>
+            <br>
+            <h3 style="color:white;">Affichage de tous les produits</h3>
+            <br>
+            <br>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-3">
+                        <div>
+                            <jsp:include page="filter.jsp"/>
+                        </div>
                     </div>
-                </div>
-                <div class="col-9">
+                    <div class="col-9">
 
-                    <!---------------------------------------------------Début de la boucle pour affichage----------------------------------------------------->
-                    <div class="row">
-                        <c:forEach var="choix" varStatus="status" items="${requestScope.listProduits}" step="1" begin="0">
+                        <!---------------------------------------------------Début de la boucle pour affichage----------------------------------------------------->
+                        <div class="row">
+                            <c:forEach var="choix" varStatus="status" items="${requestScope.listProduits}" step="1"
+                                       begin="0">
 
-                            <div class="col-3 text-left">
-                                <div class="card" style="width: 18rem;">
-                                    <img src="${choix.urlImage}" alt="${choix.nom}" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title">${choix.nom}</h5>
-                                        <p class="card-text">${choix.description}</p>
-                                    </div>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">${choix.prix}</li>
-                                    </ul>
-                                    <div class="card-footer">
-                                        <a href="#" class="card-link">
+                                <div class="col-3 text-left">
+                                    <div class="card" style="width: 18rem;">
+                                        <img src="${choix.urlImage}" alt="${choix.nom}" class="card-img-top">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${choix.nom}</h5>
+                                            <p class="card-text">${choix.description}</p>
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">${choix.prix}</li>
+                                        </ul>
+                                        <div class="card-footer">
+                                            <a href="#" class="card-link">
 
-                                            <!-- ICI on a la zone de texte pour saisir la quantité -->
-                                            <fmt:message key="quantity"/>:<input type="text"
-                                                                                 name="quantite"
-                                                                                 SIZE="3" value=1>
+                                                <!-- ICI on a la zone de texte pour saisir la quantité -->
+                                                <fmt:message key="quantity"/>:<input type="text"
+                                                                                     name="quantite"
+                                                                                     SIZE="3" value=1>
 
-                                            <!--Ici on a un champ caché qui est renvoyé au controleur avec les autres
-                                            données de la requête. Puisque la servlet controleur va traiter les autres
-                                            demandes: Supprimer un élément du panier, commander (Checkout), ce champ caché
-                                            va être lu par la servlet pour déterminer le traitement à exécuter
-                                            -->
-                                            <input type="hidden" name="action" value="ADD">
-                                        </a>
-                                        <a href="#" class="card-link">
-                                            <!-- en cliquant sur ce bouton, la requête est envoyée à la servlet -->
-                                            <input type="submit" name="Submit" value="Ajouter au panier">
-                                        </a>
+                                                <!--Ici on a un champ caché qui est renvoyé au controleur avec les autres
+                                                données de la requête. Puisque la servlet controleur va traiter les autres
+                                                demandes: Supprimer un élément du panier, commander (Checkout), ce champ caché
+                                                va être lu par la servlet pour déterminer le traitement à exécuter
+                                                -->
+                                                <input type="hidden" name="action" value="ADD">
+                                            </a>
+                                            <a href="#" class="card-link">
+                                                <!-- en cliquant sur ce bouton, la requête est envoyée à la servlet -->
+                                                <input type="submit" name="Submit" value="Ajouter au panier">
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                        </c:forEach>
+                            </c:forEach>
+                        </div>
+                        <!---------------------------------------------------fin de affichage----------------------------------------------------->
                     </div>
-                    <!---------------------------------------------------fin de affichage----------------------------------------------------->
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
 
 <script src="js/script.js"></script>

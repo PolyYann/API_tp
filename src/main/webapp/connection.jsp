@@ -11,8 +11,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 <head>
-    <title>Connection</title>
+    <fmt:setLocale value="${sessionScope.langue}" scope="session"/>
+    <!-- balise fmt:setLocale mentionne qu'on veut les infos contenues dans la value local (loc) -->
 
+    <fmt:setBundle basename="app"/><!-- basename=app ça veut dire que le fichier commence par app.-->
+
+    <title><fmt:message key="excellence"/></title>
+    <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="img/icon.jpg"/>
     <!--Bootstrap -->
     <link rel="stylesheet" href="css/style.css"/>
