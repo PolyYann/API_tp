@@ -53,11 +53,12 @@
 
 
                 <select name="langue" onchange="submit()">
+                    <option value=""><fmt:message key="select_one"/></option>
                     <option value="fr"><fmt:message key="french"/></option>
                     <option value="en"><fmt:message key="english"/></option>
                 </select>
                 <input type="hidden" name="src" value="1"/>
-                <button type="submit" class="btn btn-outline-secondary btn-sm">Submit</button>
+         <!--       <button type="submit" class="btn btn-outline-secondary btn-sm">Submit</button> -->
 
             </form>
         </div>
