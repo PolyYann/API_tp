@@ -1,29 +1,36 @@
-
 function sliding() {
     document.getElementById("sliderValue").innerHTML = document.getElementById("slider").value + " $";
 }
-const form = document.querySelector("form"), radio = form.elements.namedItem("choix");
+const he = jQuery('#he');
+const skin = jQuery('#skin');
+const analgesic = jQuery('#analgesic');
+const massage = jQuery("#massage");
+const taping = jQuery("#taping");
 
-form.addEventListener('click', switchRadio);
+jQuery('#productChoix').click(function (){
+    he.prop('disabled', false);
+    he.prop('checked', true);
+    skin.prop('checked',true);
+    skin.prop('disabled', false);
+    analgesic.prop('disabled', false);
+    analgesic.prop('checked',true);
+     massage.prop('checked',false);
+    massage.prop('disabled', true);
+    taping.prop('checked',false);
+    taping.prop('disabled', true);
+})
+jQuery('#treatmentChoix').click(function (){
+    he.prop('disabled', true);
+    he.prop('checked', false);
+    skin.prop('disabled', true);
+    skin.prop('checked',false);
+    analgesic.prop('disabled', true);
+    analgesic.prop('checked',false);
+     massage.prop('checked',true);
+    massage.prop('disabled', false);
+    taping.prop('checked',true);
+    taping.prop('disabled', false);
+})
 
-function switchRadio(e) {
-    let list;
-    const clicked = e.target;
-    if(clicked.name !== "type"){return;} //ignore les click inutiles
-    if(clicked.id === "product") {
-        list = "he,skin,analgesic".split(",");
-    }else if(clicked.id === "treatment") {
-        list = "massage,tapping".split(",");
-    }else{
-        console.log("pas de type sélectionner");
-        return;
-    }
-    Array.from(radio).forEach(el => el.removeAttribute("disabled"));
-    Array.from(radio).forEach(el=>el.setAttribute("checked",""));
 
-    const disableMe = Array.from(radio).filter(el => !list.includes(el.id));
-    disableMe.forEach(el => el.removeAttribute("checked"));
-    disableMe.forEach(el => el.setAttribute("disabled", ""));
-
-}
 

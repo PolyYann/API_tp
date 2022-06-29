@@ -30,6 +30,7 @@
                     <a class="nav-link" href="accueil.jsp"><fmt:message key="home"/><span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item">
+                    <c:set var="type" value="0"/>
                     <a class="nav-link" href="ServletAffichage"><fmt:message key="products_services"/></a>
                 </li>
                 <li class="nav-item">

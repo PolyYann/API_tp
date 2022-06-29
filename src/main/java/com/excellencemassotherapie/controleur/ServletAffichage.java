@@ -1,7 +1,9 @@
 package com.excellencemassotherapie.controleur;
 
 import com.excellencemassotherapie.DAO.ProduitDAO;
+import com.excellencemassotherapie.DAO.SoinDAO;
 import com.excellencemassotherapie.modele.Produit;
+import com.excellencemassotherapie.modele.Soin;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -12,22 +14,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "ServletAffichage", value = "/ServletAffichage")
+
+
 public class ServletAffichage extends HttpServlet {
+
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        String langue = (String) request.getAttribute("langue");
-        request.setAttribute("langue", langue);
-
-
+        HttpSession session = request.getSession();
+        SoinDAO soinDAO = new SoinDAO();
+        List<Soin> listeSoins = soinDAO.getAll();
+        request.setAttribute("listeSoins", listeSoins);
         ProduitDAO produitDAO = new ProduitDAO();
-        List<Produit> listProduits = produitDAO.getAll();
 
+        List<Produit> listProduits = produitDAO.getAll();
         request.setAttribute("listProduits", listProduits);
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/affichageProduitsServices.jsp");
-        dispatcher.forward(request,response);
+        dispatcher.forward(request, response);
 
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

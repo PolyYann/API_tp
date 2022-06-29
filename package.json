@@ -1,7 +1,0 @@
-{
-  "name": "excellence",
-  "version": "1.0.0",
-  "dependencies": {
-    "@syncfusion/ej2-inputs": "^20.1.61"
-  }
-}
