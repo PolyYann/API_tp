@@ -18,9 +18,9 @@
     <link rel="icon" type="image/x-icon" href="img/icon.jpg"/>
     <!--Bootstrap -->
     <link rel="stylesheet" href="css/style.css"/>
-    <link rel="stylesheet" href="bootstrap/bootstrap-grid.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap-grid.min.css"/>
     <link rel="stylesheet" href="bootstrap/bootstrap-reboot.min.css"/>
-    <link rel="stylesheet" href="bootstrap/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://bootstrap-colors-extended.herokuapp.com/bootstrap-colors.css"/>
 
 
