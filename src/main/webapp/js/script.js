@@ -31,12 +31,4 @@ jQuery('#treatmentChoix').click(function (){
     taping.prop('checked',true);
     taping.prop('disabled', false);
 })
-function submit(){
-    let form= document.getElementById("ArticleForm");
-
-
-
-    form.submit();
-
-}
 

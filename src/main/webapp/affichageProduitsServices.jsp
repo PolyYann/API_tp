@@ -37,7 +37,9 @@
                 $('#productAffiche').toggle();
                 $('#treatmentAffiche').toggle();
             }
+
         });
+
 
     });
     </script>
@@ -181,7 +183,7 @@
 
                             <div class="row" id="productAffiche">
 
-                                <c:forEach var="faireChoix" varStatus="status" items="${requestScope.listProduits}"
+                                <c:forEach var="faireChoix" varStatus="status" items="${sessionScope.listProduits}"
                                            step="1"  begin="0">
 
                                     <div class="col-3 text-left hidden" data-id="${faireChoix.categorie}"
@@ -226,7 +228,7 @@
                             </div>
                             <div class="row" id="treatmentAffiche">
 
-                                <c:forEach var="faireChoix" varStatus="status" items="${requestScope.listeSoins}"
+                                <c:forEach var="faireChoix" varStatus="status" items="${sessionScope.listeSoins}"
                                            step="1"  begin="0">
 
                                     <div class="col-3 text-left " id="pC${faireChoix.idSoin}">
