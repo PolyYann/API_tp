@@ -31,7 +31,7 @@
                 </li>
                 <li class="nav-item">
                     <c:set var="type" value="0"/>
-                    <a class="nav-link" href="ServletAffichage"><fmt:message key="products_services"/></a>
+                    <a class="nav-link" href="ServletAffichage?action=affichage"><fmt:message key="products_services"/></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="afficherProfessionnels.jsp"><fmt:message key="professional"/></a>
