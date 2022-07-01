@@ -21,13 +21,13 @@ public class ServletAffichage extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        SoinDAO soinDAO = new SoinDAO();
-        List<Soin> listeSoins = soinDAO.getAll();
-        request.setAttribute("listeSoins", listeSoins);
-        ProduitDAO produitDAO = new ProduitDAO();
+        List<Soin> listeSoins= (List<Soin>)request.getAttribute("listeSoins");
+        session.setAttribute("listeSoins", listeSoins);
+        List<Produit> listProduits = (List<Produit>)request.getAttribute("listProduits");
+        session.setAttribute("listProduits", listProduits);
 
-        List<Produit> listProduits = produitDAO.getAll();
-        request.setAttribute("listProduits", listProduits);
+
+
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/affichageProduitsServices.jsp");
         dispatcher.forward(request, response);

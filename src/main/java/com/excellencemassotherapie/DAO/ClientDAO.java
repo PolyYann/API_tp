@@ -20,14 +20,12 @@ public class ClientDAO implements ICommonDAO<Client> {
     @Override
     public List<Client> getAll() {
         entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Client> criteriaQuery = criteriaBuilder.createQuery(Client.class);
         Root<Client> clientRoot = criteriaQuery.from(Client.class);
         criteriaQuery.select(clientRoot);
         Query query = entityManager.createQuery(criteriaQuery);
         List<Client> clients =  query.getResultList();
-        entityManager.getTransaction().commit();
         entityManager.close();
 
         return clients;
@@ -36,14 +34,12 @@ public class ClientDAO implements ICommonDAO<Client> {
     @Override
     public Client getById(int id) {
         entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Client> criteriaQuery = criteriaBuilder.createQuery(Client.class);
         Root<Client> clientRoot = criteriaQuery.from(Client.class);
         criteriaQuery.select(clientRoot).where(criteriaBuilder.equal(clientRoot.get("idClient"), id));
         Query query = entityManager.createQuery(criteriaQuery);
         Client client = (Client) query.getSingleResult();
-        entityManager.getTransaction().commit();
         entityManager.close();
         return client;
     }
@@ -51,14 +47,12 @@ public class ClientDAO implements ICommonDAO<Client> {
     @Override
     public Client getByName(String nom) {
         entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Client> criteriaQuery = criteriaBuilder.createQuery(Client.class);
         Root<Client> clientRoot = criteriaQuery.from(Client.class);
         criteriaQuery.select(clientRoot).where(criteriaBuilder.equal(clientRoot.get("nom"), nom));
         Query query = entityManager.createQuery(criteriaQuery);
         Client client = (Client) query.getSingleResult();
-        entityManager.getTransaction().commit();
         entityManager.close();
         return client;
     }

@@ -20,14 +20,12 @@ public class ProfessionnelDAO implements ICommonDAO<Professionnel> {
     @Override
     public List<Professionnel> getAll() {
         entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Professionnel> criteriaQuery = criteriaBuilder.createQuery(Professionnel.class);
         Root<Professionnel> professionnelRoot = criteriaQuery.from(Professionnel.class);
         criteriaQuery.select(professionnelRoot);
         Query query = entityManager.createQuery(criteriaQuery);
         List<Professionnel> professionnels = query.getResultList();
-        entityManager.getTransaction().commit();
         entityManager.close();
         return professionnels;
     }

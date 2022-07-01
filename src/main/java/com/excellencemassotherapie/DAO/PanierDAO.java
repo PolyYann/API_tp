@@ -20,14 +20,12 @@ public class PanierDAO implements ICommonDAO<Panier> {
     @Override
     public List<Panier> getAll() {
         entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Panier> criteriaQuery = criteriaBuilder.createQuery(Panier.class);
         Root<Panier> panierRoot = criteriaQuery.from(Panier.class);
         criteriaQuery.select(panierRoot);
         Query query = entityManager.createQuery(criteriaQuery);
         List<Panier> paniers = query.getResultList();
-        entityManager.getTransaction().commit();
         entityManager.close();
         return paniers;
     }
@@ -35,40 +33,27 @@ public class PanierDAO implements ICommonDAO<Panier> {
     @Override
     public Panier getById(int id) {
         entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Panier> criteriaQuery = criteriaBuilder.createQuery(Panier.class);
         Root<Panier> panierRoot = criteriaQuery.from(Panier.class);
         criteriaQuery.select(panierRoot).where(criteriaBuilder.equal(panierRoot.get("idPanier"), id));
         Query query = entityManager.createQuery(criteriaQuery);
         Panier panier = (Panier) query.getSingleResult();
-        entityManager.getTransaction().commit();
         entityManager.close();
         return panier;
 
     }
     public Panier getByClientAndNonPaye(int idClient) {
         entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
         String hql= "SELECT p FROM Panier p WHERE p.client.idClient = :idClient AND p.paye = false";
         TypedQuery<Panier> query = entityManager.createQuery(hql, Panier.class);
         query.setParameter("idClient", idClient);
        Panier panierClient =query.getSingleResult();
-        entityManager.getTransaction().commit();
         entityManager.close();
         return panierClient;
     }
 
     public void payerPanier(Panier panier) {
-        entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
-        panier.setPaye(true);
-        entityManager.merge(panier);
-        entityManager.getTransaction().commit();
-        entityManager.close();
-    }
-
-    public void checkOut(Panier panier) {
         entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
         panier.setPaye(true);

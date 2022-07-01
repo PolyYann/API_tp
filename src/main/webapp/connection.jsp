@@ -131,7 +131,7 @@
 
 
 <script src="js/script.js"></script>
-<script src="bootstrap/bootstrap.bundle.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
 <script src="bootstrap/bootstrap.bundle.js"></script>
 <script src="bootstrap/bootstrap.min.js"></script>
 <script src="bootstrap/jquery-3.6.0.min.js"></script>

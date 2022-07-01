@@ -10,3 +10,6 @@ ul.no-bullets {
     top: 50%;
     transform: translateY(-50%);
 }
+.hidden{
+    display:inline-block;
+}

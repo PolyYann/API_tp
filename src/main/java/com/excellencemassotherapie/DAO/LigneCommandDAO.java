@@ -20,14 +20,12 @@ public class LigneCommandDAO implements ICommonDAO<LigneCommande> {
     @Override
     public List<LigneCommande> getAll() {
         entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<LigneCommande> criteriaQuery = criteriaBuilder.createQuery(LigneCommande.class);
         Root<LigneCommande> ligneCommandeRoot = criteriaQuery.from(LigneCommande.class);
         criteriaQuery.select(ligneCommandeRoot);
         Query query = entityManager.createQuery(criteriaQuery);
         List<LigneCommande> ligneCommandeList = query.getResultList();
-        entityManager.getTransaction().commit();
         entityManager.close();
         return ligneCommandeList;
     }
@@ -35,14 +33,12 @@ public class LigneCommandDAO implements ICommonDAO<LigneCommande> {
     @Override
     public LigneCommande getById(int id) {
         entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<LigneCommande> criteriaQuery = criteriaBuilder.createQuery(LigneCommande.class);
         Root<LigneCommande> ligneCommandeRoot = criteriaQuery.from(LigneCommande.class);
         criteriaQuery.select(ligneCommandeRoot).where(criteriaBuilder.equal(ligneCommandeRoot.get("id"), id));
         Query query = entityManager.createQuery(criteriaQuery);
         LigneCommande ligneCommande = (LigneCommande) query.getSingleResult();
-        entityManager.getTransaction().commit();
         entityManager.close();
         return ligneCommande;
     }

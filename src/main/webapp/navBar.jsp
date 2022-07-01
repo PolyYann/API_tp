@@ -54,5 +54,5 @@
     </nav>
 </form>
 
-<script src="bootstrap/bootstrap.bundle.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/@popperjs/core@2"></script>
