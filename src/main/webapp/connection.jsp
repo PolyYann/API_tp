@@ -94,13 +94,13 @@
                                     <!-- Submit button -->
                                     <c:if test="${param.action==\"signin\"}">
                                         <button  type="submit" name="send" value="login" class="btn btn-secondary btn-block mb-4">
-                                            Connection <input type="hidden" name="signin" value="signin">
+                                            Connection <input type="hidden" name="signin" value="connection">
                                         </button>
                                     </c:if>
 
                                     <c:if test="${param.action==\"signup\"}">
                                         <button  type="submit" class="btn btn-secondary btn-block mb-4">
-                                            Creer un compte<input type="hidden" name="signup" value="signup">
+                                            Creer un compte<input type="hidden" name="signup" value="enregistrer">
                                         </button>
                                     </c:if>
 

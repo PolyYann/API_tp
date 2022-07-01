@@ -1,16 +1,19 @@
 package com.excellencemassotherapie.controleur;
 
 import com.excellencemassotherapie.DAO.ClientDAO;
+import com.excellencemassotherapie.DAO.LigneCommandDAO;
 import com.excellencemassotherapie.DAO.PanierDAO;
 import com.excellencemassotherapie.modele.Client;
+import com.excellencemassotherapie.modele.LigneCommande;
 import com.excellencemassotherapie.modele.Panier;
-import com.excellencemassotherapie.modele.Produit;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @WebServlet(name = "ServletConnection", value = "/ServletConnection")
 public class ServletConnection extends HttpServlet {
@@ -28,10 +31,9 @@ public class ServletConnection extends HttpServlet {
 
         //récupérer la session asociée à la requête
         HttpSession session = request.getSession();
-
+        LigneCommandDAO ligneCommandDAO = new LigneCommandDAO();
         PanierDAO panierDAO = new PanierDAO();
         List<Panier> listPaniers = panierDAO.getAll();
-
 
 
         String source = "";
@@ -42,16 +44,41 @@ public class ServletConnection extends HttpServlet {
         ClientDAO clientDAO = new ClientDAO();
         Client client = new Client();
         client.setNom(request.getParameter("nom"));
-        Panier panier = new Panier();
+        Panier panierClientEnCours = new Panier();
+        List<LigneCommande> allLignBd = ligneCommandDAO.getAll();
+        List<LigneCommande> commandeEnCours = (ArrayList) session.getAttribute("listLigneCommande");
 
-        //todo récupérer panier si non connecté
-        for(Panier panier1 : listPaniers){
-            if(panier1.getClient().getNom().equals(client.getNom()) && !panier1.isPaye()){
-                panier = panier1;
+        if (Objects.equals(action, "connection")) {
+            for (Panier panierBD : listPaniers) {
+                if (panierBD.getClient().getNom().equals(client.getNom()) && !panierBD.isPaye()) {
+                    panierClientEnCours = panierBD;
+                    if (panierClientEnCours.getClient() != null) {
+                        for (LigneCommande tmpLCBD : allLignBd) {
+                            if (tmpLCBD.getPanier().getIdPanier() == panierClientEnCours.getIdPanier()) {
+                                if (!commandeEnCours.contains(tmpLCBD)) {
+                                    commandeEnCours.add(tmpLCBD);
+                                } else {
+                                    for (LigneCommande tmpLCEC : commandeEnCours) {
+                                        if (tmpLCEC.getIdLigneCommande() == tmpLCBD.getIdLigneCommande()) {
+                                            tmpLCEC.setQuantite(tmpLCEC.getQuantite() + tmpLCBD.getQuantite());
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
+            if (panierClientEnCours.getClient() != null && commandeEnCours != null) {
+                for (LigneCommande ligneCommande : commandeEnCours) {
+                    ligneCommande.setPanier(panierClientEnCours);
+                }
+            }
+            session.setAttribute("listLigneCommande", commandeEnCours);
+        }else if(Objects.equals(action, "enregistrer")){
+            //todo creer nouveau panier
         }
-        session.setAttribute("panier",panier);
-
+        session.setAttribute("panier", panierClientEnCours);
 
 
 //        if (action == "signin") {

@@ -61,7 +61,7 @@ public class LigneCommande {
         this.quantite = quantite;
     }
 
-    public int getIdligneCommande() {
+    public int getIdLigneCommande() {
         return idligneCommande;
     }
 
