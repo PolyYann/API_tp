@@ -31,4 +31,22 @@ jQuery('#treatmentChoix').click(function (){
     taping.prop('checked',true);
     taping.prop('disabled', false);
 })
+function getXMLObject()  //XML OBJECT
+{
+    var xmlHttp = false;
+    try {
+        xmlHttp = new ActiveXObject("Msxml2.XMLHTTP")
+    }
+    catch (e) {
+        try {
+            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP")
+        }
+        catch (e2) {
+            xmlHttp = false
+        }
+    }
+    if (!xmlHttp && typeof XMLHttpRequest != 'undefined') {
+        xmlHttp = new XMLHttpRequest();
+    }
+    return xmlHttp;}
 

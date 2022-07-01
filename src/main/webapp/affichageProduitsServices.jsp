@@ -28,21 +28,7 @@
 </head>
 <body>
 <div class="row">
-    <script>$(document).ready(function () {
-        $('input[type="radio"]').click(function () {
-            if ($(this).val() === 0) {
-                $('#productAffiche').toggle();
-                $('#treatmentAffiche').toggle();
-            } else {
-                $('#productAffiche').toggle();
-                $('#treatmentAffiche').toggle();
-            }
 
-        });
-
-
-    });
-    </script>
     <div class="bg-steel-light">
         <div>
             <jsp:include page="navBar.jsp"/>
@@ -179,7 +165,7 @@
 
 
                         <!---------------------------------------------------Début de la boucle pour affichage----------------------------------------------------->
-                        <form name="articleForm" action="" method="post">
+                        <form name="articleForm" action="ServletPanier" method="post">
 
                             <div class="row" id="productAffiche">
 
@@ -205,7 +191,7 @@
                                                     <!-- ICI on a la zone de texte pour saisir la quantité -->
                                                     <fmt:message key="quantity"/>:<label>
                                                     <input type="text" name="quantite"
-                                                           SIZE="3" value=1>
+                                                           SIZE="3" value=1 id="${faireChoix.idProduit}">
                                                 </label>
 
                                                     <!--Ici on a un champ caché qui est renvoyé au controleur avec les autres
@@ -218,7 +204,7 @@
                                                 <a href="#" class="card-link">
                                                     <!-- en cliquant sur ce bouton, la requête est envoyée à la servlet -->
                                                     <input type="submit" name="Submit"
-                                                           value="Ajouter au panier">
+                                                           value="Ajouter au panier" >
                                                 </a>
                                             </div>
                                         </div>
@@ -250,7 +236,7 @@
                                                     <!-- ICI on a la zone de texte pour saisir la quantité -->
                                                     <fmt:message key="quantity"/>:<label>
                                                     <input type="text" name="quantite"
-                                                           SIZE="3" value=1>
+                                                           SIZE="3" value=1 id="${faireChoix.idSoin}">
                                                 </label>
 
                                                     <!--Ici on a un champ caché qui est renvoyé au controleur avec les autres

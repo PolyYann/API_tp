@@ -2,6 +2,7 @@ package com.excellencemassotherapie.controleur;
 
 import com.excellencemassotherapie.DAO.ProduitDAO;
 import com.excellencemassotherapie.DAO.SoinDAO;
+import com.excellencemassotherapie.modele.LigneCommande;
 import com.excellencemassotherapie.modele.Produit;
 import com.excellencemassotherapie.modele.Soin;
 import jakarta.servlet.*;
@@ -25,7 +26,7 @@ public class ServletAffichage extends HttpServlet {
         SoinDAO soinDAO = new SoinDAO();
         List<Soin> listeSoins = soinDAO.getAll();
         List<Soin> listeSoinsFiltree = new ArrayList<>();
-
+        String action= request.getParameter("action");
 
         List<Produit> listProduits = produitDAO.getAll();
         List<Produit> listProduitsFiltre = new ArrayList<>();
@@ -75,10 +76,13 @@ public class ServletAffichage extends HttpServlet {
 
         session.setAttribute("listeSoins", listeSoinsFiltree);
         session.setAttribute("listProduits", listProduitsFiltre);
+        RequestDispatcher dispatcher;
 
+if(action.equals("affichage")) {
 
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/affichageProduitsServices.jsp");
-        dispatcher.forward(request, response);
+          dispatcher   = getServletContext().getRequestDispatcher("/affichageProduitsServices.jsp");
+            dispatcher.forward(request, response);
+        }
 
     }
 
