@@ -6,6 +6,7 @@ import com.excellencemassotherapie.modele.LigneCommande;
 import com.excellencemassotherapie.modele.Panier;
 import com.excellencemassotherapie.modele.Produit;
 import com.excellencemassotherapie.modele.Soin;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
@@ -59,21 +60,6 @@ public class ServletPanier extends HttpServlet {
          * n.b. si aucun panier déjà en cours, l'objet retourné sera null
          */
         Panier panierEnCours = (Panier) session.getAttribute("panierOut");
-
-        /**
-         * création des attributs que j'aurai besoin
-         */
-        LigneCommandDAO ligneCommandeDAO = new LigneCommandDAO();
-        LigneCommande ligneCommandeAAjouter;
-        Produit produitAAjouter = new Produit();
-
-
-        /**
-         * Récupération de l'action reçue avec la requête
-         * n.b. pour savoir quoi faire (Ajout, supp, checkout)
-         */
-        String action = request.getParameter("action");
-
         /**
          * Création des paniers et listLigneCommande s'ils ton null
          */
@@ -84,73 +70,83 @@ public class ServletPanier extends HttpServlet {
             listLigneCommande = new ArrayList<>();
         }
 
-        /**
-         * Si action = ADD - ajouer un item au panier
-         */
-        if (action.equals("ADD")) {
+        // création des attributs que j'aurai besoin
+        LigneCommandDAO ligneCommandeDAO = new LigneCommandDAO();
+        LigneCommande ligneCommandeAAjouter=null;
+        Produit produitAAjouter = new Produit();
+        Soin soinAAjouter = new Soin();
+        String idProd = request.getParameter("productId");
+        String idSoin = request.getParameter("soinId");
+        String quantiteProduit = request.getParameter("quantityProduit");
+        String quantiteSoin = request.getParameter("quantitySoin");
+        boolean ajax = "XMLHttpRequest".equals(request.getHeader("X-Requested-With"));
 
+        if (ajax) {
             //booleen qui va être utilisé pour vérifier si l'item est déjà dans les lignes de commandes en cours
             boolean match = false;
-
-//////CODE QUI GET UN NUL ALORS J'UTILISE UN MOCK----------------------------------------------
-            String idProduitDeJsp = (String) request.getAttribute("idItem");
-            int idProduitAAjouter = 0;
-
-            if (idProduitDeJsp != null) {
-                idProduitAAjouter = parseInt(idProduitDeJsp);
+            int idProduitAAjouter = -1, quantiteProduitAAjouter = -1;
+            int idSoinAAjouter = -1, quantiteSoinAAjouter = -1;
+            if (idProd != null && quantiteProduit != null) {
+                idProduitAAjouter = Integer.parseInt(idProd);
+                quantiteProduitAAjouter = Integer.parseInt(quantiteProduit);
                 produitAAjouter.setIdProduit(idProduitAAjouter);
-            } else {
-////////UTILISATION D'UN MOCK---------------------------------------------------------------------------------------
-                idProduitAAjouter = 2;
-                produitAAjouter.setIdProduit(idProduitAAjouter);
-            }
-////////UTILISATION D'UN MOCK---------------------------------------------------------------------------------------
 
-
-            /**
-             * obtenir les détails de l'item à ajouter
-             */
-            List<Produit> listProduits = (List<Produit>) session.getAttribute("listProduits");
-            for (Produit produit : listProduits){
-                if(produit.getIdProduit() == idProduitAAjouter){
-                    produitAAjouter = produit;
+                /**
+                 * obtenir les détails de l'item à ajouter
+                 */
+                List<Produit> listProduits = (List<Produit>) session.getAttribute("listProduits");
+                for (Produit produit : listProduits) {
+                    if (produit.getIdProduit() == idProduitAAjouter) {
+                        produitAAjouter = produit;
+                    }
                 }
             }
-
-            /**
-             * get la quantité provenant de la JSP
-             */
-            String quantiteGet = request.getParameter("quantite");
-            int quantite = Integer.parseInt(quantiteGet);
-
+            if(idSoin != null && quantiteSoin != null){
+                idSoinAAjouter = Integer.parseInt(idSoin);
+                quantiteSoinAAjouter = Integer.parseInt(quantiteSoin);
+                soinAAjouter.setIdSoin(idSoinAAjouter);
+                /**
+                 * obtenir les détails de l'item à ajouter
+                 */
+                List<Soin> listSoins = (List<Soin>) session.getAttribute("listSoins");
+                for (Soin soin : listSoins) {
+                    if (soin.getIdSoin() == idSoinAAjouter) {
+                        soinAAjouter = soin;
+                    }
+                }
+            }
             /**
              * ajouter le Produit dans la ligne commande
              */
-///////--------------todo si produit ou si soin
-            ligneCommandeAAjouter = new LigneCommande(produitAAjouter, quantite, panierEnCours);
+            if (idProduitAAjouter != -1 || quantiteProduitAAjouter != -1) {
+                ligneCommandeAAjouter = new LigneCommande(produitAAjouter, quantiteProduitAAjouter, panierEnCours);
+            }
+            if(idSoinAAjouter != -1 || quantiteSoinAAjouter != -1){
+                ligneCommandeAAjouter = new LigneCommande(soinAAjouter, quantiteSoinAAjouter, panierEnCours);
+            }
 
+            if(ligneCommandeAAjouter != null) {
+                //on vérifie si le produit est déjà dans le panier?
+                //pour ne pas l'ajouter une autre fois
+                for (int i = 0; i < listLigneCommande.size(); i++) {
 
-            //on vérifie si le produit est déjà dans le panier?
-            //pour ne pas l'ajouter une autre fois
-            for (int i = 0; i < listLigneCommande.size(); i++) {
+                    //on récupère l'item à la position i
+                    LigneCommande ligneCommandeExistante = listLigneCommande.get(i);
 
-                //on récupère l'item à la position i
-                LigneCommande ligneCommandeExistante = listLigneCommande.get(i);
+                    // si on trouve l'item dans la ligne de commande
+                    if (ligneCommandeExistante.getProduit().getIdProduit() == ligneCommandeAAjouter.getProduit().getIdProduit()
+                            || ligneCommandeExistante.getSoin().getIdSoin() == ligneCommandeAAjouter.getSoin().getIdSoin()) {
 
-                // si on trouve l'item dans la ligne de commande
-                if (ligneCommandeExistante.getProduit().getIdProduit() == ligneCommandeAAjouter.getProduit().getIdProduit()
-                        || ligneCommandeExistante.getSoin().getIdSoin() == ligneCommandeAAjouter.getSoin().getIdSoin()) {
+                        //on va modifier la quantité en lui ajoutantant la nouvelle quantité
+                        ligneCommandeExistante.setQuantite(ligneCommandeExistante.getQuantite() + ligneCommandeAAjouter.getQuantite());
 
-                    //on va modifier la quantité en lui ajoutantant la nouvelle quantité
-                    ligneCommandeExistante.setQuantite(ligneCommandeExistante.getQuantite() + ligneCommandeAAjouter.getQuantite());
+                        //on replace l'item dans la liste de ligne de commande
+                        listLigneCommande.set(i, ligneCommandeAAjouter);
 
-                    //on replace l'item dans la liste de ligne de commande
-                    listLigneCommande.set(i, ligneCommandeAAjouter);
-
-                    //on active la variable qui montre qu'on a trouvé l'item dans le panier
-                    match = true;
+                        //on active la variable qui montre qu'on a trouvé l'item dans le panier
+                        match = true;
+                    }
                 }
-
                 //si match est à false, donc item non déjà dans la liste de ligne de commande
                 //on va devoir l'ajouter
                 if (!match) {
@@ -158,6 +154,8 @@ public class ServletPanier extends HttpServlet {
                     listLigneCommande.add(ligneCommandeAAjouter);
                 }
             }
+
+
 
             //suite à l'ajout ou à la suppression on doit RÉ-ATTACHER à la session
             //à la place de l'ancien
@@ -169,24 +167,38 @@ public class ServletPanier extends HttpServlet {
             String url = "/affichageProduitsServices.jsp";
             RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
             rd.forward(request, response);
-        }
-        /// todo: copier le code quand il va fonctionner pour ajouter les soins---------------------------------------------------------
+
+        } else {
+
+            /**
+             * Récupération de l'action reçue avec la requête
+             * n.b. pour savoir quoi faire (Ajout, supp, checkout)
+             */
+            String action = request.getParameter("action");
 
 
-        //Dans le cas du clic sur goCart
-        else if (action.equals("goCart")) {
-            String url = "/panier.jsp";
-            RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
-            rd.forward(request, response);
-        }
+            /**
+             * Si action = ADD - ajouer un item au panier
+             */
+            if (action.equals("ADD")) {
 
-        //Dans le cas du clic sur Checkout
+//todo: copier le code quand il va fonctionner pour ajouter les soins---------------------------------------------------------
+
+
+                //Dans le cas du clic sur goCart
+            } else if (action.equals("goCart")) {
+                String url = "/panier.jsp";
+                RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
+                rd.forward(request, response);
+            }
+
+            //Dans le cas du clic sur Checkout
 //        } else if (action.equals("checkout")) {
 //            for (LigneCommande ligneCommTemp : listLigneCommande) {
 //                ligneCommandeDAO.insert(ligneCommTemp);
 //            }
 //        }
-    }
+        }
 
 //    //on va calculer le prix total
 //    double total = 0;
@@ -255,7 +267,7 @@ public class ServletPanier extends HttpServlet {
 //        produit.setPrix((new Double(tPrix)).doubleValue());
 //
 //        return produit;
-//    }
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws

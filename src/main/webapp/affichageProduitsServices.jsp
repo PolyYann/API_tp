@@ -161,14 +161,35 @@
                         </form>
                     </div>
 
-                    <div class="col-9" >
+                    <div class="col-9">
 
 
                         <!---------------------------------------------------Début de la boucle pour affichage----------------------------------------------------->
+                        <script type="text/javascript">
+                            let url = 'ServletPanier';
+                            $(document).ready(function () {
+                                $('.callProduit').click(function (event) {
+                                    let id = $(this).data('id');
+                                    let qty = $(this).closest('.cart-input').find('.qty-input').val();
+                                    $.ajax({
+                                        cache: false,
+                                        url: url,
+                                        type: 'post',
+                                        data: {productId: id,  quantityProduit: qty},
+                                        success: function (result) {
+                                            $('#ajouter').html(result);
+                                        },
+                                        error: function (xhr, status, error) {
+                                            alert('Error: ' + error);
+                                        }
+                                    });
+                                    event.preventDefault();
+                                });
+                            });</script>
 
-                        <form name="articleForm" action="ServletPanier"  method="post">
+                        <form name="articleForm" action="ServletPanier" method="post">
 
-                            <div class="row" id="productAffiche">
+                            <div class="row ajouter" id="productAffiche">
                                 <c:forEach var="ProduitChoisi" varStatus="loop" items="${sessionScope.listProduits}"
                                            step="1" begin="0">
 
@@ -185,14 +206,14 @@
                                             <ul class="list-group list-group-flush">
                                                 <li class="list-group-item">${ProduitChoisi.prix}</li>
                                             </ul>
-                                            <div class="card-footer">
+                                            <div class="card-footer cart-input">
                                                 <a href="#" class="card-link">
 
                                                     <!-- ICI on a la zone de texte pour saisir la quantité -->
                                                     <fmt:message key="quantity"/>:<label>
-                                                    <input type="text" name="quantite"
-                                                           SIZE="3" value=1 id="idItem${ProduitChoisi.idProduit}">
-                                                    </label>
+                                                    <input type="text" name="quantite" class=" qty-input"
+                                                           SIZE="3" value=1 id="${ProduitChoisi.idProduit}">
+                                                </label>
                                                     <!--Ici on a un champ caché qui est renvoyé au controleur avec les autres
                                                     données de la requête. ce champ caché va être lu par la servlet pour déterminer
                                                      le traitement à exécuter
@@ -201,7 +222,8 @@
                                                 <a href="#" class="card-link">
                                                     <input type="hidden" name="action" value="ADD">
                                                     <!-- en cliquant sur ce bouton, la requête est envoyée à la servlet -->
-                                                    <input type="submit" name="Submit" value="Ajouter au panier" >
+                                                    <input type="submit" class="callProduit" name="Submit"
+                                                           value="Ajouter au panier">
                                                 </a>
                                             </div>
                                         </div>
@@ -211,21 +233,21 @@
                             </div>
                             <div class="row" id="treatmentAffiche">
 
-                                <c:forEach var="ProduitChoisi" varStatus="status" items="${sessionScope.listeSoins}"
+                                <c:forEach var="SoinChoisi" varStatus="status" items="${sessionScope.listeSoins}"
                                            step="1" begin="0">
 
-                                    <div class="col-3 text-left " id="pC${ProduitChoisi.idSoin}">
+                                    <div class="col-3 text-left " id="pC${SoinChoisi.idSoin}">
 
                                         <div class="card ">
-                                            <img src="${ProduitChoisi.urlImage}" alt="${ProduitChoisi.nom}"
+                                            <img src="${SoinChoisi.urlImage}" alt="${SoinChoisi.nom}"
                                                  class="card-img-top">
                                             <div class="card-body">
-                                                <h5 class="card-title">${ProduitChoisi.nom}</h5>
-                                                <p class="card-text">${ProduitChoisi.description}</p>
-                                                <p class="card-text">D'une durée de ${ProduitChoisi.duree} minute</p>
+                                                <h5 class="card-title">${SoinChoisi.nom}</h5>
+                                                <p class="card-text">${SoinChoisi.description}</p>
+                                                <p class="card-text">D'une durée de ${SoinChoisi.duree} minute</p>
                                             </div>
                                             <ul class="list-group list-group-flush">
-                                                <li class="list-group-item">${ProduitChoisi.prix}</li>
+                                                <li class="list-group-item">${SoinChoisi.prix}</li>
                                             </ul>
                                             <div class="card-footer">
                                                 <a href="#" class="card-link">
@@ -233,7 +255,7 @@
                                                     <!-- ICI on a la zone de texte pour saisir la quantité -->
                                                     <fmt:message key="quantity"/>:<label>
                                                     <input type="text" name="quantite"
-                                                           SIZE="3" value=1 id="${ProduitChoisi.idSoin}">
+                                                           SIZE="3" value=1 id="${SoinChoisi.idSoin}">
                                                 </label>
 
                                                     <!--Ici on a un champ caché qui est renvoyé au controleur avec les autres
