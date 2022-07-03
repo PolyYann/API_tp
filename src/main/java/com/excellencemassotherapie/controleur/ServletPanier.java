@@ -1,14 +1,12 @@
 package com.excellencemassotherapie.controleur;
 
 import com.excellencemassotherapie.DAO.LigneCommandDAO;
-import com.excellencemassotherapie.DAO.ProduitDAO;
 import com.excellencemassotherapie.modele.LigneCommande;
 import com.excellencemassotherapie.modele.Panier;
 import com.excellencemassotherapie.modele.Produit;
 import com.excellencemassotherapie.modele.Soin;
-import jakarta.persistence.criteria.CriteriaBuilder;
+
 import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -17,13 +15,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 
-import static java.lang.Integer.parseInt;
 
 @WebServlet(name = "ServletPanier", value = "/ServletPanier")
 public class ServletPanier extends HttpServlet {
@@ -68,13 +65,15 @@ public class ServletPanier extends HttpServlet {
         LigneCommande ligneCommandeAAjouter = null;
         Produit produitAAjouter = new Produit();
         Soin soinAAjouter = new Soin();
+//        String params = request.getParameter("params");
         String idProd = request.getParameter("productId");
         String idSoin = request.getParameter("soinId");
-        String quantiteProduit = request.getParameter("quantityProduit");
+        String quantiteProduit = request.getParameter("quantityProduct");
         String quantiteSoin = request.getParameter("quantitySoin");
         boolean ajax = "XMLHttpRequest".equals(request.getHeader("X-Requested-With"));
 
         if (ajax) {
+
             //booleen qui va être utilisé pour vérifier si l'item est déjà dans les lignes de commandes en cours
             boolean match = false;
             int idProduitAAjouter = -1, quantiteProduitAAjouter = -1;
@@ -149,10 +148,7 @@ public class ServletPanier extends HttpServlet {
                 }
             }
 
-            response.setContentType("text/html;charset=UTF-8");
-            PrintWriter out = response.getWriter();
-            String result = "Ça a bien été ajouter au panier";
-            out.write(result);
+
 
             //suite à l'ajout ou à la suppression on doit RÉ-ATTACHER à la session
             //à la place de l'ancien

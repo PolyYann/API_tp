@@ -174,10 +174,7 @@
                                     id: id,
                                     qty: qty
                                 };
-                                $.post(url, $.param(params), function (response) {
-                                    $('#ajouter').html(response);
-                                    console.log(qty);
-                                });
+                                    $.post(url, {productId:id,quantityProduct:qty});
                                 // event.preventDefault();
                             });</script>
 
