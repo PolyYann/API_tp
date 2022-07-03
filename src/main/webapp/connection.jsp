@@ -62,11 +62,11 @@
                                 <h2 class="fw-bold mb-5">
                                     <c:set var="action" scope="session" value="action"></c:set>
                                     <c:if test="${param.action==\"signin\"}">
-                                        Se connecter
+                                        <fmt:message key="signin"/>
                                     </c:if>
 
                                     <c:if test="${param.action==\"signup\"}">
-                                        S'enregister
+                                        <fmt:message key="signup"/>
                                     </c:if>
 
                                 </h2>
@@ -76,13 +76,13 @@
                                         <div class="col-md-6 mb-4">
                                             <div class="form-outline">
                                                 <input type="text" id="name" class="form-control" />
-                                                <label class="form-label" name="nom" >Nom</label>
+                                                <label class="form-label" name="nom"><fmt:message key="name"/></label>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-4">
                                             <div class="form-outline mb-4">
                                                 <input type="password" name="password" class="form-control" />
-                                                <label class="form-label">Mot de passe</label>
+                                                <label class="form-label"><fmt:message key="password"/></label>
                                             </div>
                                         </div>
                                     </div>
@@ -94,13 +94,13 @@
                                     <!-- Submit button -->
                                     <c:if test="${param.action==\"signin\"}">
                                         <button  type="submit" name="send" value="login" class="btn btn-secondary btn-block mb-4">
-                                            Connection <input type="hidden" name="signin" value="connection">
+                                            <fmt:message key="signin"/> <input type="hidden" name="signin" value="connection">
                                         </button>
                                     </c:if>
 
                                     <c:if test="${param.action==\"signup\"}">
                                         <button  type="submit" class="btn btn-secondary btn-block mb-4">
-                                            Creer un compte<input type="hidden" name="signup" value="enregistrer">
+                                            <fmt:message key="signup"/><input type="hidden" name="signup" value="enregistrer">
                                         </button>
                                     </c:if>
 

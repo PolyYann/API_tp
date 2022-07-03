@@ -152,7 +152,7 @@
                                         <label>200 $</label>
 
                                         <h5 id="sliderValue"></h5>
-                                        <input type=submit value="Appliquer">
+                                        <input type=submit value="<fmt:message key="apply"/>">
 
                                     </div>
                                 </div>
@@ -201,7 +201,7 @@
                                                 <a href="#" class="card-link">
                                                     <input type="hidden" name="action" value="ADD">
                                                     <!-- en cliquant sur ce bouton, la requête est envoyée à la servlet -->
-                                                    <input type="submit" name="Submit" value="Ajouter au panier" >
+                                                    <input type="submit" name="Submit" value="<fmt:message key="addtocart"/>" >
                                                 </a>
                                             </div>
                                         </div>

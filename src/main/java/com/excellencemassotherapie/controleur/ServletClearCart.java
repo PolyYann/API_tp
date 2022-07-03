@@ -20,8 +20,8 @@ public class ServletClearCart extends HttpServlet {
 
 
         HttpSession session = request.getSession();
-        List<Produit> listeProduits = (ArrayList)session.getAttribute("panierProduit");
-        List<Soin> listeSoins = (ArrayList)session.getAttribute("panierSoin");
+        List<Produit> listeProduits = (ArrayList)session.getAttribute("listProduits");
+        List<Soin> listeSoins = (ArrayList)session.getAttribute("listeSoins");
 
         listeProduits.clear();
         listeSoins.clear();
