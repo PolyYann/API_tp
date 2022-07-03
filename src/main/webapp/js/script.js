@@ -1,52 +1,34 @@
 function sliding() {
     document.getElementById("sliderValue").innerHTML = document.getElementById("slider").value + " $";
 }
+
 const he = jQuery('#he');
 const skin = jQuery('#skin');
 const analgesic = jQuery('#analgesic');
 const massage = jQuery("#massage");
 const taping = jQuery("#taping");
 
-jQuery('#productChoix').click(function (){
+$(document).on("click",'#productChoix',function () {
     he.prop('disabled', false);
     he.prop('checked', true);
-    skin.prop('checked',true);
+    skin.prop('checked', true);
     skin.prop('disabled', false);
     analgesic.prop('disabled', false);
-    analgesic.prop('checked',true);
-     massage.prop('checked',false);
+    analgesic.prop('checked', true);
+    massage.prop('checked', false);
     massage.prop('disabled', true);
-    taping.prop('checked',false);
+    taping.prop('checked', false);
     taping.prop('disabled', true);
 })
-jQuery('#treatmentChoix').click(function (){
+$(document).on("click",'#treatmentChoix',function () {
     he.prop('disabled', true);
     he.prop('checked', false);
     skin.prop('disabled', true);
-    skin.prop('checked',false);
+    skin.prop('checked', false);
     analgesic.prop('disabled', true);
-    analgesic.prop('checked',false);
-     massage.prop('checked',true);
+    analgesic.prop('checked', false);
+    massage.prop('checked', true);
     massage.prop('disabled', false);
-    taping.prop('checked',true);
+    taping.prop('checked', true);
     taping.prop('disabled', false);
 })
-function getXMLObject()  //XML OBJECT
-{
-    var xmlHttp = false;
-    try {
-        xmlHttp = new ActiveXObject("Msxml2.XMLHTTP")
-    }
-    catch (e) {
-        try {
-            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP")
-        }
-        catch (e2) {
-            xmlHttp = false
-        }
-    }
-    if (!xmlHttp && typeof XMLHttpRequest != 'undefined') {
-        xmlHttp = new XMLHttpRequest();
-    }
-    return xmlHttp;}
-
