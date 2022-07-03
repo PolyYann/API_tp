@@ -38,13 +38,15 @@
                                 <div class="col-lg-8">
                                     <div class="p-5">
                                         <div class="d-flex justify-content-between align-items-center mb-5">
-                                            <h1 class="fw-bold mb-0 text-black">Panier</h1>
+                                            <h1 class="fw-bold mb-0 text-black"><fmt:message key="cart"/></h1>
                                         </div>
 
                                         <hr class="my-4">
-
+      <!--ajouter les lignes de produits---------------------------------->
                                         <c:forEach var="addedItem" varStatus="loop" items="${sessionScope.listLigneCommande}" step="1" begin="0">
-                                           <c:choose>
+                                            <p>${addedItem.produit}</p>
+                                            <c:choose>
+
                                                <c:when test="${addedItem.produit}!=null">
                                             <div class="row mb-4 d-flex justify-content-between align-items-center">
                                                 <div class="col-md-2 col-lg-2 col-xl-2">
@@ -72,13 +74,14 @@
                                                     <h6 class="mb-0">${addedItem.produit.prix}}</h6>
                                                 </div>
                                                 <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                                    <h6 class="mb-0">insérer ici : $ {choix.total}</h6>
+                                                    <h6 class="mb-0">insérer ici : $ {choix.total} ligne produit</h6>
                                                 </div>
                                                 <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                                                     <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
                                                 </div>
                                             </div>
                                                </c:when>
+
                                                <c:when test="${addedItem.soin}!=null">
                                                    <div class="row mb-4 d-flex justify-content-between align-items-center">
                                                        <div class="col-md-2 col-lg-2 col-xl-2">
@@ -106,7 +109,7 @@
                                                            <h6 class="mb-0">${addedItem.soin.prix}}</h6>
                                                        </div>
                                                        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                                           <h6 class="mb-0">insérer ici : $ {choix.total}</h6>
+                                                           <h6 class="mb-0">insérer ici : $ {choix.total} ligne soin</h6>
                                                        </div>
                                                        <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                                                            <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
@@ -149,33 +152,35 @@
                                             </div>
                                         </div>
 
-                                        <!-- partie pour retourner magasiner--------------------------------------------->
+  <!-- partie pour retourner magasiner--------------------------------------------->
 
                                         <hr class="my-4">
                                         <div class="pt-5">
                                             <h6 class="mb-0"><a href="ServletAffichage" class="text-body"><i
-                                                    class="fas fa-long-arrow-alt-left me-2"></i>Continuer à
-                                                magasiner</a></h6>
+                                                    class="fas fa-long-arrow-alt-left me-2"></i><fmt:message key="continueShopping"/></a></h6>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- partie pour passer au checkout--------------------------------------------->
+  <!-- partie pour passer au checkout--------------------------------------------->
 
                                 <div class="col-lg-4 bg-grey">
                                     <div class="p-5">
-                                        <h3 class="fw-bold mb-5 mt-2 pt-1">Sommaire</h3>
+                                        <h3 class="fw-bold mb-5 mt-2 pt-1"><fmt:message key="summary"/></h3>
                                         <hr class="my-4">
 
                                         <hr class="my-4">
 
                                         <div class="d-flex justify-content-between mb-5">
-                                            <h5 class="text-uppercase">Total facture</h5>
-                                            <h5>insérer ici un $ {choix.grandTotal}</h5>
+                                            <h5 class="text-uppercase"><fmt:message key="totalInvoice"/></h5>
+                                            <h5>  devrait être totalPanier ${sessionScope.totalPanier}</h5>
                                         </div>
 
-                                        <button type="button" class="btn btn-dark btn-block btn-lg"
-                                                data-mdb-ripple-color="dark">Payer
-                                        </button>
+                                        <form name="checkoutForm" action="ServletPanier"  method="post">
+                                            <input type="hidden" name="action" value="checkout">
+                                            <input type="submit" name="payer" value="<fmt:message key="pay"/>">
+
+                                        </form>
+
 
                                     </div>
                                 </div>

@@ -32,15 +32,6 @@ public class ServletPanier extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
 
-        /**
-         * VENDREDI:
-         * NOTE: ------------- pour afficher un panier, il faut afficher la liste des ligne de
-         * commande dont le idPanier = panierEnCours.getIDpanier de la session
-         * m'assure que les quantité get sont seulement celles de l'ajout
-         * revalider toutes les méthodes du bas
-         * intégrer soins
-         */
-
 
         /**
          * Récupération de la session de la requête
@@ -61,8 +52,9 @@ public class ServletPanier extends HttpServlet {
          * n.b. si aucun panier déjà en cours, l'objet retourné sera null
          */
         Panier panierEnCours = (Panier) session.getAttribute("panierOut");
+
         /**
-         * Création des paniers et listLigneCommande s'ils ton null
+         * Création des paniers et listLigneCommande s'ils sont null
          */
         if (panierEnCours == null) {
             panierEnCours = new Panier();
@@ -71,9 +63,9 @@ public class ServletPanier extends HttpServlet {
             listLigneCommande = new ArrayList<>();
         }
 
-        // création des attributs que j'aurai besoin
+        // création des attributs requis dans le code de la servlet
         LigneCommandDAO ligneCommandeDAO = new LigneCommandDAO();
-        LigneCommande ligneCommandeAAjouter=null;
+        LigneCommande ligneCommandeAAjouter = null;
         Produit produitAAjouter = new Produit();
         Soin soinAAjouter = new Soin();
         String idProd = request.getParameter("productId");
@@ -102,7 +94,7 @@ public class ServletPanier extends HttpServlet {
                     }
                 }
             }
-            if(idSoin != null && quantiteSoin != null){
+            if (idSoin != null && quantiteSoin != null) {
                 idSoinAAjouter = Integer.parseInt(idSoin);
                 quantiteSoinAAjouter = Integer.parseInt(quantiteSoin);
                 soinAAjouter.setIdSoin(idSoinAAjouter);
@@ -116,17 +108,18 @@ public class ServletPanier extends HttpServlet {
                     }
                 }
             }
+
             /**
              * ajouter le Produit dans la ligne commande
              */
             if (idProduitAAjouter != -1 || quantiteProduitAAjouter != -1) {
                 ligneCommandeAAjouter = new LigneCommande(produitAAjouter, quantiteProduitAAjouter, panierEnCours);
             }
-            if(idSoinAAjouter != -1 || quantiteSoinAAjouter != -1){
+            if (idSoinAAjouter != -1 || quantiteSoinAAjouter != -1) {
                 ligneCommandeAAjouter = new LigneCommande(soinAAjouter, quantiteSoinAAjouter, panierEnCours);
             }
 
-            if(ligneCommandeAAjouter != null) {
+            if (ligneCommandeAAjouter != null) {
                 //on vérifie si le produit est déjà dans le panier?
                 //pour ne pas l'ajouter une autre fois
                 for (int i = 0; i < listLigneCommande.size(); i++) {
@@ -158,7 +151,7 @@ public class ServletPanier extends HttpServlet {
 
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-            String result= "Ça a bien été ajouter au panier";
+            String result = "Ça a bien été ajouter au panier";
             out.write(result);
 
             //suite à l'ajout ou à la suppression on doit RÉ-ATTACHER à la session
@@ -173,104 +166,55 @@ public class ServletPanier extends HttpServlet {
             rd.forward(request, response);
 
         } else {
-
+//----------------------------------------------------------------------------------------------
             /**
              * Récupération de l'action reçue avec la requête
-             * n.b. pour savoir quoi faire (Ajout, supp, checkout)
+             * n.b. pour savoir quoi faire (Go au panieer ou checkout)
              */
             String action = request.getParameter("action");
 
+            //Si action = goCart (aller au panier)
+            if (action.equals("goCart")) {
 
-            /**
-             * Si action = ADD - ajouer un item au panier
-             */
-            if (action.equals("ADD")) {
-
-//todo: copier le code quand il va fonctionner pour ajouter les soins---------------------------------------------------------
-
-
-                //Dans le cas du clic sur goCart
-            } else if (action.equals("goCart")) {
                 String url = "/panier.jsp";
                 RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
                 rd.forward(request, response);
-            }
 
-            //Dans le cas du clic sur Checkout
-//        } else if (action.equals("checkout")) {
-//            for (LigneCommande ligneCommTemp : listLigneCommande) {
-//                ligneCommandeDAO.insert(ligneCommTemp);
-//            }
-//        }
+                //Si action = Checkout (payer)
+            } else if (action.equals("checkout")) {
+
+                /**
+                 * Calculer le total de chaque ligne de commande et du panierTotal
+                 */
+                double totalLigneCommande = 0;
+                double prixUnit = 0;
+                double totalPanier = 0;
+
+                for (LigneCommande ligneCommande : listLigneCommande) {
+
+                    //si la ligne de commande est un produit
+                    if (ligneCommande.getProduit() != null) {
+                        prixUnit = ligneCommande.getProduit().getPrix();
+
+                        // si la ligne de commande est un soin
+                    } else {
+                        prixUnit = ligneCommande.getSoin().getPrix();
+                    }
+
+                    int quantite = ligneCommande.getQuantite();
+                    totalLigneCommande = (prixUnit * quantite);
+                    totalPanier += totalLigneCommande;
+                }
+                session.setAttribute("totalPanier", totalPanier);
+
+
+                //on redirige la requête vers la page de Checkout
+                String url = "/panier?action=checkout.jsp"; //------------------------------pas certine que je peux passer un parametre ici
+                RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
+                rd.forward(request, response);
+            }
         }
 
-//    //on va calculer le prix total
-//    double total = 0;
-//        for(
-//    int i = 0; i<listProduits.size();i++)
-//
-//    {
-//        Produit uneCommandeDeProduit = (Produit) listProduits.get(i);
-//        double prix = uneCommandeDeProduit.getPrix();
-////                int quantite = uneCommandeDeProduit.getQuantite();
-////                total += (prix * quantite);
-//    }
-
-////formulation bizarre - à comprendre------------------------------------------
-//        //deviner à quoi cela sert ??????
-//        total += 0.005;
-//        String amount = new Double(total).toString();
-//        int n = amount.indexOf('.');
-//        amount = amount.substring(0, n + 3);
-//        request.setAttribute("amount", amount);
-//
-//        //on redirige la requête vers la page de Checkout
-//        String url = "/checkout.jsp";
-//        ServletContext sc = getServletContext();
-//        RequestDispatcher rd = sc.getRequestDispatcher(url);
-//        rd.forward(request, response);
-//    }
-
-
-//------------------------------------------------------------------------------------------------------------------
-//méthode utilitaire qui sert à récupérer les différentes
-//parties d'un item choisi de la liste
-// et retourne un objet de type Produit qui va être utlisé par la servlet
-//    private Produit getItem(HttpServletRequest req) {
-//
-//        //on récupère l'item choisi par l'utilisateur dans la liste
-//        String monItem = req.getParameter("typeItemChoisi");
-//
-//        //on récupère la quantité saisie
-//        int quantite = Integer.parseInt(req.getParameter("quantite"));
-//
-//        // on récupère les différentes parties
-//
-//        String action = req.getParameter("action");
-//        if (action.equals("ADD")){
-//            //récupère l'index de l'item à ajouter
-//            String idItemToAdd =
-//        }
-//
-//
-//        Produit itemToAdd = new Produit();
-//        itemToAdd.setIdProduit(idItemToAdd);
-//        StringTokenizer t = new StringTokenizer(monProduit, "|");
-//        String tNom = t.nextToken();
-//        String tDescription = t.nextToken();
-//        String tQuantite = t.nextToken();
-//        String tPrix = t.nextToken();
-//        tPrix = tPrix.replace('$', ' ').trim();
-//
-//        //on crée un objet Produit avec les informations et on le retourne
-//        // à la servlet
-//        Produit produit = new Produit();
-//        produit.setNom(tNom);
-//        produit.setDescription(tDescription);
-////        produit.setQuantite((new Integer(tQuantite)).intValue());
-//        produit.setPrix((new Double(tPrix)).doubleValue());
-//
-//        return produit;
     }
 
     @Override
@@ -284,7 +228,6 @@ public class ServletPanier extends HttpServlet {
             ServletException, IOException {
         processRequest(request, response);
     }
-
 
 
 }
