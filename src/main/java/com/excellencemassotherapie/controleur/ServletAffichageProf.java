@@ -19,7 +19,7 @@ public class ServletAffichageProf extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //récupere la session de la requete
+        //récupère la session de la requete
         HttpSession session = request.getSession();
         if (session == null) {
             response.sendRedirect("http://localhost:8080/accueil.html");

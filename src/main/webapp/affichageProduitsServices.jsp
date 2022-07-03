@@ -224,7 +224,7 @@
                                                     <input type="hidden" name="action" value="ADD">
                                                     <!-- en cliquant sur ce bouton, la requête est envoyée à la servlet -->
                                                     <input type="button" class="callProduit btn-info" name="Submit"
-                                                           value="Ajouter au panier" data-id="${ProduitChoisi.idProduit}">
+                                                           value="<fmt:message key="addtocart"/>" data-id="${ProduitChoisi.idProduit}">
                                                 </a>
                                             </div>
                                         </div>
@@ -269,7 +269,7 @@
                                                 <a href="#" class="card-link">
                                                     <!-- en cliquant sur ce bouton, la requête est envoyée à la servlet -->
                                                     <input type="button" name="Submit" onclick="submit()"
-                                                           value="Ajouter au panier">
+                                                           value="<fmt:message key="addtocart"/>">
                                                 </a>
                                             </div>
                                         </div>
