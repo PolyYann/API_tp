@@ -18,6 +18,7 @@ import jakarta.servlet.http.HttpSession;
 
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -155,7 +156,10 @@ public class ServletPanier extends HttpServlet {
                 }
             }
 
-
+            response.setContentType("text/html;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            String result= "reponse Ajax";
+            out.write(result);
 
             //suite à l'ajout ou à la suppression on doit RÉ-ATTACHER à la session
             //à la place de l'ancien
