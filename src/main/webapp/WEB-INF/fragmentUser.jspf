@@ -7,7 +7,31 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<div class="col-md-9 col-lg-9 col-xl-9">
+    <table >
+        <thead>
+        <tr>
+            <th colspan="2">Information d'expédition </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Nom</td>
+            <td>param nom $ ... ${sessionScope.client.nom}</td>
+        </tr>
+        <tr>
+            <td>Courriel</td>
+            <td>param courriel $ ...${sessionScope.client.courriel}</td>
+        </tr>
+        <tr>
+            <td>Telephone</td>
+            <td>param telephone...$ ${sessionScope.client.telephone}</td>
+        </tr>
+        <tr>
+            <td>Adresse</td>
+            <td>param telephone...$${sessionScope.client.adressse}</td>
+        </tr>
+        </tbody>
+    </table>
 
-${sessionScope.client.nom}
-
-
+</div>

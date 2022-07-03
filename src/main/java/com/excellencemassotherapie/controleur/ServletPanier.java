@@ -205,7 +205,7 @@ public class ServletPanier extends HttpServlet {
 
 
                 //on redirige la requête vers la page de Checkout
-                String url = "/panier?action=checkout.jsp"; //------------------------------pas certine que je peux passer un parametre ici
+                String url = "/panier.jsp"; //------------------------------pas certine que je peux passer un parametre ici
                 RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
                 rd.forward(request, response);
             }

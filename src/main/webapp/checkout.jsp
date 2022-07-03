@@ -24,27 +24,25 @@
 <div class="col-lg-4 bg-grey">
     <div class="p-5">
         <h3 class="fw-bold mb-5 mt-2 pt-1"><fmt:message key="summary"/></h3>
-        <hr class="my-4">
+     <!--   <hr class="my-4"> -->
+
 
         <hr class="my-4">
-
         <div class="d-flex justify-content-between mb-5">
             <h5 class="text-uppercase"><fmt:message key="totalInvoice"/></h5>
-            <h5>devrait être totalPanier ${sessionScope.totalPanier}</h5>
+            <h5>  devrait être totalPanier ${sessionScope.totalPanier}</h5>
         </div>
 
-        <form name="checkoutForm" action="ServletPanier"  method="post">
+        <form name="checkoutForm" action="ServletClearCart"  method="post">
             <input type="hidden" name="action" value="checkout">
             <input type="submit" name="payer" value="<fmt:message key="pay"/>">
 
         </form>
+
+
     </div>
 </div>
 
 
 
-    <a href="ClearCart" name="ServletCleaCart">Passer une nouvelle commande</a>
-    <!-- <a href="EShop.jsp">Continuer à magasiner!</a> -->
 
-</body>
-</html>
