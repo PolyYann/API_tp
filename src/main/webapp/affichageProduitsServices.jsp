@@ -165,25 +165,25 @@
 
 
                         <!---------------------------------------------------Début de la boucle pour affichage----------------------------------------------------->
-                        <form name="articleForm" action="ServletPanier" method="post">
+
+                        <form name="articleForm" action="ServletPanier"  method="post">
 
                             <div class="row" id="productAffiche">
+                                <c:forEach var="ProduitChoisi" varStatus="loop" items="${sessionScope.listProduits}"
+                                           step="1" begin="0">
 
-                                <c:forEach var="faireChoix" varStatus="status" items="${sessionScope.listProduits}"
-                                           step="1"  begin="0">
-
-                                    <div class="col-3 text-left hidden" data-id="${faireChoix.categorie}"
-                                         id="pC${faireChoix.idProduit}">
-                                        <input type="hidden" value="${faireChoix.categorie}">
+                                    <div class="col-3 text-left hidden" data-id="${ProduitChoisi.categorie}"
+                                         id="pC${ProduitChoisi.idProduit}">
+                                        <input type="hidden" value="${ProduitChoisi.categorie}">
                                         <div class="card ">
-                                            <img src="${faireChoix.urlImage}" alt="${faireChoix.nom}"
+                                            <img src="${ProduitChoisi.urlImage}" alt="${ProduitChoisi.nom}"
                                                  class="card-img-top">
                                             <div class="card-body">
-                                                <h5 class="card-title">${faireChoix.nom}</h5>
-                                                <p class="card-text">${faireChoix.description}</p>
+                                                <h5 class="card-title">${ProduitChoisi.nom}</h5>
+                                                <p class="card-text">${ProduitChoisi.description}</p>
                                             </div>
                                             <ul class="list-group list-group-flush">
-                                                <li class="list-group-item">${faireChoix.prix}</li>
+                                                <li class="list-group-item">${ProduitChoisi.prix}</li>
                                             </ul>
                                             <div class="card-footer">
                                                 <a href="#" class="card-link">
@@ -191,20 +191,17 @@
                                                     <!-- ICI on a la zone de texte pour saisir la quantité -->
                                                     <fmt:message key="quantity"/>:<label>
                                                     <input type="text" name="quantite"
-                                                           SIZE="3" value=1 id="${faireChoix.idProduit}">
-                                                </label>
-
+                                                           SIZE="3" value=1 id="idItem${ProduitChoisi.idProduit}">
+                                                    </label>
                                                     <!--Ici on a un champ caché qui est renvoyé au controleur avec les autres
-                                                    données de la requête. Puisque la servlet controleur va traiter les autres
-                                                    demandes: Supprimer un élément du panier, commander (Checkout), ce champ caché
-                                                    va être lu par la servlet pour déterminer le traitement à exécuter
+                                                    données de la requête. ce champ caché va être lu par la servlet pour déterminer
+                                                     le traitement à exécuter
                                                     -->
-                                                    <input type="hidden" name="action" value="ADD">
                                                 </a>
                                                 <a href="#" class="card-link">
+                                                    <input type="hidden" name="action" value="ADD">
                                                     <!-- en cliquant sur ce bouton, la requête est envoyée à la servlet -->
-                                                    <input type="submit" name="Submit"
-                                                           value="Ajouter au panier" >
+                                                    <input type="submit" name="Submit" value="Ajouter au panier" >
                                                 </a>
                                             </div>
                                         </div>
@@ -214,21 +211,21 @@
                             </div>
                             <div class="row" id="treatmentAffiche">
 
-                                <c:forEach var="faireChoix" varStatus="status" items="${sessionScope.listeSoins}"
-                                           step="1"  begin="0">
+                                <c:forEach var="ProduitChoisi" varStatus="status" items="${sessionScope.listeSoins}"
+                                           step="1" begin="0">
 
-                                    <div class="col-3 text-left " id="pC${faireChoix.idSoin}">
+                                    <div class="col-3 text-left " id="pC${ProduitChoisi.idSoin}">
 
                                         <div class="card ">
-                                            <img src="${faireChoix.urlImage}" alt="${faireChoix.nom}"
+                                            <img src="${ProduitChoisi.urlImage}" alt="${ProduitChoisi.nom}"
                                                  class="card-img-top">
                                             <div class="card-body">
-                                                <h5 class="card-title">${faireChoix.nom}</h5>
-                                                <p class="card-text">${faireChoix.description}</p>
-                                                <p class="card-text">D'une durée de ${faireChoix.duree} minute</p>
+                                                <h5 class="card-title">${ProduitChoisi.nom}</h5>
+                                                <p class="card-text">${ProduitChoisi.description}</p>
+                                                <p class="card-text">D'une durée de ${ProduitChoisi.duree} minute</p>
                                             </div>
                                             <ul class="list-group list-group-flush">
-                                                <li class="list-group-item">${faireChoix.prix}</li>
+                                                <li class="list-group-item">${ProduitChoisi.prix}</li>
                                             </ul>
                                             <div class="card-footer">
                                                 <a href="#" class="card-link">
@@ -236,7 +233,7 @@
                                                     <!-- ICI on a la zone de texte pour saisir la quantité -->
                                                     <fmt:message key="quantity"/>:<label>
                                                     <input type="text" name="quantite"
-                                                           SIZE="3" value=1 id="${faireChoix.idSoin}">
+                                                           SIZE="3" value=1 id="${ProduitChoisi.idSoin}">
                                                 </label>
 
                                                     <!--Ici on a un champ caché qui est renvoyé au controleur avec les autres

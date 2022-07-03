@@ -39,7 +39,7 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link" href="panier.jsp"><fmt:message key="cart"/></a>
+                    <a class="nav-link" href="panier.jsp?action=goCart"><fmt:message key="cart"/></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="connection.jsp?action=signin"><fmt:message key="signin"/><input type="hidden" name="action"

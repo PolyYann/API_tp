@@ -78,11 +78,11 @@ public class ServletAffichage extends HttpServlet {
         session.setAttribute("listProduits", listProduitsFiltre);
         RequestDispatcher dispatcher;
 
-if(action.equals("affichage")) {
+//if(action.equals("affichage")) {
 
           dispatcher   = getServletContext().getRequestDispatcher("/affichageProduitsServices.jsp");
             dispatcher.forward(request, response);
-        }
+   //     }
 
     }
 

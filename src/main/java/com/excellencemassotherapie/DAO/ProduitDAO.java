@@ -32,18 +32,20 @@ public class ProduitDAO implements ICommonDAO<Produit> {
     }
 
     @Override
-    public Produit getById(int id) {
+        public Produit getById(int idProduit) {
         entityManager = entityManagerFactory.createEntityManager();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Produit> criteriaQuery = criteriaBuilder.createQuery(Produit.class);
         Root<Produit> produitRoot = criteriaQuery.from(Produit.class);
-        criteriaQuery.select(produitRoot).where(criteriaBuilder.equal(produitRoot.get("id"), id));
+        criteriaQuery.select(produitRoot).where(criteriaBuilder.equal(produitRoot.get("id"), idProduit));
         Query query = entityManager.createQuery(criteriaQuery);
         Produit produit = (Produit) query.getSingleResult();
         entityManager.close();
         return produit;
 
     }
+
+
     public List<Produit> trouverParLike(String like) {
         entityManager = entityManagerFactory.createEntityManager();
         String  hql = "SELECT p FROM Produit p WHERE p.nom LIKE :like or p.description LIKE :like";

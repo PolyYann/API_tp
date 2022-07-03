@@ -3,6 +3,9 @@ package com.excellencemassotherapie.modele;
 
 import jakarta.persistence.*;
 
+@NamedQueries({
+        @NamedQuery(name = "Produit.trouverParId", query = "select p from Produit p where p.idProduit = :idProduit"),
+})
 @Entity
 @Table(name="t_produits")
 public class Produit {
