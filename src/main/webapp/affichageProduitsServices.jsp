@@ -167,28 +167,21 @@
                         <!---------------------------------------------------Début de la boucle pour affichage----------------------------------------------------->
                         <script type="text/javascript">
                             let url = 'ServletPanier';
-                            $(document).ready(function () {
-                              let  xhr = new XMLHttpRequest();
-                                $('.callProduit').click(function (event) {
-                                    let id = $(this).data('id');
-                                    let qty = $(this).closest('.cart-input').find('.qty-input').val();
-                                    $.ajax({
-                                        cache: false,
-                                        url: url,
-                                        type: 'post',
-                                        data: {productId: id,  quantityProduit: qty},
-                                        success: function (result) {
-                                            $('#ajouter').html(result);
-                                        },
-                                        error: function (xhr, status, error) {
-                                            alert('Error: ' + error);
-                                        }
-                                    });
-                                    event.preventDefault();
+                            $(document).on("click", ".callProduit", function (event) {
+                                let id = $(this).data('id');
+                                let qty = $(this).closest('.cart-input').find('.qty-input').val();
+                                let params = {
+                                    id: id,
+                                    qty: qty
+                                };
+                                $.post(url, $.param(params), function (response) {
+                                    $('#ajouter').html(response);
+                                    console.log(qty);
                                 });
+                                // event.preventDefault();
                             });</script>
 
-                        <form name="articleForm" action="ServletPanier" method="post">
+                        <form name="prodForm" action="ServletPanier" method="post">
 
                             <div class="row ajouter" id="productAffiche">
                                 <c:forEach var="ProduitChoisi" varStatus="loop" items="${sessionScope.listProduits}"
@@ -211,20 +204,22 @@
                                                 <a href="#" class="card-link">
 
                                                     <!-- ICI on a la zone de texte pour saisir la quantité -->
-                                                    <fmt:message key="quantity"/>:<label>
-                                                    <input type="text" name="quantite" class=" qty-input"
-                                                           SIZE="3" value=1 >
-                                                </label>
+                                                    <fmt:message key="quantity"/>:</a>
+                                                    <label>
+                                                        <input type="text" name="quantite" class="qty-input"
+                                                               SIZE="3" value=1>
+                                                    </label>
                                                     <!--Ici on a un champ caché qui est renvoyé au controleur avec les autres
                                                     données de la requête. ce champ caché va être lu par la servlet pour déterminer
                                                      le traitement à exécuter
                                                     -->
-                                                </a>
+
                                                 <a href="#" class="card-link">
                                                     <input type="hidden" name="action" value="ADD">
                                                     <!-- en cliquant sur ce bouton, la requête est envoyée à la servlet -->
-                                                    <input type="button" class="callProduit btn-info" name="Submit"
-                                                           value="<fmt:message key="addtocart"/>" data-id="${ProduitChoisi.idProduit}">
+                                                    <input type="button" class="callProduit btn-light" name="Submit"
+                                                           value="<fmt:message key="addtocart"/>"
+                                                           data-id="${ProduitChoisi.idProduit}">
                                                 </a>
                                             </div>
                                         </div>

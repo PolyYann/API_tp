@@ -158,7 +158,7 @@ public class ServletPanier extends HttpServlet {
 
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-            String result= "reponse Ajax";
+            String result= "Ça a bien été ajouter au panier";
             out.write(result);
 
             //suite à l'ajout ou à la suppression on doit RÉ-ATTACHER à la session
@@ -285,10 +285,7 @@ public class ServletPanier extends HttpServlet {
         processRequest(request, response);
     }
 
-//    @Override
-//    public String getServletInfo() {
-//        return "Short description";
-//    }// </editor-fold>
+
 
 }
 

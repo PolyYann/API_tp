@@ -33,32 +33,45 @@ public class ServletConnection extends HttpServlet {
         HttpSession session = request.getSession();
         LigneCommandDAO ligneCommandDAO = new LigneCommandDAO();
         PanierDAO panierDAO = new PanierDAO();
+        ClientDAO clientDAO = new ClientDAO();
         List<Panier> listPaniers = panierDAO.getAll();
-
+        List<LigneCommande> allLignBd = ligneCommandDAO.getAll();
+        List<Client> allClients = clientDAO.getAll();
+        Panier panierClientEnCours = new Panier();
 
         String source = "";
-
         String destination = "";
         String mdpSaisi = request.getParameter("password");
-        String action = (String) request.getAttribute("name");
-        ClientDAO clientDAO = new ClientDAO();
+        String action =  request.getParameter("send");
+
         Client client = new Client();
         client.setNom(request.getParameter("nom"));
-        Panier panierClientEnCours = new Panier();
-        List<LigneCommande> allLignBd = ligneCommandDAO.getAll();
+
+
         List<LigneCommande> commandeEnCours = (ArrayList) session.getAttribute("listLigneCommande");
 
-        if (Objects.equals(action, "connection")) {
+        if (action.equals("signin")) {
+            for(Client tmpClient: allClients){
+
+                if(tmpClient.getNom().equals(client.getNom())){
+                    if(tmpClient.getPassword().equals(mdpSaisi)){
+                        client = tmpClient;
+                    }
+                    destination = "/accueil.jsp";
+                }else{
+                    destination= "/enregistrer.jsp?action=signup";
+                }
+            }
             for (Panier panierBD : listPaniers) {
                 if (panierBD.getClient().getNom().equals(client.getNom()) && !panierBD.isPaye()) {
                     panierClientEnCours = panierBD;
-                    if (panierClientEnCours.getClient() != null) {
+                    if (panierClientEnCours.getClient() != null) { //si le client existe déjà dans la base de données
                         for (LigneCommande tmpLCBD : allLignBd) {
-                            if (tmpLCBD.getPanier().getIdPanier() == panierClientEnCours.getIdPanier()) {
-                                if (!commandeEnCours.contains(tmpLCBD)) {
+                            if (tmpLCBD.getPanier().getIdPanier() == panierClientEnCours.getIdPanier()) {//on récupère les lignes de commande en cours
+                                if (!commandeEnCours.contains(tmpLCBD)) {//si ligne existe pas ajouter la ligne à la commande en cours
                                     commandeEnCours.add(tmpLCBD);
                                 } else {
-                                    for (LigneCommande tmpLCEC : commandeEnCours) {
+                                    for (LigneCommande tmpLCEC : commandeEnCours) { //si ligne existe et on ajuste quantité
                                         if (tmpLCEC.getIdLigneCommande() == tmpLCBD.getIdLigneCommande()) {
                                             tmpLCEC.setQuantite(tmpLCEC.getQuantite() + tmpLCBD.getQuantite());
                                         }
@@ -68,45 +81,33 @@ public class ServletConnection extends HttpServlet {
                         }
                     }
                 }
+
             }
             if (panierClientEnCours.getClient() != null && commandeEnCours != null) {
                 for (LigneCommande ligneCommande : commandeEnCours) {
                     ligneCommande.setPanier(panierClientEnCours);
                 }
             }
-            session.setAttribute("listLigneCommande", commandeEnCours);
-        }else if(Objects.equals(action, "enregistrer")){
-            //todo creer nouveau panier
-        }
-        session.setAttribute("panier", panierClientEnCours);
 
 
-//        if (action == "signin") {
-//
-//            if (mdpSaisi.equals("secret")) {
-//                destination = "/accueil.jsp";
-//            } else {
-//                destination = "/connection.jsp";
-//            }
-//        } else if (action == "signup") {
-
-        //créer le client avec les infos passées du formulaire
-        client.setPassword(mdpSaisi);
-        client.setTelephone(request.getParameter("telephone"));
-        client.setEmail(request.getParameter("email"));
-        client.setAdresse(request.getParameter("adresse"));
-
-        List<Client> listClient = clientDAO.getAll();
-        for (Client temp : listClient) {
-            if (!temp.getNom().equals(client.getNom())) {
-                // clientDAO.insert(client);
+        }else if(action.equals("signup")){
+            client.setPassword(mdpSaisi);
+            client.setTelephone(request.getParameter("telephone"));
+            client.setEmail(request.getParameter("email"));
+            client.setAdresse(request.getParameter("adresse"));
+            List<Client> listClient = clientDAO.getAll();
+            for (Client temp : listClient) {
+                if (!temp.getNom().equals(client.getNom())) {
+                     clientDAO.insert(client);
+                }
             }
+            destination = "/accueil.jsp";
         }
 
         //créer l'objet de session
         session.setAttribute("client", client);
-        destination = "/accueil.jsp";
-
+        session.setAttribute("listLigneCommande", commandeEnCours);
+        session.setAttribute("panierOut", panierClientEnCours);
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(destination);
         dispatcher.forward(request, response);

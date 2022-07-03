@@ -16,56 +16,57 @@
     <!--Bootstrap -->
     <link rel="stylesheet" href="css/style.css"/>
     <link rel="stylesheet" href="css/bootstrap-grid.min.css"/>
-    <link rel="stylesheet" href="bootstrap/bootstrap-reboot.min.css"/>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://bootstrap-colors-extended.herokuapp.com/bootstrap-colors.css"/>
 
 
 </head>
 <body>
-    <div class="bg-steel-light">
-<jsp:include page="navBar.jsp"/>
-<br>
-<br>
-<br>
+<div class="bg-steel-light">
+    <jsp:include page="navBar.jsp"/>
+    <br>
+    <br>
+    <br>
 
-        <section class="h-100 h-custom" >
-            <div class="container py-5 h-100">
-                <div class="row d-flex justify-content-center align-items-center h-100">
-                    <div class="col-12">
-                        <div class="card card-registration card-registration-2" style="border-radius: 15px;">
-                            <div class="card-body p-0">
-                                <div class="row g-0">
-                                    <div class="col-lg-8">
-                                        <div class="p-5">
-                                            <div class="d-flex justify-content-between align-items-center mb-5">
-                                                <h1 class="fw-bold mb-0 text-black">Panier</h1>
-                                            </div>
+    <section class="h-100 h-custom">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12">
+                    <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+                        <div class="card-body p-0">
+                            <div class="row g-0">
+                                <div class="col-lg-8">
+                                    <div class="p-5">
+                                        <div class="d-flex justify-content-between align-items-center mb-5">
+                                            <h1 class="fw-bold mb-0 text-black">Panier</h1>
+                                        </div>
 
-                                            <hr class="my-4">
+                                        <hr class="my-4">
 
-<c:forEach var="addedItem" varStatus="loop" items="${sessionScope.listLigneCommande}"
-                                            step="1" begin="0">
+                                        <c:forEach var="addedItem" varStatus="loop" items="${sessionScope.listLigneCommande}" step="1" begin="0">
+                                           <c:choose>
+                                               <c:when test="${addedItem.produit}!=null">
                                             <div class="row mb-4 d-flex justify-content-between align-items-center">
                                                 <div class="col-md-2 col-lg-2 col-xl-2">
-                                                    <img src="${addedItem.produit.urlImage}" class="img-fluid rounded-3"alt="${addedItem.produit.nom}">
+                                                    <img src="${addedItem.produit.urlImage}" class="img-fluid rounded-3" alt="${addedItem.produit.nom}">
                                                 </div>
                                                 <div class="col-md-3 col-lg-3 col-xl-3">
-                                                     <h6 class="text-muted">${addedItem.produit.prix}</h6>
-                                                     <h6 class="text-black mb-0">${addedItem.produit.prix}</h6>
+                                                    <h6 class="text-muted">${addedItem.produit.prix}</h6>
+                                                    <h6 class="text-black mb-0">${addedItem.produit.prix}</h6>
                                                 </div>
                                                 <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
                                                     <button class="btn btn-link px-2"
-                                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
                                                         <i class="fas fa-minus"></i>
                                                     </button>
 
-                                                <input id="formPanier" min="0" name="quantity" value="1" type="number"
-                                                    class="form-control form-control-sm" />
-                                                        <button class="btn btn-link px-2"
+                                                    <input id="formPanier" min="0" name="quantity" value="1"
+                                                           type="number"
+                                                           class="form-control form-control-sm"/>
+                                                    <button class="btn btn-link px-2"
                                                             onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                                            <i class="fas fa-plus"></i>
-                                                        </button>
+                                                        <i class="fas fa-plus"></i>
+                                                    </button>
                                                 </div>
                                                 <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                                                     <h6 class="mb-0">${addedItem.produit.prix}}</h6>
@@ -77,74 +78,113 @@
                                                     <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
                                                 </div>
                                             </div>
-</c:forEach>
+                                               </c:when>
+                                               <c:when test="${addedItem.soin}!=null">
+                                                   <div class="row mb-4 d-flex justify-content-between align-items-center">
+                                                       <div class="col-md-2 col-lg-2 col-xl-2">
+                                                           <img src="${addedItem.soin.urlImage}" class="img-fluid rounded-3" alt="${addedItem.soin.nom}">
+                                                       </div>
+                                                       <div class="col-md-3 col-lg-3 col-xl-3">
+                                                           <h6 class="text-muted">${addedItem.soin.prix}</h6>
+                                                           <h6 class="text-black mb-0">${addedItem.soin.prix}</h6>
+                                                       </div>
+                                                       <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                                           <button class="btn btn-link px-2"
+                                                                   onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                                               <i class="fas fa-minus"></i>
+                                                           </button>
+
+                                                           <input id="formPanierSoin" min="0" name="quantity" value="1"
+                                                                  type="number"
+                                                                  class="form-control form-control-sm"/>
+                                                           <button class="btn btn-link px-2"
+                                                                   onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                                               <i class="fas fa-plus"></i>
+                                                           </button>
+                                                       </div>
+                                                       <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                                           <h6 class="mb-0">${addedItem.soin.prix}}</h6>
+                                                       </div>
+                                                       <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                                           <h6 class="mb-0">insérer ici : $ {choix.total}</h6>
+                                                       </div>
+                                                       <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                                           <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+                                                       </div>
+                                                   </div>
+
+                                               </c:when>
+                                           </c:choose>
+                                        </c:forEach>
 
 
-                                            <hr class="my-4">
-                                            <div class="row mb-4 d-flex justify-content-between align-items-center">
-                                                <div class="col-md-2 col-lg-2 col-xl-2">
-                                                    <img
-                                                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img6.webp"
-                                                    class="img-fluid rounded-3" alt="Cotton T-shirt">
-                                                </div>
-                                                <div class="col-md-3 col-lg-3 col-xl-3">
-                                                    <h6 class="text-muted">Shirt</h6>
-                                                    <h6 class="text-black mb-0">Cotton T-shirt</h6>
-                                                </div>
-                                                <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                                    <button class="btn btn-link px-2"
-                                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                                        <i class="fas fa-minus"></i>
-                                                    </button>
-                                                        <input id="form1" min="0" name="quantity" value="1" type="number"
-                                                        class="form-control form-control-sm" />
-                                                    <button class="btn btn-link px-2"
-                                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                                        <i class="fas fa-plus"></i>
-                                                    </button>
-                                                </div>
-                                                <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                                    <h6 class="mb-0">€ 44.00</h6>
-                                                </div>
-                                                <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                                    <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
-                                                </div>
+                                        <hr class="my-4">
+                                        <div class="row mb-4 d-flex justify-content-between align-items-center">
+                                            <div class="col-md-2 col-lg-2 col-xl-2">
+                                                <img
+                                                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img6.webp"
+                                                        class="img-fluid rounded-3" alt="Cotton T-shirt">
                                             </div>
+                                            <div class="col-md-3 col-lg-3 col-xl-3">
+                                                <h6 class="text-muted">Shirt</h6>
+                                                <h6 class="text-black mb-0">Cotton T-shirt</h6>
+                                            </div>
+                                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                                <button class="btn btn-link px-2"
+                                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                                    <i class="fas fa-minus"></i>
+                                                </button>
+                                                <input id="form1" min="0" name="quantity" value="1" type="number"
+                                                       class="form-control form-control-sm"/>
+                                                <button class="btn btn-link px-2"
+                                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                                <h6 class="mb-0">€ 44.00</h6>
+                                            </div>
+                                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                                <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+                                            </div>
+                                        </div>
 
-    <!-- partie pour retourner magasiner--------------------------------------------->
+                                        <!-- partie pour retourner magasiner--------------------------------------------->
 
-    <hr class="my-4">
-    <div class="pt-5">
-    <h6 class="mb-0"><a href="ServletAffichage" class="text-body"><i
-    class="fas fa-long-arrow-alt-left me-2"></i>Continuer à magasiner</a></h6>
-    </div>
-    </div>
-    </div>
-    <!-- partie pour passer au checkout--------------------------------------------->
+                                        <hr class="my-4">
+                                        <div class="pt-5">
+                                            <h6 class="mb-0"><a href="ServletAffichage" class="text-body"><i
+                                                    class="fas fa-long-arrow-alt-left me-2"></i>Continuer à
+                                                magasiner</a></h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- partie pour passer au checkout--------------------------------------------->
 
-    <div class="col-lg-4 bg-grey">
-    <div class="p-5">
-    <h3 class="fw-bold mb-5 mt-2 pt-1">Sommaire</h3>
-    <hr class="my-4">
+                                <div class="col-lg-4 bg-grey">
+                                    <div class="p-5">
+                                        <h3 class="fw-bold mb-5 mt-2 pt-1">Sommaire</h3>
+                                        <hr class="my-4">
 
-    <hr class="my-4">
+                                        <hr class="my-4">
 
-    <div class="d-flex justify-content-between mb-5">
-    <h5 class="text-uppercase">Total facture</h5>
-    <h5>insérer ici un $ {choix.grandTotal}</h5>
-    </div>
+                                        <div class="d-flex justify-content-between mb-5">
+                                            <h5 class="text-uppercase">Total facture</h5>
+                                            <h5>insérer ici un $ {choix.grandTotal}</h5>
+                                        </div>
 
-    <button type="button" class="btn btn-dark btn-block btn-lg"
-    data-mdb-ripple-color="dark">Payer</button>
+                                        <button type="button" class="btn btn-dark btn-block btn-lg"
+                                                data-mdb-ripple-color="dark">Payer
+                                        </button>
 
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
     <!-----------------------------------------------------------------code du prof -----------------------------------------------
     <table border="0" cellpadding="0" width="100%" bgcolor="#FFFFFF">
@@ -225,12 +265,12 @@
     </form>
 
     ---------------------------------------------------------------code du prof ----------------------------------------------->
-    </div>
-    <script src="js/script.js"></script>
-    <script src="bootstrap/bootstrap.bundle.min.js"></script>
-    <script src="bootstrap/bootstrap.min.js"></script>
-    <script src="bootstrap/jquery-3.6.0.min.js"></script>
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-    </body>
-    </html>
+</div>
+<script src="js/script.js"></script>
+<script src="bootstrap/bootstrap.bundle.min.js"></script>
+<script src="bootstrap/bootstrap.min.js"></script>
+<script src="bootstrap/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+</body>
+</html>
 
