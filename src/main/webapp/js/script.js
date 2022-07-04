@@ -2,13 +2,14 @@ function sliding() {
     document.getElementById("sliderValue").innerHTML = document.getElementById("slider").value + " $";
 }
 
-const he = jQuery('#he');
-const skin = jQuery('#skin');
-const analgesic = jQuery('#analgesic');
-const massage = jQuery("#massage");
-const taping = jQuery("#taping");
+
 
 $(document).on("click",'#productChoix',function () {
+    const he = jQuery('#he');
+    const skin = jQuery('#skin');
+    const analgesic = jQuery('#analgesic');
+    const massage = jQuery("#massage");
+    const taping = jQuery("#taping");
     he.prop('disabled', false);
     he.prop('checked', true);
     skin.prop('checked', true);
@@ -21,6 +22,11 @@ $(document).on("click",'#productChoix',function () {
     taping.prop('disabled', true);
 })
 $(document).on("click",'#treatmentChoix',function () {
+    const he = jQuery('#he');
+    const skin = jQuery('#skin');
+    const analgesic = jQuery('#analgesic');
+    const massage = jQuery("#massage");
+    const taping = jQuery("#taping");
     he.prop('disabled', true);
     he.prop('checked', false);
     skin.prop('disabled', true);

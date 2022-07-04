@@ -166,25 +166,24 @@
 
                         <!---------------------------------------------------Début de la boucle pour affichage----------------------------------------------------->
                         <script type="text/javascript">
-                            let url = 'ServletPanier';
+                            let url = "ServletPanier";
                             $(document).on("click", ".callProduit", function (event) {
                                 let id = $(this).data('id');
                                 let qty = $(this).closest('.cart-input').find('.qty-input').val();
-                                    $.post(url, {productId:id,quantityProduct:qty});
+                                $.post(url, {productId: id, quantityProduct: qty});
                                 event.preventDefault();
                             });
                             $(document).on("click", ".callSoin", function (event) {
                                 let id = $(this).data('id');
                                 let qty = $(this).closest('.cart-input').find('.qty-input').val();
-                                    $.post(url, {treatmentId:id,quantityTreatment:qty});
+                                $.post(url, {treatmentId: id, quantityTreatment: qty});
                                 event.preventDefault();
                             });
                         </script>
 
                         <form name="prodForm" action="ServletPanier" method="post">
-
                             <div class="row ajouter" id="productAffiche">
-                                <c:forEach var="ProduitChoisi" varStatus="loop" items="${sessionScope.listProduits}"
+                                <c:forEach var="ProduitChoisi" varStatus="loop" items="${sessionScope.listeProduits}"
                                            step="1" begin="0">
 
                                     <div class="col-3 text-left hidden" data-id="${ProduitChoisi.categorie}"
@@ -205,14 +204,10 @@
 
                                                     <!-- ICI on a la zone de texte pour saisir la quantité -->
                                                     <fmt:message key="quantity"/>:</a>
-                                                    <label>
-                                                        <input type="text" name="quantite" class="qty-input"
-                                                               SIZE="3" value=1>
-                                                    </label>
-                                                    <!--Ici on a un champ caché qui est renvoyé au controleur avec les autres
-                                                    données de la requête. ce champ caché va être lu par la servlet pour déterminer
-                                                     le traitement à exécuter
-                                                    -->
+                                                <label>
+                                                    <input type="text" name="quantite" class="qty-input"
+                                                           SIZE="3" value=1>
+                                                </label>
 
                                                 <a href="#" class="card-link">
                                                     <input type="hidden" name="action" value="ADD">
@@ -225,14 +220,14 @@
                                         </div>
                                     </div>
                                 </c:forEach>
-
                             </div>
+                        </form>
+                        <form name="soinForm" action="ServletPanier" method="post">
                             <div class="row" id="treatmentAffiche">
 
                                 <c:forEach var="SoinChoisi" varStatus="status" items="${sessionScope.listeSoins}"
                                            step="1" begin="0">
-
-                                    <div class="col-3 text-left " id="pC${SoinChoisi.idSoin}">
+                                    <div class="col-3 text-left hidden" id="sC${SoinChoisi.idSoin}">
 
                                         <div class="card ">
                                             <img src="${SoinChoisi.urlImage}" alt="${SoinChoisi.nom}"
@@ -240,38 +235,35 @@
                                             <div class="card-body">
                                                 <h5 class="card-title">${SoinChoisi.nom}</h5>
                                                 <p class="card-text">${SoinChoisi.description}</p>
-                                                <p class="card-text">D'une durée de ${SoinChoisi.duree} minute</p>
+                                                <p class="card-text">Le soin est d'une durée de ${SoinChoisi.duree}
+                                                    minutes</p>
                                             </div>
                                             <ul class="list-group list-group-flush">
-                                                <li class="list-group-item">${SoinChoisi.prix}</li>
+                                                <li class="list-group-item">Le prix du soin est
+                                                    de ${SoinChoisi.prix}</li>
                                             </ul>
                                             <div class="card-footer cart-input">
                                                 <a href="#" class="card-link">
 
                                                     <!-- ICI on a la zone de texte pour saisir la quantité -->
-                                                       <fmt:message key="quantity"/>:</a> <label>
-                                                    <input type="text" name="quantiteSoin"
-                                                           SIZE="3" value=1 id="${SoinChoisi.idSoin}" class="qty-input">
+                                                    <fmt:message key="quantity"/>:</a>
+                                                <label>
+                                                    <input type="text" name="quantiteSoin" class="qty-input"
+                                                           SIZE="3" value=1 id="${SoinChoisi.idSoin}">
                                                 </label>
-
-                                                    <!--Ici on a un champ caché qui est renvoyé au controleur avec les autres
-                                                    données de la requête. Puisque la servlet controleur va traiter les autres
-                                                    demandes: Supprimer un élément du panier, commander (Checkout), ce champ caché
-                                                    va être lu par la servlet pour déterminer le traitement à exécuter
-                                                    -->
-                                                    <input type="hidden" name="action" value="ADD">
-
+                                                <input type="hidden" name="action" value="ADD">
                                                 <a href="#" class="card-link">
+
                                                     <!-- en cliquant sur ce bouton, la requête est envoyée à la servlet -->
-                                                    <input type="button" name="Submit" class ="callSoin btn-light" onclick="submit()"
-                                                           value="<fmt:message key="addtocart"/>" data-id="${SoinChoisi.idSoin}">
+                                                    <input type="button" class="callSoin btn-light" name="Submit"
+                                                           onclick="submit()"
+                                                           value="<fmt:message key="addtocart"/>"
+                                                           data-id="${SoinChoisi.idSoin}">
                                                 </a>
                                             </div>
                                         </div>
                                     </div>
                                 </c:forEach>
-
-
                             </div>
                         </form>
                         <!---------------------------------------------------fin de affichage----------------------------------------------------->
