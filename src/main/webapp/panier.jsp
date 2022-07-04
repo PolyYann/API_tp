@@ -45,10 +45,9 @@
                                         <!--ajouter les lignes de produits---------------------------------->
                                         <c:forEach var="addedItem" varStatus="loop"
                                                    items="${sessionScope.listLigneCommande}" step="1" begin="0">
-                                            <p>${addedItem.produit}</p>
                                             <c:choose>
+                                                <c:when test="${!empty addedItem.produit}">
 
-                                                <c:when test="${addedItem.produit}!=null">
                                                     <div class="row mb-4 d-flex justify-content-between align-items-center">
                                                         <div class="col-md-2 col-lg-2 col-xl-2">
                                                             <img src="${addedItem.produit.urlImage}"
@@ -56,37 +55,27 @@
                                                                  alt="${addedItem.produit.nom}">
                                                         </div>
                                                         <div class="col-md-3 col-lg-3 col-xl-3">
-                                                            <h6 class="text-muted">${addedItem.produit.prix}</h6>
-                                                            <h6 class="text-black mb-0">${addedItem.produit.prix}</h6>
+                                                            <h6 class="text-black mb-0">${addedItem.produit.nom}</h6>
+                                                        </div>
+                                                        <div class="col-md-3 col-lg-3 col-xl-3">
+                                                            <h6 class="text-black mb-0">Prix Unitaire</h6>
+                                                           <h6 class="text-black mb-0">${addedItem.produit.prix}</h6>
                                                         </div>
                                                         <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                                            <button class="btn btn-link px-2"
-                                                                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                                                <i class="fas fa-minus"></i>
-                                                            </button>
 
-                                                            <input id="formPanier" min="0" name="quantity" value="1"
-                                                                   type="number"
+                                                            <input id="formPanierProduit" min="0" name="quantity" value="${addedItem.quantite}"
+                                                                   type="number" disabled="true"
                                                                    class="form-control form-control-sm"/>
-                                                            <button class="btn btn-link px-2"
-                                                                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                                                <i class="fas fa-plus"></i>
-                                                            </button>
                                                         </div>
-                                                        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                                            <h6 class="mb-0">${addedItem.produit.prix}}</h6>
-                                                        </div>
-                                                        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                                            <h6 class="mb-0">insérer ici : $ {choix.total} ligne
-                                                                produit</h6>
-                                                        </div>
+
                                                         <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                                                             <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
                                                         </div>
                                                     </div>
                                                 </c:when>
 
-                                                <c:when test="${addedItem.soin}!=null">
+                                                <c:when test="${!empty addedItem.soin}">
+
                                                     <div class="row mb-4 d-flex justify-content-between align-items-center">
                                                         <div class="col-md-2 col-lg-2 col-xl-2">
                                                             <img src="${addedItem.soin.urlImage}"
@@ -94,70 +83,29 @@
                                                                  alt="${addedItem.soin.nom}">
                                                         </div>
                                                         <div class="col-md-3 col-lg-3 col-xl-3">
-                                                            <h6 class="text-muted">${addedItem.soin.prix}</h6>
+                                                            <h6 class="text-black mb-0">${addedItem.soin.nom}</h6>
+                                                        </div>
+                                                        <div class="col-md-3 col-lg-3 col-xl-3">
+                                                            <h6 class="text-black mb-0">Prix Unitaire</h6>
                                                             <h6 class="text-black mb-0">${addedItem.soin.prix}</h6>
                                                         </div>
                                                         <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                                            <button class="btn btn-link px-2"
-                                                                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                                                <i class="fas fa-minus"></i>
-                                                            </button>
 
-                                                            <input id="formPanierSoin" min="0" name="quantity" value="1"
-                                                                   type="number"
+                                                            <input id="formPanierSoin" min="0" name="quantity" value="${addedItem.quantite}"
+                                                                   type="number" disabled="true"
                                                                    class="form-control form-control-sm"/>
-                                                            <button class="btn btn-link px-2"
-                                                                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                                                <i class="fas fa-plus"></i>
-                                                            </button>
                                                         </div>
-                                                        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                                            <h6 class="mb-0">${addedItem.soin.prix}}</h6>
-                                                        </div>
-                                                        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                                            <h6 class="mb-0">insérer ici : $ {choix.total} ligne
-                                                                soin</h6>
-                                                        </div>
+
                                                         <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                                                             <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
                                                         </div>
                                                     </div>
-
                                                 </c:when>
                                             </c:choose>
                                         </c:forEach>
 
 
-                                        <hr class="my-4">
-                                        <div class="row mb-4 d-flex justify-content-between align-items-center">
-                                            <div class="col-md-2 col-lg-2 col-xl-2">
-                                                <img
-                                                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img6.webp"
-                                                        class="img-fluid rounded-3" alt="Cotton T-shirt">
-                                            </div>
-                                            <div class="col-md-3 col-lg-3 col-xl-3">
-                                                <h6 class="text-muted">Shirt</h6>
-                                                <h6 class="text-black mb-0">Cotton T-shirt</h6>
-                                            </div>
-                                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                                <button class="btn btn-link px-2"
-                                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                                    <i class="fas fa-minus"></i>
-                                                </button>
-                                                <input id="form1" min="0" name="quantity" value="1" type="number"
-                                                       class="form-control form-control-sm"/>
-                                                <button class="btn btn-link px-2"
-                                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                                    <i class="fas fa-plus"></i>
-                                                </button>
-                                            </div>
-                                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                                <h6 class="mb-0">€ 44.00</h6>
-                                            </div>
-                                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                                <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
-                                            </div>
-                                        </div>
+
                                         <div>
                                             <form name="checkoutForm" action="ServletPanier" method="post">
                                                 <input type="hidden" name="action" value="checkout">
