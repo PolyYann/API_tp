@@ -170,13 +170,14 @@
                             $(document).on("click", ".callProduit", function (event) {
                                 let id = $(this).data('id');
                                 let qty = $(this).closest('.cart-input').find('.qty-input').val();
-                                let params = {
-                                    id: id,
-                                    qty: qty
-                                };
                                     $.post(url, {productId:id,quantityProduct:qty});
-                                // event.preventDefault();
-                            });</script>
+                            });
+                            $(document).on("click", ".callTreatment", function (event) {
+                                let id = $(this).data('id');
+                                let qty = $(this).closest('.cart-input').find('.qty-input').val();
+                                    $.post(url, {treatmentId:id,quantityTreatment:qty});
+                            });
+                        </script>
 
                         <form name="prodForm" action="ServletPanier" method="post">
 

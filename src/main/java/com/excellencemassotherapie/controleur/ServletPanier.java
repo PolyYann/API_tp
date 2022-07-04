@@ -67,9 +67,9 @@ public class ServletPanier extends HttpServlet {
         Soin soinAAjouter = new Soin();
 //        String params = request.getParameter("params");
         String idProd = request.getParameter("productId");
-        String idSoin = request.getParameter("soinId");
+        String idSoin = request.getParameter("treatmentId");
         String quantiteProduit = request.getParameter("quantityProduct");
-        String quantiteSoin = request.getParameter("quantitySoin");
+        String quantiteSoin = request.getParameter("quantityTreatment");
         boolean ajax = "XMLHttpRequest".equals(request.getHeader("X-Requested-With"));
 
         if (ajax) {
