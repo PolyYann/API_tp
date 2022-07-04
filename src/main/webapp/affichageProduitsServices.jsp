@@ -246,7 +246,6 @@
                                                 <input type="hidden" name="action" value="ADD">
                                                     <!-- en cliquant sur ce bouton, la requête est envoyée à la servlet -->
                                                     <input type="button" class="call btn-light" name="Submit"
-                                                           onclick="submit()"
                                                            value="<fmt:message key="addtocart"/>"
                                                            data-id="${SoinChoisi.idSoin}">
 

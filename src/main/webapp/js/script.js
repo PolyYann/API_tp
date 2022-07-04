@@ -1,9 +1,6 @@
 function sliding() {
     document.getElementById("sliderValue").innerHTML = document.getElementById("slider").value + " $";
 }
-
-
-
 $(document).on("click",'#productChoix',function () {
     const he = jQuery('#he');
     const skin = jQuery('#skin');
