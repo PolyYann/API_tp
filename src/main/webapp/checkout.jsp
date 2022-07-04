@@ -30,7 +30,7 @@
         <hr class="my-4">
         <div class="d-flex justify-content-between mb-5">
             <h5 class="text-uppercase"><fmt:message key="totalInvoice"/></h5>
-            <h5>  devrait être totalPanier ${sessionScope.totalPanier}</h5>
+            <h5>${sessionScope.totalPanier} $</h5>
         </div>
 
         <form name="checkoutForm" action="ServletClearCart"  method="post">

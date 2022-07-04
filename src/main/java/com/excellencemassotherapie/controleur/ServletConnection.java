@@ -46,9 +46,12 @@ public class ServletConnection extends HttpServlet {
 
         Client client = new Client();
         client.setNom(request.getParameter("nom"));
+//        client.setEmail(request.getParameter("email"));
+//        client.setAdresse(request.getParameter("address"));
+//        client.setTelephone(request.getParameter("phone"));
 
 
-        List<LigneCommande> commandeEnCours = (ArrayList) session.getAttribute("listLigneCommande");
+        List<LigneCommande> commandeEnCours = (List) session.getAttribute("listLigneCommande");
 
         if (action.equals("signin")) {
             for(Client tmpClient: allClients){
@@ -66,6 +69,7 @@ public class ServletConnection extends HttpServlet {
                 if (panierBD.getClient().getNom().equals(client.getNom()) && !panierBD.isPaye()) {
                     panierClientEnCours = panierBD;
                     if (panierClientEnCours.getClient() != null) { //si le client existe déjà dans la base de données
+//voir si le code suivant est requis
                         for (LigneCommande tmpLCBD : allLignBd) {
                             if (tmpLCBD.getPanier().getIdPanier() == panierClientEnCours.getIdPanier()) {//on récupère les lignes de commande en cours
                                 if (!commandeEnCours.contains(tmpLCBD)) {//si ligne existe pas ajouter la ligne à la commande en cours
@@ -90,11 +94,11 @@ public class ServletConnection extends HttpServlet {
             }
 
 
-        }else if(action.equals("signup")){
+        }else if(action.contains("signup")){
             client.setPassword(mdpSaisi);
-            client.setTelephone(request.getParameter("telephone"));
+            client.setTelephone(request.getParameter("phone"));
             client.setEmail(request.getParameter("email"));
-            client.setAdresse(request.getParameter("adresse"));
+            client.setAdresse(request.getParameter("address"));
             List<Client> listClient = clientDAO.getAll();
             for (Client temp : listClient) {
                 if (!temp.getNom().equals(client.getNom())) {

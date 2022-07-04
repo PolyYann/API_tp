@@ -21,14 +21,14 @@
 
 <!-- Email input -->
 <div class="form-outline mb-4">
-    <input type="email" id="email" class="form-control" />
+    <input type="email" name="email" class="form-control" />
     <label class="form-label"><fmt:message key="email"/></label>
 </div>
 <div class="form-outline mb-4">
-    <input type="text" id="phone" class="form-control" />
+    <input type="text" name="phone" class="form-control" />
     <label class="form-label"><fmt:message key="phone"/></label>
 </div>
 <div class="form-outline mb-4">
-    <input type="text" id="address" class="form-control" />
+    <input type="text" name="address" class="form-control" />
     <label class="form-label"><fmt:message key="address"/></label>
 </div>

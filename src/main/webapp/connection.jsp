@@ -35,8 +35,6 @@
 
     <form name="maformConnection" action="ServletConnection" method="post">
 
-
-        <!-- Section: Design Block -->
         <section class="text-center text-lg-start">
             <style>
                 .cascading-right {
@@ -50,7 +48,7 @@
                 }
             </style>
 
-            <!-- Jumbotron -->
+
             <div class="container py-4">
                 <div class="row g-0 align-items-center">
                     <div class="col-lg-6 mb-5 mb-lg-0">
@@ -104,11 +102,6 @@
                                         </button>
                                     </c:if>
 
-
-
-
-
-
                                 </form>
                             </div>
                         </div>
@@ -120,11 +113,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Jumbotron -->
         </section>
-        <!-- Section: Design Block -->
-
-
     </form>
 
 </div>
