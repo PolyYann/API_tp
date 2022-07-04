@@ -162,26 +162,21 @@
                     </div>
 
                     <div class="col-9">
-
+                        <form name="prodForm" action="ServletPanier" method="post">
 
                         <!---------------------------------------------------Début de la boucle pour affichage----------------------------------------------------->
                         <script type="text/javascript">
                             let url = "ServletPanier";
-                            $(document).on("click", ".callProduit", function (event) {
+                            $(document).on("click", ".call", function (event) {
+                                let type = $(this).closest('.cart-input').find('input').attr('name');
                                 let id = $(this).data('id');
                                 let qty = $(this).closest('.cart-input').find('.qty-input').val();
-                                $.post(url, {productId: id, quantityProduct: qty});
-                                event.preventDefault();
-                            });
-                            $(document).on("click", ".callSoin", function (event) {
-                                let id = $(this).data('id');
-                                let qty = $(this).closest('.cart-input').find('.qty-input').val();
-                                $.post(url, {treatmentId: id, quantityTreatment: qty});
+                                $.post(url, {type:type,id:id,quantity:qty});
                                 event.preventDefault();
                             });
                         </script>
 
-                        <form name="prodForm" action="ServletPanier" method="post">
+
                             <div class="row ajouter" id="productAffiche">
                                 <c:forEach var="ProduitChoisi" varStatus="loop" items="${sessionScope.listeProduits}"
                                            step="1" begin="0">
@@ -199,30 +194,28 @@
                                             <ul class="list-group list-group-flush">
                                                 <li class="list-group-item">${ProduitChoisi.prix}</li>
                                             </ul>
-                                            <div class="card-footer cart-input">
-                                                <a href="#" class="card-link">
+                                            <div class="card-footer cart-input" data-id="produit">
+                                                <input type="hidden" name="produit">
 
                                                     <!-- ICI on a la zone de texte pour saisir la quantité -->
-                                                    <fmt:message key="quantity"/>:</a>
+                                                    <fmt:message key="quantity"/>:
                                                 <label>
                                                     <input type="text" name="quantite" class="qty-input"
                                                            SIZE="3" value=1>
                                                 </label>
 
-                                                <a href="#" class="card-link">
+
                                                     <input type="hidden" name="action" value="ADD">
                                                     <!-- en cliquant sur ce bouton, la requête est envoyée à la servlet -->
-                                                    <input type="button" class="callProduit btn-light" name="Submit"
+                                                    <input type="button" class="call btn-light" name="Submit"
                                                            value="<fmt:message key="addtocart"/>"
                                                            data-id="${ProduitChoisi.idProduit}">
-                                                </a>
+
                                             </div>
                                         </div>
                                     </div>
                                 </c:forEach>
                             </div>
-                        </form>
-                        <form name="soinForm" action="ServletPanier" method="post">
                             <div class="row" id="treatmentAffiche">
 
                                 <c:forEach var="SoinChoisi" varStatus="status" items="${sessionScope.listeSoins}"
@@ -242,24 +235,21 @@
                                                 <li class="list-group-item">Le prix du soin est
                                                     de ${SoinChoisi.prix}</li>
                                             </ul>
-                                            <div class="card-footer cart-input">
-                                                <a href="#" class="card-link">
-
+                                            <div class="card-footer cart-input" data-id="soin">
+                                                <input type="hidden" name="soin">
                                                     <!-- ICI on a la zone de texte pour saisir la quantité -->
-                                                    <fmt:message key="quantity"/>:</a>
+                                                    <fmt:message key="quantity"/>:
                                                 <label>
                                                     <input type="text" name="quantiteSoin" class="qty-input"
                                                            SIZE="3" value=1 id="${SoinChoisi.idSoin}">
                                                 </label>
                                                 <input type="hidden" name="action" value="ADD">
-                                                <a href="#" class="card-link">
-
                                                     <!-- en cliquant sur ce bouton, la requête est envoyée à la servlet -->
-                                                    <input type="button" class="callSoin btn-light" name="Submit"
+                                                    <input type="button" class="call btn-light" name="Submit"
                                                            onclick="submit()"
                                                            value="<fmt:message key="addtocart"/>"
                                                            data-id="${SoinChoisi.idSoin}">
-                                                </a>
+
                                             </div>
                                         </div>
                                     </div>

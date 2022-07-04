@@ -1,6 +1,7 @@
 package com.excellencemassotherapie.controleur;
 
 import com.excellencemassotherapie.DAO.LigneCommandDAO;
+import com.excellencemassotherapie.DAO.ProduitDAO;
 import com.excellencemassotherapie.modele.LigneCommande;
 import com.excellencemassotherapie.modele.Panier;
 import com.excellencemassotherapie.modele.Produit;
@@ -15,7 +16,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -26,8 +26,7 @@ import java.util.List;
 public class ServletPanier extends HttpServlet {
 
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException,
-            IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
         /**
@@ -62,18 +61,24 @@ public class ServletPanier extends HttpServlet {
 
         // création des attributs requis dans le code de la servlet
         LigneCommandDAO ligneCommandeDAO = new LigneCommandDAO();
+        ProduitDAO produitDAO = new ProduitDAO();
         LigneCommande ligneCommandeAAjouter = null;
         Produit produitAAjouter = new Produit();
         Soin soinAAjouter = new Soin();
-//        String params = request.getParameter("params");
-        String idProd = request.getParameter("productId");
-        String idSoin = request.getParameter("treatmentId");
-        String quantiteProduit = request.getParameter("quantityProduct");
-        String quantiteSoin = request.getParameter("quantityTreatment");
+        String type = request.getParameter("type");
+        String id = request.getParameter("id");
+        String quantiteParam = request.getParameter("quantity");
         boolean ajax = "XMLHttpRequest".equals(request.getHeader("X-Requested-With"));
-
+        String idProd = "", quantiteProduit = "", idSoin = "", quantiteSoin = "";
         if (ajax) {
-
+            if (type.contains("soin")) {
+                idSoin = id;
+                quantiteSoin = quantiteParam;
+            }
+            if (type.contains("produit")) {
+                idProd = id;
+                quantiteProduit = quantiteParam;
+            }
             //booleen qui va être utilisé pour vérifier si l'item est déjà dans les lignes de commandes en cours
             boolean match = false;
             int idProduitAAjouter = -1, quantiteProduitAAjouter = -1;
@@ -86,12 +91,14 @@ public class ServletPanier extends HttpServlet {
                 /**
                  * obtenir les détails de l'item à ajouter
                  */
-                List<Produit> listProduits = (List<Produit>) session.getAttribute("listProduits");
+                List<Produit> listProduits = produitDAO.getAll();
                 for (Produit produit : listProduits) {
                     if (produit.getIdProduit() == idProduitAAjouter) {
                         produitAAjouter = produit;
                     }
                 }
+                ligneCommandeAAjouter = new LigneCommande(produitAAjouter, quantiteProduitAAjouter, panierEnCours);
+
             }
             if (idSoin != null && quantiteSoin != null) {
                 idSoinAAjouter = Integer.parseInt(idSoin);
@@ -106,15 +113,6 @@ public class ServletPanier extends HttpServlet {
                         soinAAjouter = soin;
                     }
                 }
-            }
-
-            /**
-             * ajouter le Produit dans la ligne commande
-             */
-            if (idProduitAAjouter != -1 || quantiteProduitAAjouter != -1) {
-                ligneCommandeAAjouter = new LigneCommande(produitAAjouter, quantiteProduitAAjouter, panierEnCours);
-            }
-            if (idSoinAAjouter != -1 || quantiteSoinAAjouter != -1) {
                 ligneCommandeAAjouter = new LigneCommande(soinAAjouter, quantiteSoinAAjouter, panierEnCours);
             }
 
@@ -127,8 +125,7 @@ public class ServletPanier extends HttpServlet {
                     LigneCommande ligneCommandeExistante = listLigneCommande.get(i);
 
                     // si on trouve l'item dans la ligne de commande
-                    if (ligneCommandeExistante.getProduit().getIdProduit() == ligneCommandeAAjouter.getProduit().getIdProduit()
-                            || ligneCommandeExistante.getSoin().getIdSoin() == ligneCommandeAAjouter.getSoin().getIdSoin()) {
+                    if (ligneCommandeExistante.getProduit().getIdProduit() == ligneCommandeAAjouter.getProduit().getIdProduit() || ligneCommandeExistante.getSoin().getIdSoin() == ligneCommandeAAjouter.getSoin().getIdSoin()) {
 
                         //on va modifier la quantité en lui ajoutantant la nouvelle quantité
                         ligneCommandeExistante.setQuantite(ligneCommandeExistante.getQuantite() + ligneCommandeAAjouter.getQuantite());
@@ -147,7 +144,6 @@ public class ServletPanier extends HttpServlet {
                     listLigneCommande.add(ligneCommandeAAjouter);
                 }
             }
-
 
 
             //suite à l'ajout ou à la suppression on doit RÉ-ATTACHER à la session
@@ -214,14 +210,12 @@ public class ServletPanier extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws
-            ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws
-            ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         processRequest(request, response);
     }
 

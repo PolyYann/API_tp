@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="css/bootstrap-grid.min.css"/>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://bootstrap-colors-extended.herokuapp.com/bootstrap-colors.css"/>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 <body>
@@ -224,9 +224,9 @@
     ---------------------------------------------------------------code du prof ----------------------------------------------->
 </div>
 <script src="js/script.js"></script>
-<script src="bootstrap/bootstrap.bundle.min.js"></script>
-<script src="bootstrap/bootstrap.min.js"></script>
-<script src="bootstrap/jquery-3.6.0.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+
+
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 </body>
 </html>
