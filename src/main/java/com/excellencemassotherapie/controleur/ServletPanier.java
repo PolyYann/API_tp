@@ -100,7 +100,7 @@ public class ServletPanier extends HttpServlet {
                 /**
                  * obtenir les détails de l'item à ajouter
                  */
-                List<Soin> listSoins = (List<Soin>) session.getAttribute("listSoins");
+                List<Soin> listSoins = (List<Soin>) session.getAttribute("listeSoins");
                 for (Soin soin : listSoins) {
                     if (soin.getIdSoin() == idSoinAAjouter) {
                         soinAAjouter = soin;

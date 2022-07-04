@@ -171,11 +171,13 @@
                                 let id = $(this).data('id');
                                 let qty = $(this).closest('.cart-input').find('.qty-input').val();
                                     $.post(url, {productId:id,quantityProduct:qty});
+                                event.preventDefault();
                             });
-                            $(document).on("click", ".callTreatment", function (event) {
+                            $(document).on("click", ".callSoin", function (event) {
                                 let id = $(this).data('id');
                                 let qty = $(this).closest('.cart-input').find('.qty-input').val();
                                     $.post(url, {treatmentId:id,quantityTreatment:qty});
+                                event.preventDefault();
                             });
                         </script>
 
@@ -243,13 +245,13 @@
                                             <ul class="list-group list-group-flush">
                                                 <li class="list-group-item">${SoinChoisi.prix}</li>
                                             </ul>
-                                            <div class="card-footer">
+                                            <div class="card-footer cart-input">
                                                 <a href="#" class="card-link">
 
                                                     <!-- ICI on a la zone de texte pour saisir la quantité -->
-                                                    <fmt:message key="quantity"/>:<label>
-                                                    <input type="text" name="quantite"
-                                                           SIZE="3" value=1 id="${SoinChoisi.idSoin}">
+                                                       <fmt:message key="quantity"/>:</a> <label>
+                                                    <input type="text" name="quantiteSoin"
+                                                           SIZE="3" value=1 id="${SoinChoisi.idSoin}" class="qty-input">
                                                 </label>
 
                                                     <!--Ici on a un champ caché qui est renvoyé au controleur avec les autres
@@ -258,11 +260,11 @@
                                                     va être lu par la servlet pour déterminer le traitement à exécuter
                                                     -->
                                                     <input type="hidden" name="action" value="ADD">
-                                                </a>
+
                                                 <a href="#" class="card-link">
                                                     <!-- en cliquant sur ce bouton, la requête est envoyée à la servlet -->
-                                                    <input type="button" name="Submit" onclick="submit()"
-                                                           value="<fmt:message key="addtocart"/>">
+                                                    <input type="button" name="Submit" class ="callSoin btn-light" onclick="submit()"
+                                                           value="<fmt:message key="addtocart"/>" data-id="${SoinChoisi.idSoin}">
                                                 </a>
                                             </div>
                                         </div>
