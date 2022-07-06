@@ -52,9 +52,8 @@ public class ServletConnection extends HttpServlet {
 
         if (action.equals("signin")) {
             for (Client tmpClient : allClients) {
-
                 if (tmpClient.getNom().equals(client.getNom())) {
-                    if (tmpClient.getPassword().equals(mdpSaisi)) {
+                    if(tmpClient.getPassword().equals(mdpSaisi)) {
                         client = tmpClient;
                     }
                     destination = "/accueil.jsp";
@@ -84,12 +83,12 @@ public class ServletConnection extends HttpServlet {
                     }
                 }
             }
-        }
-        if (panierClientEnCours.getClient() != null && commandeEnCours != null) {
-            for (LigneCommande ligneCommande : commandeEnCours) {
-                ligneCommande.setPanier(panierClientEnCours);
-            }
 
+            if (panierClientEnCours.getClient() != null && commandeEnCours != null) {
+                for (LigneCommande ligneCommande : commandeEnCours) {
+                    ligneCommande.setPanier(panierClientEnCours);
+                }
+            }
         } else if (action.contains("signup")) {
             client.setPassword(mdpSaisi);
             client.setTelephone(request.getParameter("phone"));
@@ -106,7 +105,7 @@ public class ServletConnection extends HttpServlet {
 
         //créer l'objet de session
         session.setAttribute("client", client);
-        clientDAO.insert(client);
+       
         session.setAttribute("listLigneCommande", commandeEnCours);
         session.setAttribute("panierOut", panierClientEnCours);
 
