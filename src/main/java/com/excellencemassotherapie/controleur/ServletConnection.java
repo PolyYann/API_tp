@@ -62,22 +62,24 @@ public class ServletConnection extends HttpServlet {
                     }
                     destination = "/accueil.jsp";
                 }else{
-                    destination= "/enregistrer.jsp?action=signup";
+                    destination= "/connection.jsp?action=signup";
                 }
             }
             for (Panier panierBD : listPaniers) {
-                if (panierBD.getClient().getNom().equals(client.getNom()) && !panierBD.isPaye()) {
-                    panierClientEnCours = panierBD;
-                    if (panierClientEnCours.getClient() != null) { //si le client existe déjà dans la base de données
+                if(panierBD.getClient()!=null) {
+                    if (panierBD.getClient().getNom().equals(client.getNom()) && !panierBD.isPaye()) {
+                        panierClientEnCours = panierBD;
+                        if (panierClientEnCours.getClient() != null) { //si le client existe déjà dans la base de données
 //voir si le code suivant est requis
-                        for (LigneCommande tmpLCBD : allLignBd) {
-                            if (tmpLCBD.getPanier().getIdPanier() == panierClientEnCours.getIdPanier()) {//on récupère les lignes de commande en cours
-                                if (!commandeEnCours.contains(tmpLCBD)) {//si ligne existe pas ajouter la ligne à la commande en cours
-                                    commandeEnCours.add(tmpLCBD);
-                                } else {
-                                    for (LigneCommande tmpLCEC : commandeEnCours) { //si ligne existe et on ajuste quantité
-                                        if (tmpLCEC.getIdLigneCommande() == tmpLCBD.getIdLigneCommande()) {
-                                            tmpLCEC.setQuantite(tmpLCEC.getQuantite() + tmpLCBD.getQuantite());
+                            for (LigneCommande tmpLCBD : allLignBd) {
+                                if (tmpLCBD.getPanier().getIdPanier() == panierClientEnCours.getIdPanier()) {//on récupère les lignes de commande en cours
+                                    if (!commandeEnCours.contains(tmpLCBD)) {//si ligne existe pas ajouter la ligne à la commande en cours
+                                        commandeEnCours.add(tmpLCBD);
+                                    } else {
+                                        for (LigneCommande tmpLCEC : commandeEnCours) { //si ligne existe et on ajuste quantité
+                                            if (tmpLCEC.getIdLigneCommande() == tmpLCBD.getIdLigneCommande()) {
+                                                tmpLCEC.setQuantite(tmpLCEC.getQuantite() + tmpLCBD.getQuantite());
+                                            }
                                         }
                                     }
                                 }
@@ -85,7 +87,6 @@ public class ServletConnection extends HttpServlet {
                         }
                     }
                 }
-
             }
             if (panierClientEnCours.getClient() != null && commandeEnCours != null) {
                 for (LigneCommande ligneCommande : commandeEnCours) {
@@ -110,6 +111,7 @@ public class ServletConnection extends HttpServlet {
 
         //créer l'objet de session
         session.setAttribute("client", client);
+        clientDAO.insert(client);
         session.setAttribute("listLigneCommande", commandeEnCours);
         session.setAttribute("panierOut", panierClientEnCours);
 

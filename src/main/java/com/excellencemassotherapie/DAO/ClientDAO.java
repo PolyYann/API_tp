@@ -62,7 +62,7 @@ public class ClientDAO implements ICommonDAO<Client> {
         entityManager = entityManagerFactory.createEntityManager();
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(client);
+            entityManager.merge(client);
             entityManager.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();

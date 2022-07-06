@@ -1,12 +1,10 @@
 package com.excellencemassotherapie.controleur;
 
+import com.excellencemassotherapie.DAO.ClientDAO;
 import com.excellencemassotherapie.DAO.LigneCommandDAO;
 import com.excellencemassotherapie.DAO.ProduitDAO;
 import com.excellencemassotherapie.DAO.SoinDAO;
-import com.excellencemassotherapie.modele.LigneCommande;
-import com.excellencemassotherapie.modele.Panier;
-import com.excellencemassotherapie.modele.Produit;
-import com.excellencemassotherapie.modele.Soin;
+import com.excellencemassotherapie.modele.*;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -186,11 +184,11 @@ public class ServletPanier extends HttpServlet {
              * n.b. pour savoir quoi faire (Go au panieer ou checkout)
              */
             String action = request.getParameter("action");
-
+            String url = "";
             //Si action = goCart (aller au panier)
             if (action.equals("goCart")) {
 
-                String url = "/panier.jsp";
+                url = "/panier.jsp";
                 RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
                 rd.forward(request, response);
 
@@ -203,44 +201,49 @@ public class ServletPanier extends HttpServlet {
                 double totalLigneCommande = 0;
                 double prixUnit = 0;
                 double totalPanier = 0;
+                Client client = (Client) session.getAttribute("client");
+                if (client != null) {
+                    for (LigneCommande ligneCommandeProduit : listLigneCommandeProduits) {
 
-                for (LigneCommande ligneCommandeProduit : listLigneCommandeProduits) {
+                        prixUnit = ligneCommandeProduit.getProduit().getPrix();
 
-                    prixUnit = ligneCommandeProduit.getProduit().getPrix();
+                        int quantite = ligneCommandeProduit.getQuantite();
+                        totalLigneCommande = (prixUnit * quantite);
+                        totalPanier += totalLigneCommande;
+                    }
 
-                    int quantite = ligneCommandeProduit.getQuantite();
-                    totalLigneCommande = (prixUnit * quantite);
-                    totalPanier += totalLigneCommande;
+                    for (LigneCommande ligneCommandeSoin : listLigneCommandeSoins) {
+
+                        prixUnit = ligneCommandeSoin.getProduit().getPrix();
+
+                        int quantite = ligneCommandeSoin.getQuantite();
+                        totalLigneCommande = (prixUnit * quantite);
+                        totalPanier += totalLigneCommande;
+                    }
+
+                    session.setAttribute("totalPanier", totalPanier);
+
+
+                    //on redirige la requête vers la page de Checkout
+                    url = "/panier.jsp"; //------------------------------pas certine que je peux passer un parametre ici
+                } else {
+                    url = "/connexion.jsp?action=signin";
                 }
-
-                for (LigneCommande ligneCommandeSoin : listLigneCommandeSoins) {
-
-                    prixUnit = ligneCommandeSoin.getProduit().getPrix();
-
-                    int quantite = ligneCommandeSoin.getQuantite();
-                    totalLigneCommande = (prixUnit * quantite);
-                    totalPanier += totalLigneCommande;
-                }
-
-                session.setAttribute("totalPanier", totalPanier);
-
-
-                //on redirige la requête vers la page de Checkout
-                String url = "/panier.jsp"; //------------------------------pas certine que je peux passer un parametre ici
                 RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
                 rd.forward(request, response);
             }
         }
-
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws
+            ServletException, IOException {
         processRequest(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws
+            ServletException, IOException {
         processRequest(request, response);
     }
 
