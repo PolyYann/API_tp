@@ -32,7 +32,19 @@ public class ServletAffichage extends HttpServlet {
         List<Produit> listeProduitsFiltre = new ArrayList<>();
         String[] choix = request.getParameterValues("choix");
         String tousChoix = "";
-
+        int valeurMax = Integer.parseInt(request.getParameter("slider"));
+        if(valeurMax!=200) {
+            for (Soin soin : listeSoins) {
+                if (soin.getPrix() <= valeurMax) {
+                    listeSoinsFiltree.add(soin);
+                }
+            }
+            for (Produit produit : listeProduits) {
+                if (produit.getPrix() <= valeurMax) {
+                    listeProduitsFiltre.add(produit);
+                }
+            }
+        }
         if (choix != null) {
 
             for (String s : choix) {
