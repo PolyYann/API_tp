@@ -122,6 +122,7 @@ public class ServletPanier extends HttpServlet {
                     listLigneCommandeProduits.add(ligneCommandeProduitAAjouter);
                 }
             }
+
             if (type.contains("soin")) {
                 idSoinAAjouter = Integer.parseInt(id);
                 quantiteSoinAAjouter = Integer.parseInt(quantiteParam);
@@ -159,7 +160,6 @@ public class ServletPanier extends HttpServlet {
                 //on va devoir l'ajouter
                 if (!match) {
                     //on ajoute l'item à la liste de ligne de commande selon le type de produit
-                    listLigneCommandeProduits.add(ligneCommandeProduitAAjouter);
                     listLigneCommandeSoins.add(ligneCommandeSoinAAjouter);
                 }
 
@@ -227,7 +227,7 @@ public class ServletPanier extends HttpServlet {
                     //on redirige la requête vers la page de Checkout
                     url = "/panier.jsp"; //------------------------------pas certine que je peux passer un parametre ici
                 } else {
-                    url = "/connexion.jsp?action=signin";
+                    url = "/connection.jsp?action=signin";
                 }
                 RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
                 rd.forward(request, response);

@@ -65,7 +65,6 @@
                                                            type="number" disabled="true"
                                                            class="form-control form-control-sm"/>
                                                 </div>
-
                                                 <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                                                     <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
                                                 </div>
@@ -73,7 +72,7 @@
                                         </c:forEach>
 
                                         <c:forEach var="addedItem" varStatus="loop"
-                                                   items="${sessionScope.listLigneCommandeSoinss}" step="1" begin="0">
+                                                   items="${sessionScope.listLigneCommandeSoins}" step="1" begin="0">
                                             <div class="row mb-4 d-flex justify-content-between align-items-center">
                                                 <div class="col-md-2 col-lg-2 col-xl-2">
                                                     <img src="${addedItem.soin.urlImage}"
@@ -99,9 +98,7 @@
                                                     <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
                                                 </div>
                                             </div>
-
                                         </c:forEach>
-
 
                                         <div>
                                             <form name="checkoutForm" action="ServletPanier" method="post">
@@ -110,7 +107,6 @@
                                                        value="<fmt:message key="closeCart"/>">
                                             </form>
                                         </div>
-
 
                                         <!-- partie pour retourner magasiner--------------------------------------------->
 
