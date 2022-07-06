@@ -42,44 +42,39 @@ public class ServletConnection extends HttpServlet {
         String source = "";
         String destination = "";
         String mdpSaisi = request.getParameter("password");
-        String action =  request.getParameter("send");
+        String action = request.getParameter("send");
 
         Client client = new Client();
         client.setNom(request.getParameter("nom"));
-//        client.setEmail(request.getParameter("email"));
-//        client.setAdresse(request.getParameter("address"));
-//        client.setTelephone(request.getParameter("phone"));
 
 
         List<LigneCommande> commandeEnCours = (List) session.getAttribute("listLigneCommande");
 
         if (action.equals("signin")) {
-            for(Client tmpClient: allClients){
+            for (Client tmpClient : allClients) {
 
-                if(tmpClient.getNom().equals(client.getNom())){
-                    if(tmpClient.getPassword().equals(mdpSaisi)){
+                if (tmpClient.getNom().equals(client.getNom())) {
+                    if (tmpClient.getPassword().equals(mdpSaisi)) {
                         client = tmpClient;
                     }
                     destination = "/accueil.jsp";
-                }else{
-                    destination= "/connection.jsp?action=signup";
+                } else {
+                    destination = "/connection.jsp?action=signup";
                 }
             }
             for (Panier panierBD : listPaniers) {
-                if(panierBD.getClient()!=null) {
-                    if (panierBD.getClient().getNom().equals(client.getNom()) && !panierBD.isPaye()) {
-                        panierClientEnCours = panierBD;
-                        if (panierClientEnCours.getClient() != null) { //si le client existe déjà dans la base de données
+                if (panierBD.getClient().getNom().equals(client.getNom()) && !panierBD.isPaye()) {
+                    panierClientEnCours = panierBD;
+                    if (panierClientEnCours.getClient() != null) { //si le client existe déjà dans la base de données
 //voir si le code suivant est requis
-                            for (LigneCommande tmpLCBD : allLignBd) {
-                                if (tmpLCBD.getPanier().getIdPanier() == panierClientEnCours.getIdPanier()) {//on récupère les lignes de commande en cours
-                                    if (!commandeEnCours.contains(tmpLCBD)) {//si ligne existe pas ajouter la ligne à la commande en cours
-                                        commandeEnCours.add(tmpLCBD);
-                                    } else {
-                                        for (LigneCommande tmpLCEC : commandeEnCours) { //si ligne existe et on ajuste quantité
-                                            if (tmpLCEC.getIdLigneCommande() == tmpLCBD.getIdLigneCommande()) {
-                                                tmpLCEC.setQuantite(tmpLCEC.getQuantite() + tmpLCBD.getQuantite());
-                                            }
+                        for (LigneCommande tmpLCBD : allLignBd) {
+                            if (tmpLCBD.getPanier().getIdPanier() == panierClientEnCours.getIdPanier()) {//on récupère les lignes de commande en cours
+                                if (!commandeEnCours.contains(tmpLCBD)) {//si ligne existe pas ajouter la ligne à la commande en cours
+                                    commandeEnCours.add(tmpLCBD);
+                                } else {
+                                    for (LigneCommande tmpLCEC : commandeEnCours) { //si ligne existe et on ajuste quantité
+                                        if (tmpLCEC.getIdLigneCommande() == tmpLCBD.getIdLigneCommande()) {
+                                            tmpLCEC.setQuantite(tmpLCEC.getQuantite() + tmpLCBD.getQuantite());
                                         }
                                     }
                                 }
@@ -88,14 +83,13 @@ public class ServletConnection extends HttpServlet {
                     }
                 }
             }
-            if (panierClientEnCours.getClient() != null && commandeEnCours != null) {
-                for (LigneCommande ligneCommande : commandeEnCours) {
-                    ligneCommande.setPanier(panierClientEnCours);
-                }
+        }
+        if (panierClientEnCours.getClient() != null && commandeEnCours != null) {
+            for (LigneCommande ligneCommande : commandeEnCours) {
+                ligneCommande.setPanier(panierClientEnCours);
             }
 
-
-        }else if(action.contains("signup")){
+        } else if (action.contains("signup")) {
             client.setPassword(mdpSaisi);
             client.setTelephone(request.getParameter("phone"));
             client.setEmail(request.getParameter("email"));
@@ -103,7 +97,7 @@ public class ServletConnection extends HttpServlet {
             List<Client> listClient = clientDAO.getAll();
             for (Client temp : listClient) {
                 if (!temp.getNom().equals(client.getNom())) {
-                     clientDAO.insert(client);
+                    clientDAO.insert(client);
                 }
             }
             destination = "/accueil.jsp";
