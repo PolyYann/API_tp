@@ -60,7 +60,7 @@ public class ServletPanier extends HttpServlet {
             listLigneCommandeProduits = new ArrayList<>();
         }
 
-        if(listLigneCommandeSoins == null){
+        if (listLigneCommandeSoins == null) {
             listLigneCommandeSoins = new ArrayList<>();
         }
 
@@ -108,7 +108,7 @@ public class ServletPanier extends HttpServlet {
                     LigneCommande ligneCommandeProduitExistante = listLigneCommandeProduits.get(i);
 
                     // si on trouve l'item dans la ligne de commande
-                    if (ligneCommandeProduitExistante.getProduit().getIdProduit() == ligneCommandeProduitAAjouter.getProduit().getIdProduit()){
+                    if (ligneCommandeProduitExistante.getProduit().getIdProduit() == ligneCommandeProduitAAjouter.getProduit().getIdProduit()) {
                         //on va modifier la quantité en lui ajoutantant la nouvelle quantité
                         ligneCommandeProduitExistante.setQuantite(ligneCommandeProduitExistante.getQuantite() + ligneCommandeProduitAAjouter.getQuantite());
 
@@ -118,7 +118,8 @@ public class ServletPanier extends HttpServlet {
                         //on active la variable qui montre qu'on a trouvé l'item dans le panier
                         match = true;
                     }
-                } if (!match) {
+                }
+                if (!match) {
                     //on ajoute l'item à la liste de ligne de commande de produit
                     listLigneCommandeProduits.add(ligneCommandeProduitAAjouter);
                 }
@@ -160,8 +161,8 @@ public class ServletPanier extends HttpServlet {
                 //on va devoir l'ajouter
                 if (!match) {
                     //on ajoute l'item à la liste de ligne de commande selon le type de produit
-                listLigneCommandeProduits.add(ligneCommandeProduitAAjouter);
-                listLigneCommandeSoins.add(ligneCommandeSoinAAjouter);
+                    listLigneCommandeProduits.add(ligneCommandeProduitAAjouter);
+                    listLigneCommandeSoins.add(ligneCommandeSoinAAjouter);
                 }
 
             }
@@ -203,21 +204,24 @@ public class ServletPanier extends HttpServlet {
                 double prixUnit = 0;
                 double totalPanier = 0;
 
-                for (LigneCommande ligneCommande : listLigneCommande) {
+                for (LigneCommande ligneCommandeProduit : listLigneCommandeProduits) {
 
-                    //si la ligne de commande est un produit
-                    if (ligneCommande.getProduit() != null) {
-                        prixUnit = ligneCommande.getProduit().getPrix();
+                    prixUnit = ligneCommandeProduit.getProduit().getPrix();
 
-                        // si la ligne de commande est un soin
-                    } else {
-                        prixUnit = ligneCommande.getSoin().getPrix();
-                    }
-
-                    int quantite = ligneCommande.getQuantite();
+                    int quantite = ligneCommandeProduit.getQuantite();
                     totalLigneCommande = (prixUnit * quantite);
                     totalPanier += totalLigneCommande;
                 }
+
+                for (LigneCommande ligneCommandeSoin : listLigneCommandeSoins) {
+
+                    prixUnit = ligneCommandeSoin.getProduit().getPrix();
+
+                    int quantite = ligneCommandeSoin.getQuantite();
+                    totalLigneCommande = (prixUnit * quantite);
+                    totalPanier += totalLigneCommande;
+                }
+
                 session.setAttribute("totalPanier", totalPanier);
 
 
