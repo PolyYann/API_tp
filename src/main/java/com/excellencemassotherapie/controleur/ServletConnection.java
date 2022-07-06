@@ -63,9 +63,10 @@ public class ServletConnection extends HttpServlet {
                 }
             }
             for (Panier panierBD : listPaniers) {
-                if (panierBD.getClient().getNom().equals(client.getNom()) && !panierBD.isPaye()) {
-                    panierClientEnCours = panierBD;
-                    if (panierClientEnCours.getClient() != null) { //si le client existe déjà dans la base de données
+                if (panierClientEnCours.getClient() != null) {
+                    if (panierBD.getClient().getNom().equals(client.getNom()) && !panierBD.isPaye()) {
+                        panierClientEnCours = panierBD;
+                        //si le client existe déjà dans la base de données
 //voir si le code suivant est requis
                         for (LigneCommande tmpLCBD : allLignBd) {
                             if (tmpLCBD.getPanier().getIdPanier() == panierClientEnCours.getIdPanier()) {//on récupère les lignes de commande en cours
