@@ -33,7 +33,7 @@
             <h5>${sessionScope.totalPanier} $</h5>
         </div>
 
-        <form name="checkoutForm" action="ServletPanier"  method="post">
+        <form name="checkoutForm" action="ServletClearCart"  method="post">
             <input type="hidden" name="action" value="checkout">
             <input type="submit" name="payer" value="<fmt:message key="pay"/>">
 

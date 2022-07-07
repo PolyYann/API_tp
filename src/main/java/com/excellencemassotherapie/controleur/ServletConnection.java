@@ -58,11 +58,6 @@ public class ServletConnection extends HttpServlet {
             //Valide si le client est bien dans la BD
             for (Client clientTemp : allClients) {
 
-             /*   if (clientTemp.getNom().equals(client.getNom())) { // client = client deja dans la BD
-                    if (clientTemp.getPassword().equals(mdpSaisi)) { // on valide si le mot de passe est le même
-                        client = clientTemp;
-                        destination = "/accueil.jsp";
-                    }*/
                 if (clientTemp.getNom().equals(client.getNom()) && clientTemp.getPassword().equals(mdpSaisi)) {
                     client = clientTemp;
                     destination = "/accueil.jsp";
@@ -76,7 +71,7 @@ public class ServletConnection extends HttpServlet {
              */
             for (Panier panierBD : listPaniers) { // pour tous les paniers de la BD
                 if (panierClientEnCours.getClient() != null) { // s'il y a un client relié au panier en cours
-                     if (panierBD.getClient().getNom().equals(client.getNom()) && !panierBD.isPaye()) { // on vérifie si le client du panier en cours a aussu un panie dans la BD qui n'est pas payé
+                    if (panierBD.getClient().getNom().equals(client.getNom()) && !panierBD.isPaye()) { // on vérifie si le client du panier en cours a aussu un panie dans la BD qui n'est pas payé
                         panierClientEnCours = panierBD;  // si le client a un panier dans la BD qui est impayé, on défini le panierEncours comme étant celui de la BD
 
                         //Analyser si les lignes de commandes de la BD ont le ID du Panier en cours
@@ -114,8 +109,8 @@ public class ServletConnection extends HttpServlet {
                     }
                 }
             }//fin de l'analyse de tous les paniers de la BD
-        //Fin du signin, on retourne a l'accueil
-        destination = "/accueil.jsp";
+            //Fin du signin, on retourne a l'accueil
+            destination = "/accueil.jsp";
         }//fin de la connection
 
         //pour s'enregistrer

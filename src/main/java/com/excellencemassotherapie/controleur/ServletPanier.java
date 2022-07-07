@@ -63,8 +63,7 @@ public class ServletPanier extends HttpServlet {
         }
 
         // création des attributs requis dans le code de la servlet
-        LigneCommandDAO ligneCommandeProduitDAO = new LigneCommandDAO();
-        LigneCommandDAO ligneCommandesSoinDAO = new LigneCommandDAO();
+
         ProduitDAO produitDAO = new ProduitDAO();
         SoinDAO soinDAO = new SoinDAO();
         LigneCommande ligneCommandeProduitAAjouter = null;
@@ -167,6 +166,7 @@ public class ServletPanier extends HttpServlet {
 
             //suite à l'ajout on doit RÉ-ATTACHER à la session
             //à la place de l'ancien
+            panierEnCours.setClient((Client)session.getAttribute("client"));
             session.setAttribute("panierOut", panierEnCours);
             session.setAttribute("listLigneCommandeProduits", listLigneCommandeProduits);
             session.setAttribute("listLigneCommandeSoins", listLigneCommandeSoins);
