@@ -214,7 +214,7 @@ public class ServletPanier extends HttpServlet {
 
                     for (LigneCommande ligneCommandeSoin : listLigneCommandeSoins) {
 
-                        prixUnit = ligneCommandeSoin.getProduit().getPrix();
+                        prixUnit = ligneCommandeSoin.getSoin().getPrix();
 
                         int quantite = ligneCommandeSoin.getQuantite();
                         totalLigneCommande = (prixUnit * quantite);

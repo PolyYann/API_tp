@@ -78,7 +78,7 @@ CREATE TABLE `t_ligne_commande`
 
 INSERT INTO `t_clients`
 VALUES (1, '123 Main', 'jpd@gmail.com', 'Jean-Pierre Dupont', 'secret', '514-555-5555'),
-       (2, '456 duCoin', 'soraya@gmail.com', 'Soraya Ferdanache', 'secret', '514-444-4444'),
+       (2, '456 duCoin', 'anthony@gmail.com', 'Anthony Tremblay', 'secret', '514-444-4444'),
        (3, '789 rue du métro', 'y.lebeau@gmail.com', 'Yann Lebeau', 'secret', '514-666-6666');
 
 INSERT INTO `t_produits`
