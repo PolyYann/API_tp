@@ -29,9 +29,9 @@ public class ServletAffichageProf extends HttpServlet {
         ProfessionnelDAO profDAO = new ProfessionnelDAO();
 
         List<Professionnel> listeProfs = profDAO.getAll();
-
-        session.setAttribute("listeProfs", listeProfs);
-
+       if(session!=null) {
+           session.setAttribute("listeProfs", listeProfs);
+       }
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/afficherProfessionnels.jsp");
         dispatcher.forward(request, response);
     }

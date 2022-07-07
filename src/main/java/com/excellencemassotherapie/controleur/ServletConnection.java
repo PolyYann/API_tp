@@ -17,17 +17,8 @@ import java.util.Objects;
 
 @WebServlet(name = "ServletConnection", value = "/ServletConnection")
 public class ServletConnection extends HttpServlet {
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-    }
-
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
         //récupérer la session asociée à la requête
         HttpSession session = request.getSession();
@@ -45,7 +36,10 @@ public class ServletConnection extends HttpServlet {
 
         Client client = new Client();
         client.setNom(request.getParameter("nom"));
-
+        client.setPassword(mdpSaisi);
+        client.setTelephone(request.getParameter("phone"));
+        client.setEmail(request.getParameter("email"));
+        client.setAdresse(request.getParameter("address"));
 
         List<LigneCommande> commandeProduitsEnCours = (List) session.getAttribute("listLigneCommandeProduits");
         List<LigneCommande> commandeSoinsEnCours = (List) session.getAttribute("listLigneCommandeSoins");
@@ -115,10 +109,7 @@ public class ServletConnection extends HttpServlet {
 
         //pour s'enregistrer
         else if (action.contains("signup")) {
-            client.setPassword(mdpSaisi);
-            client.setTelephone(request.getParameter("phone"));
-            client.setEmail(request.getParameter("email"));
-            client.setAdresse(request.getParameter("address"));
+
             List<Client> listClientAll = clientDAO.getAll();
 
             //tant que e flag est false, le client est déjà dans la BD
@@ -126,6 +117,7 @@ public class ServletConnection extends HttpServlet {
             for (Client temp : listClientAll) { //tous les clients de la BD
                 if (temp.getNom().equals(client.getNom())) { //si le nouveau client = a un client de la BD, client déjà existant et flag = true
                     flag = true;
+                    break;
                 }
             }
             //si absent de la BD: flag reste false
@@ -145,5 +137,18 @@ public class ServletConnection extends HttpServlet {
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(destination);
         dispatcher.forward(request, response);
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        processRequest(request, response);
+    }
+
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        processRequest(request, response);
     }
 }
