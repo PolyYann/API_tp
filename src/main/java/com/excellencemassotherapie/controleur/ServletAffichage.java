@@ -32,52 +32,68 @@ public class ServletAffichage extends HttpServlet {
         List<Produit> listeProduitsFiltre = new ArrayList<>();
         String[] choix = request.getParameterValues("choix");
         String tousChoix = "";
-        int valeurMax = Integer.parseInt(request.getParameter("slider"));
-        if(valeurMax!=200) {
-            for (Soin soin : listeSoins) {
-                if (soin.getPrix() <= valeurMax) {
-                    listeSoinsFiltree.add(soin);
-                }
-            }
-            for (Produit produit : listeProduits) {
-                if (produit.getPrix() <= valeurMax) {
-                    listeProduitsFiltre.add(produit);
-                }
-            }
-        }
+        String valeur = request.getParameter("slider");
+        String search = request.getParameter("search");
+
         if (choix != null) {
-
-            for (String s : choix) {
-                tousChoix += (s);
-            }
-
-            for (Produit produit : listeProduits) {
-                if (tousChoix.contains("2")) {
-                    if (produit.getCategorie() == 1) {
-                        listeProduitsFiltre.add(produit);
-                    }
-                }
-                if (tousChoix.contains("3")) {
-                    if (produit.getCategorie() == 2) {
-                        listeProduitsFiltre.add(produit);
-                    }
-                }
-                if (tousChoix.contains("4")) {
-                    if (produit.getCategorie() == 3) {
-                        listeProduitsFiltre.add(produit);
-                    }
-                }
-            }
-            for (Soin soin : listeSoins) {
-                if (tousChoix.contains("5")) {
-                    if (soin.getNom().toLowerCase(Locale.ROOT).contains("massage")) {
+            if (search != null&&search.length()>0) {
+                for (Soin soin : listeSoins) {
+                    if (soin.getNom().contains(search)) {
                         listeSoinsFiltree.add(soin);
                     }
-
                 }
-                if (tousChoix.contains("6")) {
-                    if (soin.getNom().toLowerCase(Locale.ROOT).contains("taping")) {
+                for (Produit produit : listeProduits) {
+                    if (produit.getNom().contains(search)) {
+                        listeProduitsFiltre.add(produit);
+                    }
+                }
+            } else if (valeur != null && !valeur.equals("200")) {
+                int valeurMax = Integer.parseInt(valeur);
+
+                for (Soin soin : listeSoins) {
+                    if (soin.getPrix() <= valeurMax) {
                         listeSoinsFiltree.add(soin);
+                    }
+                }
+                for (Produit produit : listeProduits) {
+                    if (produit.getPrix() <= valeurMax) {
+                        listeProduitsFiltre.add(produit);
+                    }
+                }
+
+            } else {
+                for (String s : choix) {
+                    tousChoix += (s);
+                }
+
+                for (Produit produit : listeProduits) {
+                    if (tousChoix.contains("2")) {
+                        if (produit.getCategorie() == 1) {
+                            listeProduitsFiltre.add(produit);
+                        }
+                    }
+                    if (tousChoix.contains("3")) {
+                        if (produit.getCategorie() == 2) {
+                            listeProduitsFiltre.add(produit);
+                        }
+                    }
+                    if (tousChoix.contains("4")) {
+                        if (produit.getCategorie() == 3) {
+                            listeProduitsFiltre.add(produit);
+                        }
+                    }
+                }
+                for (Soin soin : listeSoins) {
+                    if (tousChoix.contains("5")) {
+                        if (soin.getNom().toLowerCase(Locale.ROOT).contains("massage")) {
+                            listeSoinsFiltree.add(soin);
+                        }
+
+                    }
+                    if (tousChoix.contains("6")) {
+                        if (soin.getNom().toLowerCase(Locale.ROOT).contains("taping")) {
+                            listeSoinsFiltree.add(soin);
+                        }
                     }
                 }
             }
@@ -92,7 +108,11 @@ public class ServletAffichage extends HttpServlet {
 
 //if(action.equals("affichage")) {
 
-        dispatcher = getServletContext().getRequestDispatcher("/affichageProduitsServices.jsp");
+        dispatcher =
+
+                getServletContext().
+
+                        getRequestDispatcher("/affichageProduitsServices.jsp");
         dispatcher.forward(request, response);
         //     }
 

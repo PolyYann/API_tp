@@ -56,8 +56,7 @@
 
                                         <div>
                                             <label>
-                                                <input type="text" class="form-control"
-                                                       placeholder="<fmt:message key="search"/>">
+                                                <input type="text" class="form-control" name="search">
                                             </label>
                                         </div>
                                         <div class="input-group-append ps-2">
