@@ -220,6 +220,7 @@ public class ServletPanier extends HttpServlet {
                         totalLigneCommande = (prixUnit * quantite);
                         totalPanier += totalLigneCommande;
                     }
+                    totalPanier = Math.round(totalPanier * 100) / 100.0;
 
                     session.setAttribute("totalPanier", totalPanier);
 
