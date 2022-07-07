@@ -143,11 +143,8 @@
                                     <div class="card-body ps-5">
                                         <label>0 $</label>
                                         <label for="slider" class="form-label">
-                                            <input type="range" value="200" class="range"
-                                                   id="slider"
-                                                   max="200"
-                                                   onchange="sliding()">
-                                        </label>
+                                            <input type="range" value="200" class="range" id="slider" name="slider" max="200"
+                                                   onchange="sliding()"></label>
                                         <label>200 $</label>
 
                                         <h5 id="sliderValue"></h5>
